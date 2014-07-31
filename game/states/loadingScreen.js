@@ -22,6 +22,8 @@
 	  this.load.image('planet','././assets/planet.png');
 	  this.load.image('planet_hover','././assets/planet_hover.png');
 	  this.load.spritesheet('man','././assets/sprite.png',59,100,8);
+	  
+	  
       
       
 
@@ -34,7 +36,8 @@
     },
     update: function() {
       if(!!this.ready) {
-        this.game.state.start('chooseAvatar');
+        // this.game.state.start('chooseAvatar');
+		this.game.state.start('play');
       }
     },
     onLoadComplete: function() {
