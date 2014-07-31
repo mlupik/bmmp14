@@ -23,7 +23,8 @@
 	  this.load.image('planet_hover','././assets/planet_hover.png');
 	  this.load.spritesheet('man','././assets/sprite.png',59,100,8);
 	  
-	  
+	  	this.load.tilemap('map_dummy','././assets/tiling/dummy.json',null, Phaser.Tilemap.TILED_JSON);
+	  this.load.image('tileSet', '././assets/tiling/tileSet.png',128,128);
       
       
 
