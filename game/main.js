@@ -4,11 +4,13 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'bmmpGame');
 var starSystems = new Array();
 //add system 1 with 4 planets
 starSystems.push(4);
-var starSystemNames = new Array('Kleiner Wagen');
-var starSystemImages = new Array('sternbild');
-var starSystemImagesHover = new Array('sternbild_hover');
+starSystems.push(3);
+var starSystemNames = new Array('Kleiner Wagen','Dreieck');
+var starSystemImages = new Array('sternbild', 'sternbild');
+var starSystemImagesHover = new Array('sternbild_hover','sternbild_hover');
 
-var planetImagesSystem1 = new Array('planet');
+var planetSystem1Images = new Array('planet','planet','planet','planet');
+var planetSystem2Images = new Array('planet','planet','planet');
 
 
 

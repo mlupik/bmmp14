@@ -1,7 +1,7 @@
  'use strict';
   function ChooseAvatar() {
     this.avatarCount = 0;
-    this.avatars= new Array('avatar1' , 'avatar2');
+    this.avatars= 8;
   }
 
   ChooseAvatar.prototype = {
@@ -27,16 +27,20 @@
       this.group_ok_button.x =this.game.world.centerX;
       this.group_ok_button.y = this.game.world.centerY +100;
 
-      this.r_button = this.game.add.button(800,this.game.world.centerY, 'arrow_r', this.rightClick, this);
+      this.r_button = this.game.add.button(600,this.game.world.centerY, 'arrow_r', this.rightClick, this);
       this.r_button.anchor.setTo(0.5,0.5);
-      this.l_button = this.game.add.button(400,this.game.world.centerY, 'arrow_l', this.leftClick, this);
+      this.l_button = this.game.add.button(200,this.game.world.centerY, 'arrow_l', this.leftClick, this);
       this.l_button.anchor.setTo(0.5,0.5);
 
 
-      this.avatar = this.game.add.sprite(this.game.world.centerX,this.game.world.centerY,this.avatars[this.avatarCount]);
-      this.avatar.anchor.setTo(0.5,0.5);
+      // this.avatar = this.game.add.sprite(this.game.world.centerX,this.game.world.centerY,this.avatars[this.avatarCount]);
+      // this.avatar.anchor.setTo(0.5,0.5);
       
-
+	  this.avatar = this.game.add.sprite(this.game.world.centerX,this.game.world.centerY,'man');
+      this.avatar.anchor.setTo(0.5,0.5);
+	  
+	  this.avatar.animations.add('frame',[0]);
+	  this.avatar.animations.play('frame',1,false);
 
     },
     
@@ -46,20 +50,21 @@
 
     rightClick: function() {
       this.avatarCount++;
-      if(this.avatarCount==this.avatars.length){
+      if(this.avatarCount==this.avatars){
           this.avatarCount=0;
       }
-      this.avatar.loadTexture(this.avatars[this.avatarCount]);
-
+	  this.avatar.animations.add('frame',[this.avatarCount]);
+	  this.avatar.animations.play('frame',1,false);
     },
 
      leftClick: function() {
 
         this.avatarCount--;
       if(this.avatarCount<0){
-          this.avatarCount=this.avatars.length-1;
+          this.avatarCount=this.avatars-1;
       }
-      this.avatar.loadTexture(this.avatars[this.avatarCount]);
+	  this.avatar.animations.add('frame',[this.avatarCount]);
+	  this.avatar.animations.play('frame',1,false);
 
     },
 	

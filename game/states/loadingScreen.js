@@ -21,6 +21,7 @@
 	  this.load.bitmapFont('font_white','././assets/font4.png', 'assets/font.xml');
 	  this.load.image('planet','././assets/planet.png');
 	  this.load.image('planet_hover','././assets/planet_hover.png');
+	  this.load.spritesheet('man','././assets/sprite.png',59,100,8);
       
       
 
