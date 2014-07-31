@@ -1,6 +1,7 @@
-'use strict';
-function Avatar(game, x, y, frame) {  
-  Phaser.Sprite.call(this, game, x, y, 'man', frame);
+
+function Avatar(game, x, y,img) {  
+  Phaser.Sprite.call(this,game,x, y,img);
+ 
 
   /// set the sprite's anchor to the center
   this.anchor.setTo(0.5, 0.5);
@@ -12,15 +13,13 @@ function Avatar(game, x, y, frame) {
 
   this.speed = 0;
 
+  this.animations.add('walk', [1,2,3,4,5,6,7],10,true);
+  this.animations.play('walk');
 
-  this.game.physics.arcade.enable(this);
-  this.game.physics.arcade.gravity.y = 250;
-  this.game.physics.enable(this, Phaser.Physics.ARCADE);
-  //Physic engine für das Autosprite aktiviert --> hat body
-  //Ziel: Überprüfen ob auto auf Straße oder nicht --> callback funktion die darauf reagiert
+  this.game.physics.arcade.enableBody(this);
   this.body.collideWorldBounds = true;
   this.body.allowRotation = true;
-   this.body.bounce.y = 0.2;
+  this.body.bounce.y = 0.2;
   
   this.resetStartPosition();
 
@@ -29,17 +28,21 @@ function Avatar(game, x, y, frame) {
 Avatar.prototype = Object.create(Phaser.Sprite.prototype);  
 Avatar.prototype.constructor = Avatar;
 
-Avatar.prototype.live = function() {
-
-		this.body.velocity.x = 0;
-};  
-
 Avatar.prototype.resetStartPosition = function() {
   console.log(this.startPos);
   this.x = this.startPos.x;
   this.y = this.startPos.y;
   this.speed = 0;
 }
+
+//Avatar.prototype.animations.add('walk',[1,2,3,4,5]);
+
+Avatar.prototype.live = function() {
+
+		this.body.velocity.x = 0;
+}  
+
+
 
   
 Avatar.prototype.jump = function(){
@@ -49,6 +52,7 @@ Avatar.prototype.jump = function(){
 Avatar.prototype.moveLeft = function(){
 	
 	this.body.x = this.body.x - 10;
+	this.animations.play('walk');
 }
 
 Avatar.prototype.moveRight = function(){

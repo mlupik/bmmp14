@@ -4,7 +4,7 @@
 
   Play.prototype = {
     preload: function() {
-	
+
     },
 
     create: function() {
@@ -15,6 +15,9 @@
 	
      this.world = localStorage.getItem('world');
 	this.level = localStorage.getItem('level');
+	
+	 this.game.physics.startSystem(Phaser.Physics.ARCADE);
+
 
 		switch(this.world){
 		//world 1
@@ -73,20 +76,27 @@
 	
 	//World 1, Level 1
 	setupLevel1_1: function() {
-		
+		this.game.physics.arcade.gravity.y = 250;
 		this.background = this.game.add.sprite(0,0,'weltall');
 		this.map = this.game.add.tilemap('map_dummy',200,0);
 		this.map.addTilesetImage('tileSet');
+		//if you use 'collide' function with the layer, then the tiles from the list will
+		//collide with the given sprite
 		this.map.setCollision([1,2]);
+		//or setCollisionBetween(0,100);
+		//the function below is called when a collide with the tile 8 happens
 		// this.map.setTileIndexCallback(8, this.hitFinishingLine, this);
 		// this.map.setTileLocationCallback(6, 8, 1, 1, this.hitHalf, this);
 		// this.map.setCollisionByExclusion([0,1]);
 		this.layer = this.map.createLayer("layer1");
 		this.layer.resizeWorld();
-		
-		this.avatar = new Avatar(this,100,100);
+				
+		this.avatar = new Avatar(this.game,100,100,'man');
 		this.game.add.existing(this.avatar);
 		this.game.camera.follow(this.avatar);
+		
+		// this.avatar.animations.add('walk', [1,2,3,4,5],10,true);
+		// this.avatar.animations.play('walk');
 	
 		
 	
