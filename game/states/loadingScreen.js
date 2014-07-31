@@ -15,6 +15,12 @@
       this.load.image('avatar2', '././assets/car3.png');
       this.load.image('arrow_r', '././assets/pfeil_rechts.png');
       this.load.image('arrow_l', '././assets/pfeil_links.png');
+	  this.load.image('weltall', '././assets/weltall.jpg');
+	  this.load.image('sternbild', '././assets/sb1_ohne.png');
+	  this.load.image('sternbild_hover', '././assets/sb1.png');
+	  this.load.bitmapFont('font_white','././assets/font4.png', 'assets/font.xml');
+	  this.load.image('planet','././assets/planet.png');
+	  this.load.image('planet_hover','././assets/planet_hover.png');
       
       
 

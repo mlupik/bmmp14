@@ -17,11 +17,11 @@
 
       this.group_ok_button = this.game.add.group();
 
-      this.ok_button = this.game.add.button(0,0, 'button', this.startClick, this);
+      this.ok_button = this.game.add.button(0,0, 'button', this.okClick, this);
       this.ok_button.anchor.setTo(0.5,0.5);
       this.group_ok_button.add(this.ok_button);
 
-      this.start_text = this.game.add.bitmapText(-20,-20, 'font','OK', 40);
+      this.start_text = this.game.add.bitmapText(-20,-20, 'font_black','OK', 40);
       this.group_ok_button.add(this.start_text);
 
       this.group_ok_button.x =this.game.world.centerX;
@@ -60,6 +60,11 @@
           this.avatarCount=this.avatars.length-1;
       }
       this.avatar.loadTexture(this.avatars[this.avatarCount]);
+
+    },
+	
+	okClick: function() {
+      game.state.start('chooseStarSystem');
 
     }
 

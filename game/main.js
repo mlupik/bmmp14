@@ -1,4 +1,4 @@
-var game = new Phaser.Game(1200, 800, Phaser.AUTO, 'bmmpGame');
+var game = new Phaser.Game(800, 600, Phaser.AUTO, 'bmmpGame');
 
 // Game States
 game.state.add('startScreen', StartScreen);
@@ -6,6 +6,7 @@ game.state.add('loadingScreen', LoadingScreen);
 game.state.add('chooseAvatar', ChooseAvatar);
 
 game.state.add('chooseStarSystem', ChooseStarSystem);
+game.state.add('chooseStar', ChooseStar);
 
 game.state.add('play', Play);
 
