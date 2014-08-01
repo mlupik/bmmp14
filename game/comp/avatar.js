@@ -13,9 +13,13 @@ function Avatar(game, x, y,img) {
 
   this.speed = 0;
 
-  this.animations.add('walk', [1,2,3,4,5,6,7],10,true);
+  this.animations.add('normal', [1],5,true);
+  this.animations.play('normal');
+  this.animations.add('walk', [2,3,4,5,6,7,8],10,true);
   this.animations.add('jump', [4],5,true);
+  this.animations.add('punch', [0],5,true);
   
+  this.punching = false;
 
   this.game.physics.arcade.enableBody(this);
   this.body.collideWorldBounds = true;
@@ -38,10 +42,11 @@ Avatar.prototype.resetStartPosition = function() {
 
 //Avatar.prototype.animations.add('walk',[1,2,3,4,5]);
 
-Avatar.prototype.stop = function() {
+Avatar.prototype.stopMove = function() {
 
 		//this.body.velocity.x = 0;
 		console.log("stop avatar");
+		this.body.velocity.x = 0;
 		this.animations.stop();
 }  
 
@@ -51,27 +56,46 @@ Avatar.prototype.live = function() {
 }  
   
 Avatar.prototype.jump = function(){
-  this.body.y = this.body.y - 20;
+if(this.body.y < 600)
+  this.body.y -= 20;
   this.animations.play('jump');
 }
 
 Avatar.prototype.moveLeft = function(){
-	
-	this.body.x = this.body.x - 10;
-	this.animations.play('walk');
+		this.body.velocity.x = -300;
+		this.animations.play('walk');
 }
 
 Avatar.prototype.moveRight = function(){
-	this.animations.play('walk');
-	this.body.x = this.body.x+10;
+		this.animations.play('walk');
+		this.body.velocity.x = 300;
 }
 
 Avatar.prototype.moveDown = function(){
-	this.body.y++;
+	this.body.velocity.y = 300;
 }
 
-Avatar.prototype.punsh = function(){
+Avatar.prototype.punch = function(){
 
+}
+
+Avatar.prototype.stopPunch = function(){
+	this.punshing = false;
+	this.animations.stop('normal');
+}
+
+Avatar.prototype.hurt = function(){
+	var data = JSON.parse(localStorage.getItem('avatarData'));
+	//avatar looses one heart
+	var hearts = data.hearts -1;
+	if(hearts<=0){
+		//dying animation or tween
+		this.kill();
+		//game over
+	}else{
+		data.hearts = hearts;
+		localStorage.setItem('avatarData',JSON.stringify(data));
+	}
 }
 
 

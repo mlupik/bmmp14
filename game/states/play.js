@@ -50,7 +50,8 @@
 		}
 		
 		this.cursors = this.game.input.keyboard.createCursorKeys();
-				
+		this.game.input.keyboard.addKeyCapture([Phaser.Keyboard.SPACEBAR]);
+		this.spacebar = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);		
 	
     },
     
@@ -58,37 +59,48 @@
 		this.checkKeys();
 		this.game.physics.arcade.collide(this.avatar,this.layer);
 		this.game.physics.arcade.collide(this.collGroup,this.layer);
+		this.game.physics.arcade.collide(this.enemGroup,this.layer);
 		this.avatar.live();
 		//this.game.physics.arcade.overlap(this.avatar, this.coin, this.collect, null, this);
 		this.game.physics.arcade.overlap(this.collGroup, this.avatar, this.collect, null, this);
+		this.game.physics.arcade.overlap(this.enemGroup, this.avatar, this.meetEnemy, null, this);
 			 
     },
 	 checkKeys: function() {
 		//Tastaturereignisse abfragen und ensprechende Funktion aufrufen
-	if(this.cursors.left.isDown){
+		
+	if(this.cursors.left.isDown ||this.cursors.right.isDown ||this.cursors.up.isDown ||this.cursors.down.isDown){
 		this.moving = true;
-		this.avatar.moveLeft();
-	}else if(this.cursors.right.isDown){
-		this.moving = true;
-		this.avatar.moveRight();
-	}else if(this.moving){
-		this.moving = false;
-		this.avatar.stop();
-	}
-	
-	if(this.cursors.up.isDown){
-		this.avatar.jump();
-		this.moving = true;
-	} else if(this.cursors.down.isDown){
-		this.moving = true;
-		this.avatar.moveDown();
+		if(this.cursors.left.isDown){
+			// this.moving = true;
+			this.avatar.moveLeft();
+		}else if(this.cursors.right.isDown){
+			// this.moving = true;
+			this.avatar.moveRight();
+		}else if(this.cursors.up.isDown){
+			this.avatar.jump();
+			// this.moving = true;
+		} else if(this.cursors.down.isDown){
+			this.avatar.moveDown();
+		} 
+		}else{
+			if(this.moving){	
+			this.avatar.stopMove();
+			this.moving  = false;
+			}
+		}
+		
+		if(this.spacebar.isDown){
+			this.avatar.punch();
+	} else if(this.spacebar.isUp){
+		this.avatar.stopPunch();
 	} 
   },
 	
 	//World 1, Level 1
 	setupLevel1_1: function() {
 		//Schwerkraft
-		this.game.physics.arcade.gravity.y = 250;
+		this.game.physics.arcade.gravity.y = 100;
 		//Hintergrund
 		this.background = this.game.add.sprite(0,0,'weltall');
 		//Tilemap
@@ -109,8 +121,10 @@
 		this.game.add.existing(this.avatar);
 		this.game.camera.follow(this.avatar);
 		this.collGroup = this.game.add.group();
+		this.enemGroup = this.game.add.group();
 		this.setupCoins1_1(10);
 		this.setupHearts1_1(3);
+		this.setupEnemies1_1(4);
 	
 	
 		
@@ -136,15 +150,40 @@
 			var heart = new Collectable(this.game,pos,'heart','heart');
 			this.game.add.existing(heart);
 			this.collGroup.add(heart);
-			// this.coin = new Collectable(this.game,this.getCoinPos(),'coin');
-			// this.game.add.existing(this.coin);
 		
 		}
+	},
+	
+	
+	setupEnemies1_1: function(enemNum){
+		for(var i = 0; i< enemNum; i++){
+			var pos = this.getCoinPos();
+			var enemy = new Enemy(this.game,pos,400,100000,3,'enemy');
+			this.game.add.existing(enemy);
+			var tween = this.game.add.tween(enemy).to({x: enemy.end},10000).loop();
+			tween.onComplete.add(function(){enemy.x = enemy.start},this);
+			tween.start();
+			this.enemGroup.add(enemy);		
+		}	
 	},
 	
 	collect: function(avatar, coin){
 		coin.collect();
 	
+	},
+	
+	meetEnemy: function(avatar, enemy){
+		// console.log("Oh my god an enemy!!!!");
+		// console.log("left",avatar.body.wasTouching.left);
+		// console.log("right",avatar.body.wasTouching.right);
+		// console.log("up",avatar.body.wasTouching.up);
+		var onTop = (enemy.y - avatar.y) >= avatar.height/2;
+		console.log("onTop",onTop);	
+		if(onTop){
+			enemy.hurt();
+		}else{
+			avatar.hurt();
+		}		
 	},
 	
 	getCoinPos: function(){
