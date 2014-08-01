@@ -1,5 +1,6 @@
  'use strict';
   function Play() {
+  this.moving = false;
   }
 
   Play.prototype = {
@@ -16,7 +17,7 @@
      this.world = localStorage.getItem('world');
 	this.level = localStorage.getItem('level');
 	
-	 this.game.physics.startSystem(Phaser.Physics.ARCADE);
+	 this.game.physics.startSystem(Phaser.Physics.P2);
 
 
 		switch(this.world){
@@ -49,35 +50,48 @@
 		}
 		
 		this.cursors = this.game.input.keyboard.createCursorKeys();
-		
-		
+				
 	
     },
     
     update: function() {
 		this.checkKeys();
 		this.game.physics.arcade.collide(this.avatar,this.layer);
+		this.game.physics.arcade.collide(this.collGroup,this.layer);
 		this.avatar.live();
+		//this.game.physics.arcade.overlap(this.avatar, this.coin, this.collect, null, this);
+		this.game.physics.arcade.overlap(this.collGroup, this.avatar, this.collect, null, this);
 			 
     },
 	 checkKeys: function() {
 		//Tastaturereignisse abfragen und ensprechende Funktion aufrufen
 	if(this.cursors.left.isDown){
-		
+		this.moving = true;
 		this.avatar.moveLeft();
-	} else if(this.cursors.right.isDown){
+	}else if(this.cursors.right.isDown){
+		this.moving = true;
 		this.avatar.moveRight();
-	} else if(this.cursors.up.isDown){
-		this.avatar.jump();
-	} else if(this.cursors.down.isDown){
-		this.avatar.moveDown();
+	}else if(this.moving){
+		this.moving = false;
+		this.avatar.stop();
 	}
+	
+	if(this.cursors.up.isDown){
+		this.avatar.jump();
+		this.moving = true;
+	} else if(this.cursors.down.isDown){
+		this.moving = true;
+		this.avatar.moveDown();
+	} 
   },
 	
 	//World 1, Level 1
 	setupLevel1_1: function() {
+		//Schwerkraft
 		this.game.physics.arcade.gravity.y = 250;
+		//Hintergrund
 		this.background = this.game.add.sprite(0,0,'weltall');
+		//Tilemap
 		this.map = this.game.add.tilemap('map_dummy',200,0);
 		this.map.addTilesetImage('tileSet');
 		//if you use 'collide' function with the layer, then the tiles from the list will
@@ -90,16 +104,57 @@
 		// this.map.setCollisionByExclusion([0,1]);
 		this.layer = this.map.createLayer("layer1");
 		this.layer.resizeWorld();
-				
+		//Einfügen des Avatars		
 		this.avatar = new Avatar(this.game,100,100,'man');
 		this.game.add.existing(this.avatar);
 		this.game.camera.follow(this.avatar);
-		
-		// this.avatar.animations.add('walk', [1,2,3,4,5],10,true);
-		// this.avatar.animations.play('walk');
+		this.collGroup = this.game.add.group();
+		this.setupCoins1_1(10);
+		this.setupHearts1_1(3);
+	
 	
 		
 	
+	},
+	
+	setupCoins1_1: function(collNum){
+		for(var i = 0; i< collNum; i++){
+			var pos = this.getCoinPos();
+			var coin = new Collectable(this.game,pos,'coin','coin');
+			this.game.add.existing(coin);
+			this.collGroup.add(coin);
+			// this.coin = new Collectable(this.game,this.getCoinPos(),'coin');
+			// this.game.add.existing(this.coin);
+		
+		}
+	},
+	
+		setupHearts1_1: function(collNum){
+
+		for(var i = 0; i< collNum; i++){
+			var pos = this.getCoinPos();
+			var heart = new Collectable(this.game,pos,'heart','heart');
+			this.game.add.existing(heart);
+			this.collGroup.add(heart);
+			// this.coin = new Collectable(this.game,this.getCoinPos(),'coin');
+			// this.game.add.existing(this.coin);
+		
+		}
+	},
+	
+	collect: function(avatar, coin){
+		coin.collect();
+	
+	},
+	
+	getCoinPos: function(){
+		var tileNum = this.map.width;
+		console.log(tileNum);
+		var pos = this.game.rnd.integerInRange(1,124);
+		pos = pos * this.map.tileWidth + this.map.tileWidth/2;
+		console.log(pos);
+		return pos;
 	}
+	
 	
   };

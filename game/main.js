@@ -12,6 +12,12 @@ var starSystemImagesHover = new Array('sternbild_hover','sternbild_hover');
 var planetSystem1Images = new Array('planet','planet','planet','planet');
 var planetSystem2Images = new Array('planet','planet','planet');
 
+var max_hearts = 3;
+if(!!localStorage){
+	localStorage.setItem('avatarData',JSON.stringify({name:"Alf", points: 0, hearts: 0 }));
+	console.log(localStorage.getItem('avatarData'));
+}
+
 
 
 

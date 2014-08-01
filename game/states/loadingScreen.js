@@ -17,11 +17,15 @@
       this.load.image('arrow_l', '././assets/pfeil_links.png');
 	  this.load.image('weltall', '././assets/weltall.jpg');
 	  this.load.image('sternbild', '././assets/sb1_ohne.png');
+	  this.load.image('coin', '././assets/Star_Coin_small.png');
 	  this.load.image('sternbild_hover', '././assets/sb1.png');
 	  this.load.bitmapFont('font_white','././assets/font4.png', 'assets/font.xml');
 	  this.load.image('planet','././assets/planet.png');
 	  this.load.image('planet_hover','././assets/planet_hover.png');
 	  this.load.spritesheet('man','././assets/sprite.png',59,100,8);
+	  this.load.spritesheet('enemy','././assets/enemy.png',64,64,16);
+	   this.load.image('heart','././assets/heart.png');
+	  
 	  
 	  	this.load.tilemap('map_dummy','././assets/tiling/dummy.json',null, Phaser.Tilemap.TILED_JSON);
 	  this.load.image('tileSet', '././assets/tiling/tileSet.png',128,128);

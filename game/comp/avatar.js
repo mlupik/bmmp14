@@ -14,7 +14,8 @@ function Avatar(game, x, y,img) {
   this.speed = 0;
 
   this.animations.add('walk', [1,2,3,4,5,6,7],10,true);
-  this.animations.play('walk');
+  this.animations.add('jump', [4],5,true);
+  
 
   this.game.physics.arcade.enableBody(this);
   this.body.collideWorldBounds = true;
@@ -37,16 +38,21 @@ Avatar.prototype.resetStartPosition = function() {
 
 //Avatar.prototype.animations.add('walk',[1,2,3,4,5]);
 
-Avatar.prototype.live = function() {
+Avatar.prototype.stop = function() {
 
-		this.body.velocity.x = 0;
+		//this.body.velocity.x = 0;
+		console.log("stop avatar");
+		this.animations.stop();
 }  
 
 
+Avatar.prototype.live = function() {
 
+}  
   
 Avatar.prototype.jump = function(){
   this.body.y = this.body.y - 20;
+  this.animations.play('jump');
 }
 
 Avatar.prototype.moveLeft = function(){
@@ -56,7 +62,7 @@ Avatar.prototype.moveLeft = function(){
 }
 
 Avatar.prototype.moveRight = function(){
-
+	this.animations.play('walk');
 	this.body.x = this.body.x+10;
 }
 
