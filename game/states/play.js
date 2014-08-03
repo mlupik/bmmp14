@@ -60,6 +60,7 @@
     
     update: function() {
 		this.checkKeys();
+		this.enemGroup.forEach(this.moveEnemies,this);
 		//this.avatar.body.collides(this.collectableCollisionGroup,this.collect,this);
 		// this.game.physics.p2.collide(this.avatar,this.layer);
 		// this.game.physics.p2.collide(this.collGroup,this.layer);
@@ -97,6 +98,7 @@
 		
 		//Hintergrund
 		this.background = this.game.add.sprite(0,0,'weltall');
+		this.background.fixedToCamera = true;
 		//Tilemap
 		this.map = this.game.add.tilemap('map_dummy');
 		this.map.addTilesetImage('tileSet');
@@ -187,11 +189,11 @@
 	setupEnemies1_1: function(enemNum){
 		for(var i = 0; i< enemNum; i++){
 			var pos = this.getCoinPos();
-			var enemy = new Enemy(this.game,pos,400,100000,3,'enemy');
+			var enemy = new Enemy(this.game,pos,400,100,3,'enemy');
 			this.game.add.existing(enemy);
-			var tween = this.game.add.tween(enemy).to({x: enemy.end},10000).loop();
-			tween.onComplete.add(function(){enemy.x = enemy.start},this);
-			tween.start();
+			// var tween = this.game.add.tween(enemy).to({x: enemy.end},10000).loop();
+			// tween.onComplete.add(function(){enemy.x = enemy.start},this);
+			// tween.start();
 			this.enemGroup.add(enemy);	
 			enemy.body.setCollisionGroup(this.enemyCollisionGroup);
 			enemy.body.collides([this.avatarCollisionGroup,this.tilemapCollisionGroup]);
@@ -231,7 +233,12 @@
 		console.log("play:avatar on Floor:", avatar.sprite.onFloor);
 		if(!avatar.sprite.onFloor){
 			avatar.sprite.onFloor = true;
+			avatar.sprite.body.velocity.x = 0;
 		}
+	},
+	
+	moveEnemies: function(enemy){
+		enemy.randomMove();
 	}
 	
 	

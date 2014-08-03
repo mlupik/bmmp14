@@ -15,7 +15,7 @@
       this.load.image('avatar2', '././assets/car3.png');
       this.load.image('arrow_r', '././assets/pfeil_rechts.png');
       this.load.image('arrow_l', '././assets/pfeil_links.png');
-	  this.load.image('weltall', '././assets/weltall.jpg');
+	  this.load.image('weltall', '././assets/gruen.png');
 	  this.load.image('sternbild', '././assets/sb1_ohne.png');
 	  this.load.image('coin', '././assets/Star_Coin_small.png');
 	  this.load.image('sternbild_hover', '././assets/sb1.png');
@@ -23,12 +23,12 @@
 	  this.load.image('planet','././assets/planet.png');
 	  this.load.image('planet_hover','././assets/planet_hover.png');
 	  this.load.spritesheet('man','././assets/sprite3.png',59,100,16);
-	  this.load.spritesheet('enemy','././assets/enemy.png',64,64,16);
+	  this.load.spritesheet('enemy','././assets/enemy2.png',64,64,24);
 	   this.load.image('heart','././assets/heart.png');
 	  
 	  
 	  	this.load.tilemap('map_dummy','././assets/tiling/dummy.json',null, Phaser.Tilemap.TILED_JSON);
-	  this.load.image('tileSet', '././assets/tiling/tileSet.png',128,128);
+	  this.load.image('tileSet', '././assets/tileSet.png',128,128);
       
       
 

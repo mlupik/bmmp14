@@ -7,6 +7,7 @@ function Enemy(game, x,range,speed,lifes, color, frame) {
   this.speed = speed;
   this.power = lifes;
   this.lifes = lifes;
+  this.facing = 'right';
   
  
   this.game.physics.p2.enable(this);
@@ -17,11 +18,12 @@ function Enemy(game, x,range,speed,lifes, color, frame) {
  
   this.body.height = this.body.width = 40;
   
-  this.animations.add('walk',[9,10,11,12,13,14],10,true);
-  this.animations.play('walk');
+  this.animations.add('walk_left',[9,10,11,12,13,14],10,true);
+  this.animations.add('walk_right',[17,18,19,20,21,22,23],10,true);
+
 
   this.setPath();
-  this.randomMove();
+  
 }
 
 Enemy.prototype = Object.create(Phaser.Sprite.prototype);  
@@ -46,11 +48,13 @@ Enemy.prototype.jump = function(){
 }
 
 Enemy.prototype.moveLeft = function(){
- 
+ 		this.body.moveLeft(this.speed);
+		this.animations.play('walk_left');
 }
 
 Enemy.prototype.moveRight = function(){
-
+this.body.moveRight(this.speed);
+this.animations.play('walk_right');
 }
 
 Enemy.prototype.punsh = function(){
@@ -64,7 +68,7 @@ Enemy.prototype.shoot = function(){
 
 
 Enemy.prototype.hurt = function(){
-	console.log("enemy.hurt");
+	//console.log("enemy.hurt");
 	//enemy looses one heart
 	this.lifes = this.lifes -1;
 	if(this.lifes<=0){
@@ -78,9 +82,17 @@ Enemy.prototype.hurt = function(){
 }
 
 Enemy.prototype.randomMove = function(){
-	// var tween = game.add.tween(this).from({x: this.start},this.speed).to({x: this.end},this.speed).loop();
-	// tween.onComplete.add(function(){this.x = this.start},game);
-	// tween.start();
+	if(this.facing == 'left'){
+		this.moveLeft();
+		if(this.body.x < this.start){
+		this.facing = 'right';
+		}
+	}else{
+		this.moveRight();
+		if(this.body.x > this.end){
+			this.facing = 'left';
+		}
+	}
 	
 	
 }
