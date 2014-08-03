@@ -17,7 +17,10 @@
      this.world = localStorage.getItem('world');
 	this.level = localStorage.getItem('level');
 	
-	 this.game.physics.startSystem(Phaser.Physics.P2);
+	 this.game.physics.startSystem(Phaser.Physics.P2JS);
+
+
+	 
 
 
 		switch(this.world){
@@ -57,65 +60,83 @@
     
     update: function() {
 		this.checkKeys();
-		this.game.physics.arcade.collide(this.avatar,this.layer);
-		this.game.physics.arcade.collide(this.collGroup,this.layer);
-		this.game.physics.arcade.collide(this.enemGroup,this.layer);
-		this.avatar.live();
-		//this.game.physics.arcade.overlap(this.avatar, this.coin, this.collect, null, this);
-		this.game.physics.arcade.overlap(this.collGroup, this.avatar, this.collect, null, this);
-		this.game.physics.arcade.overlap(this.enemGroup, this.avatar, this.meetEnemy, null, this);
+		//this.avatar.body.collides(this.collectableCollisionGroup,this.collect,this);
+		// this.game.physics.p2.collide(this.avatar,this.layer);
+		// this.game.physics.p2.collide(this.collGroup,this.layer);
+		// this.game.physics.p2.collide(this.enemGroup,this.layer);
+		// //this.avatar.live();
+		// //this.game.physics.p2.overlap(this.avatar, this.coin, this.collect, null, this);
+		// this.game.physics.p2.overlap(this.collGroup, this.avatar, this.collect);
+		// this.game.physics.p2.overlap(this.enemGroup, this.avatar, this.meetEnemy);
 			 
     },
 	 checkKeys: function() {
 		//Tastaturereignisse abfragen und ensprechende Funktion aufrufen
-		
-	if(this.cursors.left.isDown ||this.cursors.right.isDown ||this.cursors.up.isDown ||this.cursors.down.isDown){
-		this.moving = true;
 		if(this.cursors.left.isDown){
-			// this.moving = true;
 			this.avatar.moveLeft();
 		}else if(this.cursors.right.isDown){
 			// this.moving = true;
 			this.avatar.moveRight();
-		}else if(this.cursors.up.isDown){
-			this.avatar.jump();
-			// this.moving = true;
-		} else if(this.cursors.down.isDown){
-			this.avatar.moveDown();
-		} 
-		}else{
-			if(this.moving){	
+		}else {
 			this.avatar.stopMove();
-			this.moving  = false;
-			}
 		}
 		
+		// if(this.cursors.up.isDown){
+			// this.avatar.jump();
+		// }
+		
 		if(this.spacebar.isDown){
-			this.avatar.punch();
-	} else if(this.spacebar.isUp){
-		this.avatar.stopPunch();
+			this.avatar.jump();
 	} 
+	
   },
 	
 	//World 1, Level 1
 	setupLevel1_1: function() {
 		//Schwerkraft
-		this.game.physics.arcade.gravity.y = 100;
+		
 		//Hintergrund
 		this.background = this.game.add.sprite(0,0,'weltall');
 		//Tilemap
-		this.map = this.game.add.tilemap('map_dummy',200,0);
+		this.map = this.game.add.tilemap('map_dummy');
 		this.map.addTilesetImage('tileSet');
 		//if you use 'collide' function with the layer, then the tiles from the list will
 		//collide with the given sprite
-		this.map.setCollision([1,2]);
+		this.layer = this.map.createLayer("layer1");
+		this.layer.resizeWorld();
+//this.game.physics.p2.updateBoundsCollisionGroup();
+		this.map.setCollisionBetween(1,2);
+		//Define CollisionGroups
+		this.avatarCollisionGroup = this.game.physics.p2.createCollisionGroup();
+		this.enemyCollisionGroup = this.game.physics.p2.createCollisionGroup();
+		this.collectableCollisionGroup = this.game.physics.p2.createCollisionGroup();
+		this.tilemapCollisionGroup = this.game.physics.p2.createCollisionGroup();
+		
+		var tiles = this.game.physics.p2.convertTilemap(this.map, this.layer,true);
+		 for(var tile in tiles)
+		  {
+			tiles[tile].setCollisionGroup(this.tilemapCollisionGroup);
+			tiles[tile].collides([this.avatarCollisionGroup,this.enemyCollisionGroup,this.collectableCollisionGroup]);
+		 }
+		
+		console.log("map:",tiles);		
+		this.game.physics.p2.restitution = 0.1;
+//this.game.physics.p2.setBoundsToWorld(true, true, true, true, true);
+		
+		// this.avatarCollisionGroup = this.game.physics.p2.createCollisionGroup();
+		// this.enemyCollisionGroup = this.game.physics.p2.createCollisionGroup();
+		// this.collectableCollisionGroup = this.game.physics.p2.createCollisionGroup();
+		
+		this.game.physics.p2.gravity.y = 400;
+
+		this.game.physics.p2.setImpactEvents(true);
 		//or setCollisionBetween(0,100);
 		//the function below is called when a collide with the tile 8 happens
 		// this.map.setTileIndexCallback(8, this.hitFinishingLine, this);
 		// this.map.setTileLocationCallback(6, 8, 1, 1, this.hitHalf, this);
 		// this.map.setCollisionByExclusion([0,1]);
-		this.layer = this.map.createLayer("layer1");
-		this.layer.resizeWorld();
+		
+		
 		//Einfügen des Avatars		
 		this.avatar = new Avatar(this.game,100,100,'man');
 		this.game.add.existing(this.avatar);
@@ -125,8 +146,12 @@
 		this.setupCoins1_1(10);
 		this.setupHearts1_1(3);
 		this.setupEnemies1_1(4);
-	
-	
+		//collisions avatar
+		this.avatar.body.setCollisionGroup(this.avatarCollisionGroup);
+		this.avatar.body.collides(this.enemyCollisionGroup,this.meetEnemy,this);
+		this.avatar.body.collides(this.collectableCollisionGroup,this.collect,this);
+		this.avatar.body.collides(this.tilemapCollisionGroup, this.touchedFloor,this);
+		
 		
 	
 	},
@@ -139,6 +164,8 @@
 			this.collGroup.add(coin);
 			// this.coin = new Collectable(this.game,this.getCoinPos(),'coin');
 			// this.game.add.existing(this.coin);
+			coin.body.setCollisionGroup(this.collectableCollisionGroup);
+			coin.body.collides([this.avatarCollisionGroup,this.tilemapCollisionGroup]);
 		
 		}
 	},
@@ -150,6 +177,8 @@
 			var heart = new Collectable(this.game,pos,'heart','heart');
 			this.game.add.existing(heart);
 			this.collGroup.add(heart);
+			heart.body.setCollisionGroup(this.collectableCollisionGroup);
+			heart.body.collides([this.avatarCollisionGroup,this.tilemapCollisionGroup]);
 		
 		}
 	},
@@ -163,12 +192,15 @@
 			var tween = this.game.add.tween(enemy).to({x: enemy.end},10000).loop();
 			tween.onComplete.add(function(){enemy.x = enemy.start},this);
 			tween.start();
-			this.enemGroup.add(enemy);		
+			this.enemGroup.add(enemy);	
+			enemy.body.setCollisionGroup(this.enemyCollisionGroup);
+			enemy.body.collides([this.avatarCollisionGroup,this.tilemapCollisionGroup]);
 		}	
 	},
 	
 	collect: function(avatar, coin){
-		coin.collect();
+		console.log(typeof(coin));
+		coin.sprite.collect();
 	
 	},
 	
@@ -177,12 +209,12 @@
 		// console.log("left",avatar.body.wasTouching.left);
 		// console.log("right",avatar.body.wasTouching.right);
 		// console.log("up",avatar.body.wasTouching.up);
-		var onTop = (enemy.y - avatar.y) >= avatar.height/2;
+		var onTop = (enemy.sprite.y - avatar.sprite.y) >= avatar.sprite.height/2;
 		console.log("onTop",onTop);	
 		if(onTop){
-			enemy.hurt();
+			enemy.sprite.hurt();
 		}else{
-			avatar.hurt();
+			avatar.sprite.hurt();
 		}		
 	},
 	
@@ -193,6 +225,13 @@
 		pos = pos * this.map.tileWidth + this.map.tileWidth/2;
 		console.log(pos);
 		return pos;
+	},
+	
+	touchedFloor: function(avatar,floor){
+		console.log("play:avatar on Floor:", avatar.sprite.onFloor);
+		if(!avatar.sprite.onFloor){
+			avatar.sprite.onFloor = true;
+		}
 	}
 	
 	

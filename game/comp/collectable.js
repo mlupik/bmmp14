@@ -15,7 +15,7 @@ function Collectable(game,x,img,type) {
 
   
 
-  this.game.physics.arcade.enableBody(this);
+  this.game.physics.p2.enable(this);
   this.body.collideWorldBounds = true;
   this.body.allowRotation = true;
 

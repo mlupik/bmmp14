@@ -12,67 +12,87 @@ function Avatar(game, x, y,img) {
   };
 
   this.speed = 0;
-
-  this.animations.add('normal', [1],5,true);
-  this.animations.play('normal');
-  this.animations.add('walk', [2,3,4,5,6,7,8],10,true);
+  this.facing  = 'right';
+  this.frame = 0;
+  this.jumpTimer = 0;
+  this.onFloor = true;
+  this.jumpSpeed = 0;
+  this.animations.add('walk_right', [0,1,2,3,4,5,6,7],10,true);
+  this.animations.add('walk_left', [8,9,10,11,12,13,14,15],10,true);
   this.animations.add('jump', [4],5,true);
   this.animations.add('punch', [0],5,true);
-  
   this.punching = false;
 
-  this.game.physics.arcade.enableBody(this);
+  this.game.physics.p2.enable(this);
   this.body.collideWorldBounds = true;
-  this.body.allowRotation = true;
-  this.body.bounce.y = 0.2;
   
-  this.resetStartPosition();
+  this.body.fixedRotation = true;
+  //this.body.bounce.y = 0.2;
+  //this.resetStartPosition();
 
 }
 
 Avatar.prototype = Object.create(Phaser.Sprite.prototype);  
 Avatar.prototype.constructor = Avatar;
 
-Avatar.prototype.resetStartPosition = function() {
-  console.log(this.startPos);
-  this.x = this.startPos.x;
-  this.y = this.startPos.y;
-  this.speed = 0;
-}
+
 
 //Avatar.prototype.animations.add('walk',[1,2,3,4,5]);
 
 Avatar.prototype.stopMove = function() {
-
-		//this.body.velocity.x = 0;
-		console.log("stop avatar");
-		this.body.velocity.x = 0;
+	if(this.facing != 'idle'){
 		this.animations.stop();
+		if(this.facing == 'left'){
+			this.frame = 8;
+		}else{
+			this.frame = 0;
+		}
+		//console.log("stop avatar");
+		this.facing = 'idle';
+		this.body.velocity.x = 0;
+	}		
 }  
 
 
 Avatar.prototype.live = function() {
-
+	//this.body.velocity.x = 0;
 }  
   
 Avatar.prototype.jump = function(){
-if(this.body.y < 600)
-  this.body.y -= 20;
-  this.animations.play('jump');
+	// console.log("game.time.now > jumpTimer", game.time.now>this.jumpTimer);
+		// console.log("avatar: onFloor", this.onFloor);
+	
+	if(this.onFloor && this.game.time.now>this.jumpTimer){
+		this.animations.stop();
+		this.facing = 'idle';
+		this.body.velocity.y = -300;
+		this.jumpTimer = game.time.now + 350;
+		this.onFloor=false;
+	}
 }
 
 Avatar.prototype.moveLeft = function(){
-		this.body.velocity.x = -300;
-		this.animations.play('walk');
+	if(this.onFloor){
+		this.body.velocity.x = -150;
+		if(this.facing != 'left'){
+			this.animations.play('walk_left');
+			this.facing = 'left';
+		}
+	}
 }
 
 Avatar.prototype.moveRight = function(){
-		this.animations.play('walk');
-		this.body.velocity.x = 300;
+	if(this.onFloor){
+	this.body.velocity.x = 150;
+		if(this.facing != 'right'){
+			this.animations.play('walk_right');
+			this.facing = 'right';
+		}
+	}
 }
 
 Avatar.prototype.moveDown = function(){
-	this.body.velocity.y = 300;
+	//this.body.velocity.y = 300;
 }
 
 Avatar.prototype.punch = function(){

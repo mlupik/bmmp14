@@ -22,7 +22,7 @@
 	  this.load.bitmapFont('font_white','././assets/font4.png', 'assets/font.xml');
 	  this.load.image('planet','././assets/planet.png');
 	  this.load.image('planet_hover','././assets/planet_hover.png');
-	  this.load.spritesheet('man','././assets/sprite2.png',59,100,8);
+	  this.load.spritesheet('man','././assets/sprite3.png',59,100,16);
 	  this.load.spritesheet('enemy','././assets/enemy.png',64,64,16);
 	   this.load.image('heart','././assets/heart.png');
 	  

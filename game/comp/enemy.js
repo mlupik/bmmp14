@@ -9,13 +9,12 @@ function Enemy(game, x,range,speed,lifes, color, frame) {
   this.lifes = lifes;
   
  
-  this.game.physics.arcade.enable(this);
+  this.game.physics.p2.enable(this);
   //Physic engine für das Autosprite aktiviert --> hat body
   //Ziel: Überprüfen ob auto auf Straße oder nicht --> callback funktion die darauf reagiert
   this.body.collideWorldBounds = true;
-  this.body.allowRotation = true;
-
-  this.body.maxVelocity.set(399);
+	this.body.fixedRotation = true;
+ 
   this.body.height = this.body.width = 40;
   
   this.animations.add('walk',[9,10,11,12,13,14],10,true);
