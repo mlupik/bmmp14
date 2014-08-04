@@ -10,12 +10,16 @@ function Avatar(game, x, y,img) {
     x:100,
     y:100
   };
-
-  this.speed = 0;
+  
+  this.minSpeed = 150;
+  this.maxSpeed = this.minSpeed*2;
+  this.speed = this.minSpeed;
   this.facing  = 'right';
   this.frame = 0;
+  this.immortal = false;
   this.jumpTimer = 0;
   this.hurtTimer = 0;
+  this.powerUpTimer = 0;
    this.onFloor = true;
   this.jumpSpeed = 0;
   this.animations.add('walk_right', [0,1,2,3,4,5,6,7],10,true);
@@ -57,6 +61,9 @@ Avatar.prototype.stopMove = function() {
 
 Avatar.prototype.live = function() {
 	//this.body.velocity.x = 0;
+	if(this.powerUpTimer<game.time.now && this.immortal){
+			this.immortal = false;
+		}
 }  
   
 Avatar.prototype.jump = function(){
@@ -73,7 +80,10 @@ Avatar.prototype.jump = function(){
 }
 
 Avatar.prototype.moveLeft = function(){
-		this.body.velocity.x = -150;
+		if(this.powerUpTimer<game.time.now && this.speed == this.maxSpeed){
+			this.speed = this.minSpeed;
+		}
+		this.body.moveLeft(this.speed);
 		if(this.facing != 'left'){
 			this.animations.play('walk_left');
 			this.facing = 'left';
@@ -81,7 +91,10 @@ Avatar.prototype.moveLeft = function(){
 }
 
 Avatar.prototype.moveRight = function(){
-	this.body.velocity.x = 150;
+	if(this.powerUpTimer<game.time.now && this.speed == this.maxSpeed){
+			this.speed = this.minSpeed;
+		}
+	this.body.moveRight(this.speed);
 		if(this.facing != 'right'){
 			this.animations.play('walk_right');
 			this.facing = 'right';
@@ -90,6 +103,13 @@ Avatar.prototype.moveRight = function(){
 
 Avatar.prototype.moveDown = function(){
 	//this.body.velocity.y = 300;
+}
+
+Avatar.prototype.speedUp = function(){
+	if(this.speed==this.minSpeed){
+		this.speed = this.speed*2;
+		this.powerUpTimer = game.time.now+ 5000;
+	}
 }
 
 Avatar.prototype.punch = function(){
@@ -102,21 +122,21 @@ Avatar.prototype.stopPunch = function(){
 }
 
 Avatar.prototype.hurt = function(){
-	if(this.game.time.now>this.hurtTimer){
-		this.hurtTimer = this.game.time.now + 3000;
-		this.hit();
-		var data = JSON.parse(localStorage.getItem('avatarData'));
-		//avatar looses one heart
-		var hearts = data.hearts -1;
-		data.hearts = hearts;
-		localStorage.setItem('avatarData',JSON.stringify(data));
-		if(hearts<=0){
-			//dying animation or tween
-			this.kill();
-			//game over
-		}
-	
-	}
+			if(this.game.time.now>this.hurtTimer){
+				this.hurtTimer = this.game.time.now + 3000;
+				this.hit();
+				var data = JSON.parse(localStorage.getItem('avatarData'));
+				//avatar looses one heart
+				var hearts = data.hearts -1;
+				data.hearts = hearts;
+				localStorage.setItem('avatarData',JSON.stringify(data));
+				if(hearts<=0){
+					//dying animation or tween
+					this.kill();
+					//game over
+				}
+			
+			}
 }
 
 Avatar.prototype.hit = function(){
@@ -158,6 +178,9 @@ Avatar.prototype.hitEnemy = function(){
 }
 
 
-Avatar.prototype.shoot = function(){
 
+
+Avatar.prototype.superPower= function(){
+	this.immortal = true;
+	this.powerUpTimer = game.time.now+ 5000;
 } 

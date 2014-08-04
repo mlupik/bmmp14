@@ -22,4 +22,6 @@ Sounds:
 
 Website
 
+GameOver,Pause,Won -Sceen
+
 

@@ -46,6 +46,11 @@ Collectable.prototype.collect = function() {
 			this.collectHeart();
 		}else if(this.type == 'weapon'){
 			this.collectWeapon();
+		}else if(this.type == 'lightning'){
+			this.collectLightning();
+		}
+		else if(this.type == 'superpower'){
+			this.collectSuperPower();
 		}
 	}
 	this.kill();
@@ -59,8 +64,31 @@ Collectable.prototype.collectHeart = function() {
 		hearts = hearts +1;
 		data.hearts = hearts;
 		localStorage.setItem('avatarData',JSON.stringify(data));
-		console.log(JSON.parse(localStorage.getItem('avatarData')));
+		//console.log(JSON.parse(localStorage.getItem('avatarData')));
 	}
+} 
+Collectable.prototype.collectLightning = function() {
+	console.log("lightning collected!");
+	// var data = JSON.parse(localStorage.getItem('avatarData'));
+	// var hearts = data.hearts;
+	// if(hearts < max_hearts){
+		// hearts = hearts +1;
+		// data.hearts = hearts;
+		// localStorage.setItem('avatarData',JSON.stringify(data));
+		// //console.log(JSON.parse(localStorage.getItem('avatarData')));
+	// }
+} 
+
+Collectable.prototype.collectSuperPower = function() {
+	console.log("lightning collected!");
+	// var data = JSON.parse(localStorage.getItem('avatarData'));
+	// var hearts = data.hearts;
+	// if(hearts < max_hearts){
+		// hearts = hearts +1;
+		// data.hearts = hearts;
+		// localStorage.setItem('avatarData',JSON.stringify(data));
+		// //console.log(JSON.parse(localStorage.getItem('avatarData')));
+	// }
 } 
 
 Collectable.prototype.collectCoin = function() {
