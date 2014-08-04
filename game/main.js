@@ -14,7 +14,7 @@ var planetSystem2Images = new Array('planet','planet','planet');
 
 var max_hearts = 3;
 if(!!localStorage){
-	localStorage.setItem('avatarData',JSON.stringify({name:"Alf", points: 0, hearts: 0 }));
+	localStorage.setItem('avatarData',JSON.stringify({name:"Alf", points: 0, hearts: max_hearts }));
 	console.log(localStorage.getItem('avatarData'));
 }
 

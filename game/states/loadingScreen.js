@@ -25,6 +25,8 @@
 	  this.load.spritesheet('man','././assets/sprite3.png',59,100,16);
 	  this.load.spritesheet('enemy','././assets/enemy2.png',64,64,24);
 	   this.load.image('heart','././assets/heart.png');
+	   this.load.image('heart_grau','././assets/heart_grau.png');
+	   this.load.spritesheet('hearts','././assets/hearts.png',90,28,4);
 	  
 	  
 	  	this.load.tilemap('map_dummy','././assets/tiling/dummy.json',null, Phaser.Tilemap.TILED_JSON);

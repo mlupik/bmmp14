@@ -15,7 +15,8 @@ function Avatar(game, x, y,img) {
   this.facing  = 'right';
   this.frame = 0;
   this.jumpTimer = 0;
-  this.onFloor = true;
+  this.hurtTimer = 0;
+   this.onFloor = true;
   this.jumpSpeed = 0;
   this.animations.add('walk_right', [0,1,2,3,4,5,6,7],10,true);
   this.animations.add('walk_left', [8,9,10,11,12,13,14,15],10,true);
@@ -72,23 +73,19 @@ Avatar.prototype.jump = function(){
 }
 
 Avatar.prototype.moveLeft = function(){
-	if(this.onFloor){
 		this.body.velocity.x = -150;
 		if(this.facing != 'left'){
 			this.animations.play('walk_left');
 			this.facing = 'left';
 		}
-	}
 }
 
 Avatar.prototype.moveRight = function(){
-	if(this.onFloor){
 	this.body.velocity.x = 150;
 		if(this.facing != 'right'){
 			this.animations.play('walk_right');
 			this.facing = 'right';
 		}
-	}
 }
 
 Avatar.prototype.moveDown = function(){
@@ -105,17 +102,59 @@ Avatar.prototype.stopPunch = function(){
 }
 
 Avatar.prototype.hurt = function(){
-	var data = JSON.parse(localStorage.getItem('avatarData'));
-	//avatar looses one heart
-	var hearts = data.hearts -1;
-	if(hearts<=0){
-		//dying animation or tween
-		this.kill();
-		//game over
-	}else{
+	if(this.game.time.now>this.hurtTimer){
+		this.hurtTimer = this.game.time.now + 3000;
+		this.hit();
+		var data = JSON.parse(localStorage.getItem('avatarData'));
+		//avatar looses one heart
+		var hearts = data.hearts -1;
 		data.hearts = hearts;
 		localStorage.setItem('avatarData',JSON.stringify(data));
+		if(hearts<=0){
+			//dying animation or tween
+			this.kill();
+			//game over
+		}
+	
 	}
+}
+
+Avatar.prototype.hit = function(){
+	this.body.moveUp(250);
+
+	if(this.facing == 'left') {this.body.moveRight(400);}
+	else if(this.facing == 'right'){this.body.moveLeft(400);}
+	else{
+		var pos = this.game.rnd.integerInRange(0,1);
+		switch(pos){
+			case 0:this.body.moveRight(500);
+			break;
+			case 1:this.body.moveLeft(500);
+			break;
+		
+		}
+		
+	}
+	
+}
+
+Avatar.prototype.hitEnemy = function(){
+	this.body.moveUp(200);
+
+	if(this.facing == 'left') {this.body.moveRight(100);}
+	else if(this.facing == 'right'){this.body.moveLeft(100);}
+	else{
+		var pos = this.game.rnd.integerInRange(0,1);
+		switch(pos){
+			case 0:this.body.moveRight(100);
+			break;
+			case 1:this.body.moveLeft(100);
+			break;
+		
+		}
+		
+	}
+	
 }
 
 

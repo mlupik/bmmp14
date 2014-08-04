@@ -6,6 +6,7 @@ function Collectable(game,x,img,type) {
   /// set the sprite's anchor to the center
   this.anchor.setTo(0.5, 0.5);
   this.type = type;
+  this.collected =  false;
   this.startPos = {
     x: x,
     y: 0
@@ -37,12 +38,15 @@ Collectable.prototype.resetStartPosition = function() {
 //Collectable.prototype.animations.add('walk',[1,2,3,4,5]);
 
 Collectable.prototype.collect = function() {
-	if(this.type == 'coin'){
-		this.collectCoin();
-	}else if(this.type == 'heart'){
-		this.collectHeart();
-	}else if(this.type == 'weapon'){
-		this.collectWeapon();
+	if(!this.collected){
+		this.collected = true;
+		if(this.type == 'coin'){
+			this.collectCoin();
+		}else if(this.type == 'heart'){
+			this.collectHeart();
+		}else if(this.type == 'weapon'){
+			this.collectWeapon();
+		}
 	}
 	this.kill();
 	

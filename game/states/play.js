@@ -18,7 +18,7 @@
 	this.level = localStorage.getItem('level');
 	
 	 this.game.physics.startSystem(Phaser.Physics.P2JS);
-
+	
 
 	 
 
@@ -99,6 +99,7 @@
 		//Hintergrund
 		this.background = this.game.add.sprite(0,0,'weltall');
 		this.background.fixedToCamera = true;
+		this.setupStatusBar();
 		//Tilemap
 		this.map = this.game.add.tilemap('map_dummy');
 		this.map.addTilesetImage('tileSet');
@@ -202,7 +203,9 @@
 	
 	collect: function(avatar, coin){
 		console.log(typeof(coin));
+		coin.clearCollision(true);
 		coin.sprite.collect();
+		this.updateStatusBar();
 	
 	},
 	
@@ -213,11 +216,15 @@
 		// console.log("up",avatar.body.wasTouching.up);
 		var onTop = (enemy.sprite.y - avatar.sprite.y) >= avatar.sprite.height/2;
 		console.log("onTop",onTop);	
+		
 		if(onTop){
 			enemy.sprite.hurt();
+			avatar.sprite.hitEnemy();
+			
 		}else{
 			avatar.sprite.hurt();
 		}		
+		this.updateStatusBar();
 	},
 	
 	getCoinPos: function(){
@@ -239,6 +246,57 @@
 	
 	moveEnemies: function(enemy){
 		enemy.randomMove();
+	},
+	
+	setupStatusBar: function(){
+		if(!!localStorage){
+			var data = JSON.parse(localStorage.getItem('avatarData'));
+			this.hearts = data.hearts;
+			this.hearts_img = this.game.add.sprite(650,0,'hearts');
+			this.hearts_img.frame = 0;
+			switch(this.hearts){
+				case 0 : this.hearts_img.frame = 3;
+				break;
+				case 1 : this.hearts_img.frame = 2;
+				break;
+				case 2: this.hearts_img.frame = 1;
+				break;			
+			}
+			this.points = data.points;
+			console.log("points:",this.points);
+			console.log("hearts:",this.hearts);
+			this.statusBar = this.game.add.group();
+			this.point_text = this.game.add.bitmapText(500,0, 'font_black',this.points.toString(), 30);
+			this.name_text = this.game.add.bitmapText(0,0, 'font_black',data.name, 30);
+			this.statusBar.add(this.point_text);
+			this.statusBar.add(this.name_text);
+			this.statusBar.add(this.hearts_img);
+			this.statusBar.x = 20;
+			this.statusBar.y = 10;
+			this.statusBar.fixedToCamera = true;
+		
+		}
+		
+	
+	},
+	
+	updateStatusBar: function() {
+		if(!!localStorage) {
+		var data = JSON.parse(localStorage.getItem('avatarData'));
+			this.hearts = data.hearts;
+			console.log("hearts",this.hearts);
+			switch(this.hearts){
+				case 0 : this.hearts_img.frame = 3;
+				break;
+				case 1 : this.hearts_img.frame = 2;
+				break;
+				case 2: this.hearts_img.frame = 1;
+				break;			
+			}
+			this.points = data.points;
+			this.point_text.text = this.points.toString();
+			this.name_text.text = data.name;
+		}
 	}
 	
 	

@@ -6,6 +6,7 @@ function Enemy(game, x,range,speed,lifes, color, frame) {
   this.range = range;
   this.speed = speed;
   this.power = lifes;
+  this.hurtTimer = 0;
   this.lifes = lifes;
   this.facing = 'right';
   
@@ -70,14 +71,18 @@ Enemy.prototype.shoot = function(){
 Enemy.prototype.hurt = function(){
 	//console.log("enemy.hurt");
 	//enemy looses one heart
-	this.lifes = this.lifes -1;
-	if(this.lifes<=0){
-		//dying animation or tween
-		var data = JSON.parse(localStorage.getItem('avatarData'));
-		var points = data.points + this.power;
-		data.points = points;
-		localStorage.setItem('avatarData',JSON.stringify(data));
-		this.kill();
+	if(this.game.time.now>this.hurtTimer){
+		this.hurtTimer = this.game.time.now + 3000;
+		this.hit();
+		this.lifes = this.lifes -1;
+		if(this.lifes<=0){
+			//dying animation or tween
+			var data = JSON.parse(localStorage.getItem('avatarData'));
+			var points = data.points + this.power;
+			data.points = points;
+			localStorage.setItem('avatarData',JSON.stringify(data));
+			this.kill();
+		}
 	}
 }
 
@@ -95,4 +100,22 @@ Enemy.prototype.randomMove = function(){
 	}
 	
 	
+}
+
+Enemy.prototype.hit = function(){
+	this.body.moveUp(100);
+
+	if(this.facing == 'left') {this.body.moveRight(400);}
+	else if(this.facing == 'right'){this.body.moveLeft(400);}
+	else{
+		var pos = this.game.rnd.integerInRange(0,1);
+		switch(pos){
+			case 0:this.body.moveRight(500);
+			break;
+			case 1:this.body.moveLeft(500);
+			break;
+		
+		}
+		
+	}
 }

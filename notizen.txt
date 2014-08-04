@@ -1,0 +1,25 @@
+TO-DO:
+
+
+avatar:
+- walking und sterbe- und sprung-animation
+- power-ups: doppelte geschwindigkeit, unsterblich 
+-im Sprung lenken
+
+Gegner:
+- walking und sterbe-animation
+- avatar "wegsprengen" bei draufspringen
+
+Collectables
+
+
+Status-Leiste
+
+Sounds:
+- Einsammeln von verschiedenen Collectables
+- Hintergrundmusik
+- Gegner-Treffen
+
+Website
+
+
