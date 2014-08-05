@@ -1,0 +1,16 @@
+<TextureAtlas imagePath="spritesExplosion.png">
+	<SubTexture name="10e.png" x="100" y="130" width="48" height="75"/>
+	<SubTexture name="11e.png" x="50" y="182" width="48" height="70"/>
+	<SubTexture name="12e.png" x="100" y="0" width="48" height="65"/>
+	<SubTexture name="13e.png" x="199" y="0" width="47" height="62"/>
+	<SubTexture name="14e.png" x="100" y="67" width="48" height="61"/>
+	<SubTexture name="1e.png" x="150" y="100" width="47" height="99"/>
+	<SubTexture name="2e.png" x="248" y="0" width="47" height="100"/>
+	<SubTexture name="3e.png" x="199" y="64" width="47" height="100"/>
+	<SubTexture name="4e.png" x="150" y="0" width="47" height="98"/>
+	<SubTexture name="5e.png" x="50" y="0" width="48" height="92"/>
+	<SubTexture name="6e.png" x="50" y="94" width="48" height="86"/>
+	<SubTexture name="7e.png" x="0" y="166" width="48" height="81"/>
+	<SubTexture name="8e.png" x="0" y="0" width="48" height="82"/>
+	<SubTexture name="9e.png" x="0" y="84" width="48" height="80"/>
+</TextureAtlas>

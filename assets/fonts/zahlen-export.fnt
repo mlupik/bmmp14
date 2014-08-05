@@ -1,0 +1,18 @@
+info face="C:\Users\Lisa Walter.gerhardwalter\Documents\uni\zahlen-export" size=32 bold=0 italic=0 charset="" unicode=0 stretchH=100 smooth=1 aa=1 padding=0,0,0,0 spacing=1,1
+common lineHeight=80 base=26 scaleW=512 scaleH=512 pages=1 packed=0 alphaChnl=1 redChnl=0 greenChnl=0 blueChnl=0
+page id=0 file="C:\Users\Lisa Walter.gerhardwalter\Documents\uni\zahlen-export.png"
+chars count=96
+char id=33 x=198 y=181 width=98 height=180 xoffset=0 yoffset=-100 xadvance=99 page=0 chnl=0 letter="!"
+char id=34 x=104 y=0 width=50 height=177 xoffset=0 yoffset=-100 xadvance=51 page=0 chnl=0 letter="""
+char id=35 x=395 y=175 width=96 height=177 xoffset=0 yoffset=-100 xadvance=97 page=0 chnl=0 letter="#"
+char id=36 x=297 y=178 width=97 height=180 xoffset=0 yoffset=-100 xadvance=98 page=0 chnl=0 letter="$"
+char id=37 x=0 y=0 width=103 height=177 xoffset=0 yoffset=-100 xadvance=104 page=0 chnl=0 letter="%"
+char id=38 x=297 y=0 width=97 height=177 xoffset=0 yoffset=-97 xadvance=98 page=0 chnl=0 letter="&"
+char id=39 x=198 y=0 width=98 height=180 xoffset=0 yoffset=-100 xadvance=99 page=0 chnl=0 letter="'"
+char id=40 x=395 y=0 width=96 height=174 xoffset=0 yoffset=-97 xadvance=97 page=0 chnl=0 letter="("
+char id=41 x=0 y=178 width=98 height=180 xoffset=0 yoffset=-100 xadvance=99 page=0 chnl=0 letter=")"
+char id=42 x=99 y=178 width=98 height=180 xoffset=0 yoffset=-100 xadvance=99 page=0 chnl=0 letter="*"
+char id=32 x=0 y=0 width=0 height=0 xoffset=0 yoffset=0 xadvance=20 page=0 chnl=0 letter=" "
+char id=9 x=0 y=0 width=0 height=0 xoffset=0 yoffset=0 xadvance=160 page=0 chnl=0 letter="	"
+
+kernings count=0

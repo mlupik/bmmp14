@@ -149,7 +149,7 @@
 		
 		
 		//Einfügen des Avatars		
-		this.avatar = new Avatar(this.game,100,100,'avatar_walk_left');
+		this.avatar = new Avatar(this.game,100,100,'avatar_walk_right');
 		this.game.add.existing(this.avatar);
 		this.game.camera.follow(this.avatar);
 		this.collGroup = this.game.add.group();
@@ -185,6 +185,9 @@
 			coin.body.collides([this.avatarCollisionGroup,this.tilemapCollisionGroup]);
 		
 		}
+
+	
+		
 	},
 	
 		setupHearts1_1: function(collNum){
@@ -315,6 +318,7 @@
 		// console.log("play:avatar on Floor:", avatar.sprite.onFloor);
 		if(!avatar.sprite.onFloor){
 			avatar.sprite.onFloor = true;
+			avatar.sprite.frame = 2;
 			avatar.sprite.body.velocity.x = 0;
 		}
 	},
@@ -328,10 +332,10 @@
 			var data = JSON.parse(localStorage.getItem('avatarData'));
 			this.hearts = data.hearts;
 			this.hearts_img = this.game.add.sprite(550,0,'hearts');
-			this.hearts_img.frame = 0;
-			this.lightning_img = this.game.add.sprite(200,0,'blitz_icon');
+			this.hearts_img.frame = 3;
+			this.lightning_img = this.game.add.sprite(150,0,'blitz_icon');
 			this.lightning_img.frame = 0;
-			this.superpower_img = this.game.add.sprite(150,0,'superpower_icon');
+			this.superpower_img = this.game.add.sprite(250,0,'superpower_icon');
 			this.superpower_img.frame = 0;
 			this.points = data.points;
 			// console.log("points:",this.points);
@@ -362,25 +366,25 @@
 			this.hearts = data.hearts;
 			// console.log("play:hearts",this.hearts);
 			switch(this.hearts){
-				case 0 : this.hearts_img.frame = 3;
+				case 0 : this.hearts_img.frame = 0;
 				break;
-				case 1 : this.hearts_img.frame = 2;
+				case 1 : this.hearts_img.frame = 1;
 				break;
-				case 2: this.hearts_img.frame = 1;
+				case 2: this.hearts_img.frame = 2;
 				break;	
-				case 3: this.hearts_img.frame = 0;
+				case 3: this.hearts_img.frame = 3;
 				break;					
 			}
 			if(this.avatar.fast){
-				this.lightning_img.frame = 1;
-			}else{
 				this.lightning_img.frame = 0;
+			}else{
+				this.lightning_img.frame = 1;
 			}
 			
 			if(this.avatar.immortal){
-				this.superpower_img.frame = 1;
-			}else{
 				this.superpower_img.frame = 0;
+			}else{
+				this.superpower_img.frame = 1;
 			}
 			this.points = data.points;
 			this.point_text.text = this.points.toString();
@@ -392,15 +396,17 @@
 		this.pause();
 		this.window = this.game.add.group();
 		this.window.fixedToCamera=true;
-		var menu_bg = this.game.add.sprite(0,0,'menu_bg');
+		var menu_bg = this.game.add.sprite(0,0,'menu_pause_ice');
 		console.log("menu: ",menu_bg);
 		// menu_bg.anchor.setTo(0.5, 0.5);
-		var ok_button = this.game.add.sprite(0,0, 'button');
+		var continue_button = this.game.add.sprite(0,0, 'button_continue_ice');
+		var menu_button = this.game.add.sprite(0,0, 'button_menu_ice');
 		// ok_button.anchor.setTo(0.5,0.5);
 
 		var start_text = this.game.add.bitmapText(0,0, 'font_black','Start', 40);
 		this.window.add(menu_bg);
-		this.window.add(ok_button);
+		this.window.add(menu_button);
+		this.window.add(continue_button);
 		this.window.add(start_text);
 		this.window.x = this.game.camera.x+400-this.window.width/2;
 		this.window.y = this.game.camera.y+300-this.window.height/2;
@@ -485,20 +491,31 @@
 
     controllScrolling: function(){
     	if(this.avatar.facing == 'left') {
-    		this.middleground.autoScroll(10,0);
-			this.foreground.autoScroll(20,0);
+    		this.middleground.autoScroll(-10,0);
+			//this.foreground.autoScroll(20,0);
 
     	}
     	else if( this.avatar.facing == 'right') {
-    		this.middleground.autoScroll(-10,0);
-			this.foreground.autoScroll(-20,0);
+    		this.middleground.autoScroll(10,0);
+			//this.foreground.autoScroll(-20,0);
 
     	}
     	else if (this.avatar.facing == 'idle') {
     		this.middleground.autoScroll(0,0);
-			this.foreground.autoScroll(0,0);
+			//this.foreground.autoScroll(0,0);
     	}
+    },
+
+    getX: function(x){
+    	return x*36 + 18;
+
+    },
+    
+     getY: function(y){
+    	return y*36 + 18;
+
     }
+
 	
 	
   };

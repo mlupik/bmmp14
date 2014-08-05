@@ -20,7 +20,10 @@
     this.load.image('arrow_l', '././assets/pfeil_links.png');
 	  this.load.image('weltall', '././assets/gruen.png');
 	  this.load.image('sternbild', '././assets/sb1_ohne.png');
-	  this.load.image('coin', '././assets/Star_Coin_small.png');
+	  //this.load.image('coin', '././assets/Star_Coin_small.png');
+
+
+
 	  this.load.image('sternbild_hover', '././assets/sb1.png');
 	  this.load.bitmapFont('font_white','././assets/font4.png', 'assets/font.xml');
 	  this.load.image('planet','././assets/planet.png');
@@ -31,18 +34,42 @@
 	  
 	  //load avatar images
 	   this.load.atlasXML('avatar_walk_left', 'assets/avatar/avatar_walk_left.png', 'assets/avatar/avatar_walk_left.xml');
+     this.load.atlasXML('avatar_walk_right', 'assets/avatar/avatar_walk_right.png', 'assets/avatar/avatar_walk_right.xml');
+     this.load.atlasXML('avatar_die', 'assets/avatar/spritesExplosion.png', 'assets/avatar/spritesExplosion.xml');
 	  
 	  
 	  
 	  //images collectables
-	  this.load.image('heart','././assets/heart.png');
+
+    this.load.spritesheet('coin', '././assets/collectables/drop1.png',64,64,16);
+    this.load.spritesheet('drop_lila', '././assets/collectables/drop2.png',64,64,16);
+    this.load.spritesheet('drop_blau', '././assets/collectables/drop3.png',64,64,16);
+
+    this.load.spritesheet('superpower', '././assets/collectables/box.png', 64,64,16);
+
+    this.load.spritesheet('heart', '././assets/collectables/heart.png', 64,64,16);
+
+    this.load.spritesheet('blitz', '././assets/collectables/speed.png', 64,64,16);
+
+
+    //images menus
+     this.load.image('menu_won_ice', '././assets/menu/ScreenGewonnenEis.jpg');
+     this.load.image('menu_gameover_ice', '././assets/menu/ScreenVerlorenEis.jpg');
+     this.load.image('menu_pause_ice', '././assets/menu/ScreenPauseEis.jpg');
+     this.load.image('button_menu_ice', '././assets/menu/ButtonMenuEis.jpg');
+     this.load.image('button_continue_ice', '././assets/menu/ButtonWeiterEis.jpg');
+
+
+
+
+	  //this.load.image('heart','././assets/heart.png');
 	  this.load.image('heart_grau','././assets/heart_grau.png');
-	  this.load.image('blitz','././assets/blitz.png');
-	  this.load.spritesheet('blitz_icon','././assets/blitzsheet.png',30,59,2);
-	  this.load.image('superpower','././assets/box.png');
-	  this.load.spritesheet('superpower_icon','././assets/boxsheet.png',40,33,2);
+	  //this.load.image('blitz','././assets/blitz.png');
+	  this.load.spritesheet('blitz_icon','././assets/status/speedDisplay.png',64,64,2);
+	  //this.load.image('superpower','././assets/box.png');
+	  this.load.spritesheet('superpower_icon','././assets/status/handschuhDisplay.png',64,64,2);
 	  this.load.image('reward','././assets/pokal.png');
-	  this.load.spritesheet('hearts','././assets/hearts.png',90,28,4);
+	  this.load.spritesheet('hearts','././assets/status/statusHerzen.png',192,64,4);
 
 
     //backgrounds für level

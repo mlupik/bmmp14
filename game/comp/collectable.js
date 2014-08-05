@@ -18,7 +18,11 @@ function Collectable(game,x,img,type) {
 
   this.game.physics.p2.enable(this);
   this.body.collideWorldBounds = true;
-  this.body.allowRotation = true;
+ // this.body.allowRotation = true;
+  this.body.fixedRotation = true;
+
+  this.animations.add('animate', [0,1,4,5,2,6,3,7,8,12], 10, true );
+  this.animations.play('animate');
 
   
   this.resetStartPosition();
@@ -35,6 +39,9 @@ Collectable.prototype.resetStartPosition = function() {
   this.speed = 0;
 }
 
+Collectable.prototype.update = function() {
+	this.body.y = 50;
+}
 //Collectable.prototype.animations.add('walk',[1,2,3,4,5]);
 
 Collectable.prototype.collect = function() {

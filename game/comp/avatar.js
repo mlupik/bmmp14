@@ -24,10 +24,10 @@ function Avatar(game, x, y,img) {
   this.powerUpTimer = 0;
    this.onFloor = true;
   this.jumpSpeed = 0;
-  this.animations.add('walk_right', [0,1,2,3,4,5,6,7],10,true);
-  this.animations.add('walk_left', [0,1,2,3,4], 30, true);
+  this.animations.add('walk_right', [10, 13, 14, 15, 16, 17, 18, 20, 21, 0, 1],10,true);
+  this.animations.add('walk_left', [10, 14, 15, 16, 17, 18, 19, 21, 22, 0, 1], 10, true);
   // this.animations.add('walk_left', [8,9,10,11,12,13,14,15],10,true);
-  this.animations.add('jump', [4],5,true);
+  this.animations.add('jump', [2,3,4,5,6,7,8,9],10,false);
   this.animations.add('punch', [0],5,true);
   this.punching = false;
 
@@ -51,9 +51,9 @@ Avatar.prototype.stopMove = function() {
 	if(this.facing != 'idle'){
 		this.animations.stop();
 		if(this.facing == 'left'){
-			this.frame = 8;
+			this.frame = 2;
 		}else{
-			this.frame = 0;
+			this.frame = 2;
 		}
 		//console.log("stop avatar");
 		this.facing = 'idle';
@@ -79,7 +79,9 @@ Avatar.prototype.jump = function(){
 		// console.log("avatar: onFloor", this.onFloor);
 	
 	if(this.onFloor && this.game.time.now>this.jumpTimer){
-		this.animations.stop();
+
+		this.animations.play('jump');
+		//this.animations.stop();
 		this.facing = 'idle';
 		this.body.velocity.y = -300;
 		this.jumpTimer = game.time.now + 350;
@@ -90,7 +92,8 @@ Avatar.prototype.jump = function(){
 Avatar.prototype.moveLeft = function(){
 		
 		this.body.moveLeft(this.speed);
-		if(this.facing != 'left'){
+		if(this.facing != 'left'  && this.onFloor){
+			this.loadTexture('avatar_walk_left');
 			this.animations.play('walk_left');
 			this.facing = 'left';
 		}
@@ -99,7 +102,8 @@ Avatar.prototype.moveLeft = function(){
 Avatar.prototype.moveRight = function(){
 
 	this.body.moveRight(this.speed);
-		if(this.facing != 'right'){
+		if(this.facing != 'right' && this.onFloor){
+			this.loadTexture('avatar_walk_right');
 			this.animations.play('walk_right');
 			this.facing = 'right';
 		}
