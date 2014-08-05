@@ -29,7 +29,9 @@ game.state.add('chooseAvatar', ChooseAvatar);
 game.state.add('chooseStarSystem', ChooseStarSystem);
 game.state.add('chooseStar', ChooseStar);
 
-game.state.add('play', Play);
+game.state.add('play1', Play1);
+game.state.add('play2', Play2);
+game.state.add('play3', Play3);
 
 game.state.add('endScreen', EndScreen);
 
