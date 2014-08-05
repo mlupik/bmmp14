@@ -3,17 +3,14 @@ TO-DO:
 
 avatar:
 - walking und sterbe- und sprung-animation
-- power-ups: doppelte geschwindigkeit, unsterblich 
--im Sprung lenken
 
 Gegner:
-- walking und sterbe-animation
-- avatar "wegsprengen" bei draufspringen
+-Endgegner
 
 Collectables
 
 
-Status-Leiste
+Status-Leiste --> powerups
 
 Sounds:
 - Einsammeln von verschiedenen Collectables
@@ -22,6 +19,11 @@ Sounds:
 
 Website
 
+Background: Scrolling
+
 GameOver,Pause,Won -Sceen
+
+Planetenauswahl:
+-Grafiken
 
 

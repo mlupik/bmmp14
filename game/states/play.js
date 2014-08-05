@@ -284,8 +284,8 @@
 	
 	getCoinPos: function(){
 		var tileNum = this.map.width;
-		// console.log(tileNum);
-		var pos = this.game.rnd.integerInRange(1,124);
+		//console.log(tileNum);
+		var pos = this.game.rnd.integerInRange(1,tileNum);
 		pos = pos * this.map.tileWidth + this.map.tileWidth/2;
 		// console.log(pos);
 		return pos;
