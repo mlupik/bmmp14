@@ -27,4 +27,6 @@ GameOver,Pause,Won -Sceen
 Planetenauswahl:
 -Grafiken
 
+Präsentation
+
 

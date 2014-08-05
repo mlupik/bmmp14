@@ -44,6 +44,7 @@
     
     update: function() {
 		this.checkKeys();
+		this.controllScrolling();
 		this.enemGroup.forEach(this.moveEnemies,this);
 		if(!(this.game.pause || this.gameOver || this.won) && this.window){
 			this.window.destroy();
@@ -89,8 +90,15 @@
 		
 		//Hintergrund
 		this.background = this.game.add.sprite(0,0,'hintergrund1');
-		this.middleground = this.game.add.sprite(0,0, 'mittelgrund1');
-		this.foreground = this.game.add.sprite(0,0, 'vordergrund1');
+		this.middleground = this.game.add.tileSprite(0,0,4788,900, 'mittelgrund1');
+		this.foreground = this.game.add.tileSprite(0,0, 4788,900,'vordergrund1');
+
+
+		//this.background.autoScroll(-50,0);
+		
+
+
+
 		//this.background.fixedToCamera = true;
 		this.setupStatusBar();
 		//Tilemap
@@ -436,6 +444,7 @@
 		this.window.x = this.game.camera.x+400-this.window.width/2;
 		this.window.y = this.game.camera.y+300-this.window.height/2;
 
+
 	},
 	
 	pause: function(){
@@ -453,6 +462,23 @@
                  game.paused = false;
             }
 			
+    },
+
+    controllScrolling: function(){
+    	if(this.avatar.facing == 'left') {
+    		this.middleground.autoScroll(10,0);
+			this.foreground.autoScroll(20,0);
+
+    	}
+    	else if( this.avatar.facing == 'right') {
+    		this.middleground.autoScroll(-10,0);
+			this.foreground.autoScroll(-20,0);
+
+    	}
+    	else if (this.avatar.facing == 'idle') {
+    		this.middleground.autoScroll(0,0);
+			this.foreground.autoScroll(0,0);
+    	}
     }
 	
 	
