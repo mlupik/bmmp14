@@ -6,6 +6,7 @@ function Enemy(game, x,range,speed,lifes, color, frame) {
   this.range = range;
   this.speed = speed;
   this.power = lifes;
+
   this.hurtTimer = 0;
   this.lifes = lifes;
   this.facing = 'right';
@@ -146,6 +147,10 @@ Enemy.prototype.die = function(){
 
 Enemy.prototype.killEnemy = function(){
 	console.log("die!");
+	var json= JSON.parse(localStorage.getItem("enemyCount"));
+	var enemyCount = json.enemyCount+1;
+	json.enemyCount = enemyCount;
+	localStorage.setItem('enemyCount',JSON.stringify(json));
 	this.kill();
 
 }

@@ -52,6 +52,10 @@ Collectable.prototype.collect = function() {
 		else if(this.type == 'superpower'){
 			this.collectSuperPower();
 		}
+		else if(this.type == 'reward'){
+			this.collectReward();
+		}
+		
 	}
 	this.kill();
 	
@@ -100,7 +104,9 @@ Collectable.prototype.collectCoin = function() {
 	localStorage.setItem('avatarData',JSON.stringify(data));
 	console.log(JSON.parse(localStorage.getItem('avatarData')));
 } 
-
+Collectable.prototype.collectReward = function() {
+	console.log("reward collected!");
+} 
 
 Collectable.prototype.collectWeapon = function() {
 

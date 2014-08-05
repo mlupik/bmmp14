@@ -28,10 +28,13 @@
 	  this.load.spritesheet('man','././assets/sprite3.png',59,100,16);
 	  //this.load.spritesheet('enemy1_walk','././assets/enemys/enemy1_walk.png',64,64,16);
 	  //this.load.spritesheet('enemy1_die','././assets/enemys/enemy1_die.png',64,64,16);
+	  
+	  //images collectables
 	  this.load.image('heart','././assets/heart.png');
 	  this.load.image('heart_grau','././assets/heart_grau.png');
 	  this.load.image('blitz','././assets/blitz.png');
 	  this.load.image('superpower','././assets/box.png');
+	  this.load.image('reward','././assets/pokal.png');
 	  this.load.spritesheet('hearts','././assets/hearts.png',90,28,4);
 
 

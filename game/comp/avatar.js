@@ -10,12 +10,13 @@ function Avatar(game, x, y,img) {
     x:100,
     y:100
   };
-  
+  this.alive = true;
   this.minSpeed = 150;
   this.maxSpeed = this.minSpeed*2;
   this.speed = this.minSpeed;
   this.facing  = 'right';
   this.frame = 0;
+  this.game = game;
   this.immortal = false;
   this.jumpTimer = 0;
   this.hurtTimer = 0;
@@ -132,6 +133,7 @@ Avatar.prototype.hurt = function(){
 				localStorage.setItem('avatarData',JSON.stringify(data));
 				if(hearts<=0){
 					//dying animation or tween
+					this.gameOver();
 					this.kill();
 					//game over
 				}
@@ -177,7 +179,11 @@ Avatar.prototype.hitEnemy = function(){
 	
 }
 
-
+Avatar.prototype.gameOver= function(){
+	//this.game.gameOverMenu();
+	this.alive = false;
+	
+}
 
 
 Avatar.prototype.superPower= function(){
