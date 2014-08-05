@@ -1,0 +1,23 @@
+<TextureAtlas imagePath="avatar_walk_left.png">
+	<SubTexture name="10n.png" x="134" y="185" width="55" height="100"/>
+	<SubTexture name="11n.png" x="68" y="388" width="66" height="97"/>
+	<SubTexture name="12n.png" x="191" y="103" width="51" height="98"/>
+	<SubTexture name="13n.png" x="88" y="0" width="56" height="90"/>
+	<SubTexture name="14n.png" x="77" y="99" width="56" height="84"/>
+	<SubTexture name="15n.png" x="70" y="294" width="56" height="84"/>
+	<SubTexture name="16n.png" x="134" y="287" width="55" height="97"/>
+	<SubTexture name="17n.png" x="146" y="0" width="51" height="101"/>
+	<SubTexture name="18n.png" x="193" y="389" width="49" height="98"/>
+	<SubTexture name="19n.png" x="243" y="0" width="42" height="97"/>
+	<SubTexture name="1n.png" x="0" y="0" width="86" height="97"/>
+	<SubTexture name="20n.png" x="199" y="0" width="42" height="98"/>
+	<SubTexture name="21n.png" x="191" y="203" width="51" height="87"/>
+	<SubTexture name="2n.png" x="0" y="99" width="75" height="97"/>
+	<SubTexture name="3n.png" x="71" y="198" width="61" height="94"/>
+	<SubTexture name="4n.png" x="71" y="198" width="61" height="94"/>
+	<SubTexture name="5n.png" x="136" y="386" width="55" height="94"/>
+	<SubTexture name="6n.png" x="0" y="294" width="68" height="92"/>
+	<SubTexture name="7n.png" x="0" y="198" width="69" height="94"/>
+	<SubTexture name="8n.png" x="0" y="388" width="66" height="95"/>
+	<SubTexture name="9n.png" x="193" y="292" width="51" height="95"/>
+</TextureAtlas>

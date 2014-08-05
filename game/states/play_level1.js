@@ -53,11 +53,12 @@
 		// this.game.physics.p2.collide(this.avatar,this.layer);
 		// this.game.physics.p2.collide(this.collGroup,this.layer);
 		// this.game.physics.p2.collide(this.enemGroup,this.layer);
-		this.avatar.live();
+		//this.avatar.live();
 		if(!this.avatar.alive && !this.gameOver){
 			console.log("avatar dead");
 			this.gameOverMenu();
 		}
+			this.updateStatusBar();
 		// //this.game.physics.p2.overlap(this.avatar, this.coin, this.collect, null, this);
 		// this.game.physics.p2.overlap(this.collGroup, this.avatar, this.collect);
 		// this.game.physics.p2.overlap(this.enemGroup, this.avatar, this.meetEnemy);
@@ -148,7 +149,7 @@
 		
 		
 		//Einfügen des Avatars		
-		this.avatar = new Avatar(this.game,100,100,'man');
+		this.avatar = new Avatar(this.game,100,100,'avatar_walk_left');
 		this.game.add.existing(this.avatar);
 		this.game.camera.follow(this.avatar);
 		this.collGroup = this.game.add.group();
@@ -256,11 +257,12 @@
 		}else if(coin.sprite.type == 'superpower'){
 			avatar.sprite.superPower();
 			
+			
 		} else if (coin.sprite.type == 'coin') {
 			this.coinCount +=1;
 		}
 		coin.sprite.collect();
-		this.updateStatusBar();
+		// this.updateStatusBar();
 	
 	},
 	
@@ -288,7 +290,7 @@
 			avatar.sprite.hurt();
 			}
 		}		
-		this.updateStatusBar();
+		// this.updateStatusBar();
 	},
 	
 	getCoinPos: function(){
@@ -327,6 +329,10 @@
 			this.hearts = data.hearts;
 			this.hearts_img = this.game.add.sprite(550,0,'hearts');
 			this.hearts_img.frame = 0;
+			this.lightning_img = this.game.add.sprite(200,0,'blitz_icon');
+			this.lightning_img.frame = 0;
+			this.superpower_img = this.game.add.sprite(150,0,'superpower_icon');
+			this.superpower_img.frame = 0;
 			this.points = data.points;
 			// console.log("points:",this.points);
 			// console.log("hearts:",this.hearts);
@@ -339,6 +345,8 @@
 			this.statusBar.add(this.name_text);
 			this.statusBar.add(this.hearts_img);
 			this.statusBar.add(this.pauseButton);
+			this.statusBar.add(this.lightning_img);
+			this.statusBar.add(this.superpower_img);
 			this.statusBar.x = 20;
 			this.statusBar.y = 10;
 			this.statusBar.fixedToCamera = true;
@@ -362,6 +370,17 @@
 				break;	
 				case 3: this.hearts_img.frame = 0;
 				break;					
+			}
+			if(this.avatar.fast){
+				this.lightning_img.frame = 1;
+			}else{
+				this.lightning_img.frame = 0;
+			}
+			
+			if(this.avatar.immortal){
+				this.superpower_img.frame = 1;
+			}else{
+				this.superpower_img.frame = 0;
 			}
 			this.points = data.points;
 			this.point_text.text = this.points.toString();

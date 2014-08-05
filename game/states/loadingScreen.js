@@ -29,11 +29,18 @@
 	  //this.load.spritesheet('enemy1_walk','././assets/enemys/enemy1_walk.png',64,64,16);
 	  //this.load.spritesheet('enemy1_die','././assets/enemys/enemy1_die.png',64,64,16);
 	  
+	  //load avatar images
+	   this.load.atlasXML('avatar_walk_left', 'assets/avatar/avatar_walk_left.png', 'assets/avatar/avatar_walk_left.xml');
+	  
+	  
+	  
 	  //images collectables
 	  this.load.image('heart','././assets/heart.png');
 	  this.load.image('heart_grau','././assets/heart_grau.png');
 	  this.load.image('blitz','././assets/blitz.png');
+	  this.load.spritesheet('blitz_icon','././assets/blitzsheet.png',30,59,2);
 	  this.load.image('superpower','././assets/box.png');
+	  this.load.spritesheet('superpower_icon','././assets/boxsheet.png',40,33,2);
 	  this.load.image('reward','././assets/pokal.png');
 	  this.load.spritesheet('hearts','././assets/hearts.png',90,28,4);
 

@@ -18,13 +18,15 @@ function Avatar(game, x, y,img) {
   this.frame = 0;
   this.game = game;
   this.immortal = false;
+  this.fast = false;
   this.jumpTimer = 0;
   this.hurtTimer = 0;
   this.powerUpTimer = 0;
    this.onFloor = true;
   this.jumpSpeed = 0;
   this.animations.add('walk_right', [0,1,2,3,4,5,6,7],10,true);
-  this.animations.add('walk_left', [8,9,10,11,12,13,14,15],10,true);
+  this.animations.add('walk_left', [0,1,2,3,4], 30, true);
+  // this.animations.add('walk_left', [8,9,10,11,12,13,14,15],10,true);
   this.animations.add('jump', [4],5,true);
   this.animations.add('punch', [0],5,true);
   this.punching = false;
@@ -60,11 +62,16 @@ Avatar.prototype.stopMove = function() {
 }  
 
 
-Avatar.prototype.live = function() {
+Avatar.prototype.update = function() {
 	//this.body.velocity.x = 0;
+	console.log("update avatar");
 	if(this.powerUpTimer<game.time.now && this.immortal){
 			this.immortal = false;
 		}
+	if(this.powerUpTimer<game.time.now && this.fast){
+			this.fast =false;
+			this.speed = this.minSpeed;
+	}
 }  
   
 Avatar.prototype.jump = function(){
@@ -81,9 +88,7 @@ Avatar.prototype.jump = function(){
 }
 
 Avatar.prototype.moveLeft = function(){
-		if(this.powerUpTimer<game.time.now && this.speed == this.maxSpeed){
-			this.speed = this.minSpeed;
-		}
+		
 		this.body.moveLeft(this.speed);
 		if(this.facing != 'left'){
 			this.animations.play('walk_left');
@@ -92,9 +97,7 @@ Avatar.prototype.moveLeft = function(){
 }
 
 Avatar.prototype.moveRight = function(){
-	if(this.powerUpTimer<game.time.now && this.speed == this.maxSpeed){
-			this.speed = this.minSpeed;
-		}
+
 	this.body.moveRight(this.speed);
 		if(this.facing != 'right'){
 			this.animations.play('walk_right');
@@ -107,10 +110,11 @@ Avatar.prototype.moveDown = function(){
 }
 
 Avatar.prototype.speedUp = function(){
+	this.fast = true;
 	if(this.speed==this.minSpeed){
 		this.speed = this.speed*2;
-		this.powerUpTimer = game.time.now+ 5000;
 	}
+	this.powerUpTimer = game.time.now+ 5000;
 }
 
 Avatar.prototype.punch = function(){
