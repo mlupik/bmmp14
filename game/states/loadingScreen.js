@@ -39,7 +39,7 @@
 	  
 	  
 	  
-	  //images collectables
+	  //images collectables, status
 
     this.load.spritesheet('coin', '././assets/collectables/drop1.png',64,64,16);
     this.load.spritesheet('drop_lila', '././assets/collectables/drop2.png',64,64,16);
@@ -50,6 +50,8 @@
     this.load.spritesheet('heart', '././assets/collectables/heart.png', 64,64,16);
 
     this.load.spritesheet('blitz', '././assets/collectables/speed.png', 64,64,16);
+
+    this.load.image('pause_button', '././assets/status/pauseButton.png');
 
 
     //images menus
@@ -115,7 +117,7 @@
 
 	  
 	  
-	  this.load.image('pause_button', '././assets/pause.png');
+	  
       
       
 

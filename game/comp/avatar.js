@@ -32,6 +32,10 @@ function Avatar(game, x, y,img) {
   this.punching = false;
 
   this.game.physics.p2.enable(this);
+  // this.body.allowGravity = true;
+
+  // this.body.gravity = 400;
+
   this.body.collideWorldBounds = true;
   
   this.body.fixedRotation = true;
@@ -64,7 +68,7 @@ Avatar.prototype.stopMove = function() {
 
 Avatar.prototype.update = function() {
 	//this.body.velocity.x = 0;
-	console.log("update avatar");
+	// console.log("update avatar");
 	if(this.powerUpTimer<game.time.now && this.immortal){
 			this.immortal = false;
 		}

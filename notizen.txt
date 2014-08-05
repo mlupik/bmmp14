@@ -29,4 +29,8 @@ Planetenauswahl:
 
 Präsentation
 
+Fragen:
+-Bitmap Font
+-Positionierung von Coins (ohne update())
+
 
