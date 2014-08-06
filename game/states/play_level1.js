@@ -28,6 +28,9 @@
 		this.won = false;
 	    this.world = localStorage.getItem('world');
 		this.level = localStorage.getItem('level');
+
+		this.partsMax = 4;
+		this.partsCount = 0;
 		
 		this.game.physics.startSystem(Phaser.Physics.P2JS);
 		// Add a input listener that can help us return from being paused
@@ -119,13 +122,14 @@
 		this.collectableCollisionGroup = this.game.physics.p2.createCollisionGroup();
 		this.tilemapCollisionGroup = this.game.physics.p2.createCollisionGroup();
 		this.rewardCollisionGroup = this.game.physics.p2.createCollisionGroup();
+		this.goalCollisionGroup = this.game.physics.p2.createCollisionGroup();
 		// this.worldCollisionGroup = this.game.physics.p2.boundsCollisionGroup
 		
 		var tiles = this.game.physics.p2.convertTilemap(this.map, this.layer,true);
 		 for(var tile in tiles)
 		  {
 			tiles[tile].setCollisionGroup(this.tilemapCollisionGroup);
-			tiles[tile].collides([this.avatarCollisionGroup,this.enemyCollisionGroup,this.rewardCollisionGroup,this.collectableCollisionGroup]);
+			tiles[tile].collides([this.goalCollisionGroup,this.avatarCollisionGroup,this.enemyCollisionGroup,this.rewardCollisionGroup,this.collectableCollisionGroup]);
 		 }
 		
 		// console.log("map:",tiles);		
@@ -159,16 +163,20 @@
 		this.enemGroup = this.game.add.group();
 		this.setupCoins1_1();
 		// this.setupHearts1_1(3);
-		// this.setupEnemies1_1();
+		 this.setupEnemies1_1();
 		// this.setupLightning1_1(4);
 		// this.setupSuperPower1_1(4);
-		// this.setupReward1_1();
+		//this.setupReward1_1();
+		this.setupParts1_1();
+		this.setupGoal1_1();
 		//collisions avatar
 		this.avatar.body.setCollisionGroup(this.avatarCollisionGroup);
 		this.avatar.body.collides(this.enemyCollisionGroup,this.meetEnemy,this);
 		this.avatar.body.collides(this.collectableCollisionGroup,this.collect,this);
 		this.avatar.body.collides(this.tilemapCollisionGroup, this.touchedFloor,this);
 		this.avatar.body.collides(this.rewardCollisionGroup, this.wonMenu,this);
+		this.avatar.body.collides(this.goalCollisionGroup, this.touchedGoal,this);
+		
 		// this.worldCollisionGroup.forEach.collides(this.avatarCollisionGroup);
 		// this.game.physics.p2.boundsCollidesWith = [this.avatarCollisionGroup,this.enemyCollisionGroup];
 		// this.avatar.body.collides(this.worldCollisionGroup);
@@ -256,11 +264,31 @@
 	
 		setupReward1_1: function(){
 			var pos = this.getRewardPos();
-			var reward = new Collectable(this.game,pos,'reward','reward');
+			var reward = new Collectable(this.game,pos,0,'reward','reward'); //pos auskommentiert
 			this.game.add.existing(reward);
 			this.collGroup.add(reward);	
 			reward.body.setCollisionGroup(this.rewardCollisionGroup);
 			reward.body.collides([this.avatarCollisionGroup,this.tilemapCollisionGroup]);	
+	},
+
+	setupParts1_1: function(){
+		for(var i=0; i<this.partsMax; i++){
+			var pos = this.getCoinPos();
+			var part = new Collectable(this.game,pos,0,'reward','part');
+			this.game.add.existing(part);
+			this.collGroup.add(part);	
+			part.body.setCollisionGroup(this.collectableCollisionGroup);
+			part.body.collides([this.avatarCollisionGroup,this.tilemapCollisionGroup]);	
+		}
+	},
+
+	setupGoal1_1: function(){
+			this.goal = this.game.add.sprite(this.getX(130),0,'superpower');
+			this.game.physics.p2.enable(this.goal);
+  			this.goal.body.collideWorldBounds = true;
+  			this.goal.body.fixedRotation = true;
+			this.goal.body.setCollisionGroup(this.goalCollisionGroup);
+			this.goal.body.collides([this.avatarCollisionGroup,this.tilemapCollisionGroup]);	
 	},
 	
 	collect: function(avatar, coin){
@@ -273,10 +301,21 @@
 			
 		} else if (coin.sprite.type == 'coin') {
 			this.coinCount +=1;
+		}else if(coin.sprite.type == 'part'){
+			this.partsCount += 1;
 		}
 		coin.sprite.collect();
 		// this.updateStatusBar();
 	
+	},
+
+	touchedGoal: function(){
+		if(this.partsCount<this.partsMax){
+			this.gameOverMenu();
+		}else{
+			this.wonMenu();
+		}
+
 	},
 	
 	meetEnemy: function(avatar, enemy){
@@ -343,9 +382,9 @@
 			this.hearts = data.hearts;
 			this.hearts_img = this.game.add.sprite(550,0,'hearts');
 			this.hearts_img.frame = 3;
-			this.lightning_img = this.game.add.sprite(150,0,'blitz_icon');
+			this.lightning_img = this.game.add.sprite(180,0,'blitz_icon');
 			this.lightning_img.frame = 0;
-			this.superpower_img = this.game.add.sprite(250,0,'superpower_icon');
+			this.superpower_img = this.game.add.sprite(280,0,'superpower_icon');
 			this.superpower_img.frame = 0;
 			this.points = data.points;
 			// console.log("points:",this.points);
@@ -353,10 +392,14 @@
 			this.statusBar = this.game.add.group();
 			this.point_text = this.game.add.bitmapText(400,0, 'font_black',this.points.toString(), 30);
 			this.name_text = this.game.add.bitmapText(0,0, 'font_black',data.name, 30);
+
+			this.parts_text = this.game.add.bitmapText(100,0, 'font_black', this.partsCount+'/'+this.partsMax, 30);
+
 			this.pauseButton = this.game.add.button(700,0, 'pause_button',this.pauseMenu,this);
 				
 			this.statusBar.add(this.point_text);
 			this.statusBar.add(this.name_text);
+			this.statusBar.add(this.parts_text);
 			this.statusBar.add(this.hearts_img);
 			this.statusBar.add(this.pauseButton);
 			this.statusBar.add(this.lightning_img);
@@ -399,91 +442,93 @@
 			this.points = data.points;
 			this.point_text.text = this.points.toString();
 			this.name_text.text = data.name;
+			this.parts_text.text = this.partsCount+'/'+this.partsMax;
 		}
 	},
 	
 	pauseMenu: function(){
-		this.pause();
-		this.window = this.game.add.group();
-		this.window.fixedToCamera=true;
-		var menu_bg = this.game.add.sprite(0,0,'menu_pause_ice');
-		console.log("menu: ",menu_bg);
-		// menu_bg.anchor.setTo(0.5, 0.5);
-		var continue_button = this.game.add.sprite(0,0, 'button_continue_ice');
-		var menu_button = this.game.add.sprite(0,0, 'button_menu_ice');
-		// ok_button.anchor.setTo(0.5,0.5);
+		if(!(this.gameOver ||  this.won)){
+			this.pause();
+			this.window = this.game.add.group();
+			//this.window.fixedToCamera=true;
+			var menu_bg = this.game.add.sprite(0,0,'menu_pause_ice');
+			
+			// menu_bg.anchor.setTo(0.5, 0.5);
+			var continue_button = this.game.add.sprite(180,220, 'button_continue_ice');
+			var menu_button = this.game.add.sprite(310,220, 'button_menu_ice');
+			// ok_button.anchor.setTo(0.5,0.5);
 
-		var start_text = this.game.add.bitmapText(0,0, 'font_black','Start', 40);
-		this.window.add(menu_bg);
-		this.window.add(menu_button);
-		this.window.add(continue_button);
-		this.window.add(start_text);
-		this.window.x = this.game.camera.x+400-this.window.width/2;
-		this.window.y = this.game.camera.y+300-this.window.height/2;
+			this.window.add(menu_bg);
+			this.window.add(menu_button);
+			this.window.add(continue_button);
+			this.window.x = this.game.camera.x+400-this.window.width/2;
+			this.window.y = this.game.camera.y+300-this.window.height/2;
+		}
 
 	},
 	
 	
 	gameOverMenu: function(){
-		this.gameOver = true;
-		this.window = this.game.add.group();
-		this.window.fixedToCamera=true;
-		var menu_bg = this.game.add.sprite(0,0,'menu_bg');
-		console.log("menu: ",menu_bg);
-		// menu_bg.anchor.setTo(0.5, 0.5);
-		var again_button = this.game.add.button(200,200, 'button', function (){this.game.state.start('play1'); }, this);
-		var back_button = this.game.add.button(200, 250, 'button', function() {this.game.state.start('chooseStar');}, this);
-		// ok_button.anchor.setTo(0.5,0.5);
+		if(!this.won){
+			this.gameOver = true;
+			this.window = this.game.add.group();
+			//this.window.fixedToCamera=true;
+			var menu_bg = this.game.add.sprite(0,0,'menu_gameover_ice');
+			
+			//menu_bg.anchor.setTo(0.5, 0.5);
+			var again_button = this.game.add.button(180,220, 'button_again_ice', function (){this.game.state.start('play1'); }, this);
+			var menu_button = this.game.add.button(310, 220, 'button_menu_ice', function() {this.game.state.start('chooseStar');}, this);
+			// ok_button.anchor.setTo(0.5,0.5);
 
-		var again_text = this.game.add.bitmapText(200,200, 'font_black','again', 40);
-		var back_text = this.game.add.bitmapText(200,250, 'font_black','back', 40);
-		this.window.add(menu_bg);
-		this.window.add(again_button);
-		this.window.add(back_button);
-		this.window.add(again_text);
-		this.window.add(back_text);
-		this.window.x = this.game.camera.x+400-this.window.width/2;
-		this.window.y = this.game.camera.y+300-this.window.height/2;
+			this.window.add(menu_bg);
+			this.window.add(again_button);
+			this.window.add(menu_button);
 
+			this.window.x = this.game.camera.x+400-this.window.width/2;
+			this.window.y = this.game.camera.y+300-this.window.height/2;
+		}
+		
 	},
 	
 		wonMenu: function(){
-		this.won = true;
-		this.window = this.game.add.group();
-		this.window.fixedToCamera=true;
-		var menu_bg = this.game.add.sprite(0,0,'menu_bg');
-		//console.log("menu: ",menu_bg);
-		// menu_bg.anchor.setTo(0.5, 0.5);
-		var again_button = this.game.add.button(200,200, 'button', function (){this.game.state.start('play1'); }, this);
-		var back_button = this.game.add.button(200, 250, 'button', function() {this.game.state.start('chooseStar');}, this);
-		localStorage.setItem('planet2', 'unlocked');
-		var continue_button = this.game.add.button(200,300, 'button', function () {this.game.state.start('play2');}, this);
-		// ok_button.anchor.setTo(0.5,0.5);
+			if(!this.gameOver){
+				this.won = true;
+				this.window = this.game.add.group();
+				//this.window.fixedToCamera=true;
+				var menu_bg = this.game.add.sprite(0,0,'menu_won_ice');
+				//console.log("menu: ",menu_bg);
+				// menu_bg.anchor.setTo(0.5, 0.5);
+				var again_button = this.game.add.button(100,330, 'button_again_ice', function (){this.game.state.start('play1'); }, this);
+				var menu_button = this.game.add.button(240, 330, 'button_menu_ice', function() {this.game.state.start('chooseStar');}, this);
+				localStorage.setItem('planet2', 'unlocked');
+				var continue_button = this.game.add.button(380,330, 'button_continue_ice', function (){this.game.state.start('play2'); }, this);
+				
+				// ok_button.anchor.setTo(0.5,0.5);
 
-		var again_text = this.game.add.bitmapText(200,200, 'font_black','again', 40);
-		var back_text = this.game.add.bitmapText(200,250, 'font_black','back', 40);
-		var continue_text = this.game.add.bitmapText(200,300, 'font_black','continue', 40);
-		var enemyCount = JSON.parse(localStorage.getItem('enemyCount')).enemyCount;
-		var gegner_text = this.game.add.text(200,350, 'Gegner:'+enemyCount+'/'+this.enemyNum, {font: '30px Arial', fill: '#fff'});
-		var coin_text = this.game.add.text(200,400, 'Coin:'+this.coinCount+'/'+this.coinNum, {font: '30px Arial', fill: '#fff'});
-		
-		this.window.add(menu_bg);
-		this.window.add(again_button);
-		this.window.add(back_button);
-		this.window.add(continue_button);
-		this.window.add(again_text);
-		this.window.add(back_text);
-		this.window.add(continue_text);
-		this.window.add(gegner_text);
-		this.window.add(coin_text);
-		this.window.x = this.game.camera.x+400-this.window.width/2;
-		this.window.y = this.game.camera.y+300-this.window.height/2;
+				
+				var enemyCount = JSON.parse(localStorage.getItem('enemyCount')).enemyCount;
+				var teile_text = this.game.add.text(200, 180, 'Raketenteile:'+this.partsCount+'/'+this.partsMax, {font: '30px Arial', fill: '#0000'});
+				var gegner_text = this.game.add.text(200,230, 'Gegner:'+enemyCount+'/'+this.enemyNum, {font: '30px Arial', fill: '#0000'});
+				var coin_text = this.game.add.text(200,280, 'Coin:'+this.coinCount+'/'+this.coinNum, {font: '30px Arial', fill: '#0000'});
+				
+				this.window.add(menu_bg);
+				this.window.add(again_button);
+				this.window.add(menu_button);
+				this.window.add(continue_button);
+				
+				this.window.add(teile_text);
+				this.window.add(gegner_text);
+				this.window.add(coin_text);
+				
+				this.window.x = this.game.camera.x+300-this.window.height/2;
+				this.window.y = this.game.camera.y+300-this.window.height/2;
+			}
 
 
 	},
 	
 	pause: function(){
-					game.paused = true;	
+		game.paused = true;	
 				 
 	},
 	

@@ -31,7 +31,7 @@ Collectable.prototype.constructor = Collectable;
 
 
 Collectable.prototype.update = function() {
-	this.body.y = this.yFix;
+	//this.body.y = this.yFix;
 }
 //Collectable.prototype.animations.add('walk',[1,2,3,4,5]);
 
@@ -52,6 +52,9 @@ Collectable.prototype.collect = function() {
 		}
 		else if(this.type == 'reward'){
 			this.collectReward();
+		}
+		else if(this.type == 'part'){
+			this.collectPart();
 		}
 		
 	}
@@ -104,6 +107,10 @@ Collectable.prototype.collectCoin = function() {
 } 
 Collectable.prototype.collectReward = function() {
 	console.log("reward collected!");
+} 
+
+Collectable.prototype.collectPart = function() {
+	console.log("part collected!");
 } 
 
 Collectable.prototype.collectWeapon = function() {

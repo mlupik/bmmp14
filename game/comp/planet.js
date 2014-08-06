@@ -27,8 +27,10 @@ function Planet(game, id, x, y,p_img,frame) {
 	this.input.useHandCursor = true;
 	this.events.onInputDown.add(this.onClick,this);
 
+	//0,1,4,5,2,6,3,7,8,12
 
-	this.animations.add('rotate',[0,1,4,5,2,6,3,7,8,12],5, true);
+
+	//this.animations.add('rotate',[0,1,8,9,2,10,3,11,16,24,17,18,25,26,19,27,4,5,12,6],10, true);
 	if (this.status == 'unlocked') {
 		this.animations.play('rotate');
 	}

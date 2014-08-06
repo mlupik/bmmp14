@@ -14,11 +14,12 @@
     this.asset.anchor.setTo(0.5, 0.5);      
     this.load.setPreloadSprite(this.asset);
     //load everything
-    this.load.image('avatar1', '././assets/car.png');
-    this.load.image('avatar2', '././assets/car3.png');
-    this.load.image('arrow_r', '././assets/pfeil_rechts.png');
-    this.load.image('arrow_l', '././assets/pfeil_links.png');
-	  this.load.image('weltall', '././assets/gruen.png');
+    //this.load.image('avatar1', '././assets/car.png');
+    //this.load.image('avatar2', '././assets/car3.png');
+    //this.load.image('arrow_r', '././assets/pfeil_rechts.png');
+    //this.load.image('arrow_l', '././assets/pfeil_links.png');
+	  //this.load.image('weltall', '././assets/backgrounds/hintergrundPlanetenAuswahl.jpg');
+    this.load.image('weltall', '././assets/nicht mehr verwendet/weltall.jpg');
 	  this.load.image('sternbild', '././assets/sb1_ohne.png');
 	  //this.load.image('coin', '././assets/Star_Coin_small.png');
 
@@ -26,9 +27,9 @@
 
 	  this.load.image('sternbild_hover', '././assets/sb1.png');
 	  this.load.bitmapFont('font_white','././assets/font4.png', 'assets/font.xml');
-	  this.load.image('planet','././assets/planet.png');
-	  this.load.image('planet_hover','././assets/planet_hover.png');
-	  this.load.spritesheet('man','././assets/sprite3.png',59,100,16);
+	  //this.load.image('planet','././assets/planet.png');
+	  //this.load.image('planet_hover','././assets/planet_hover.png');
+	  //this.load.spritesheet('man','././assets/sprite3.png',59,100,16);
 	  //this.load.spritesheet('enemy1_walk','././assets/enemys/enemy1_walk.png',64,64,16);
 	  //this.load.spritesheet('enemy1_die','././assets/enemys/enemy1_die.png',64,64,16);
 	  
@@ -55,17 +56,34 @@
 
 
     //images menus
-     this.load.image('menu_won_ice', '././assets/menu/ScreenGewonnenEis.jpg');
-     this.load.image('menu_gameover_ice', '././assets/menu/ScreenVerlorenEis.jpg');
-     this.load.image('menu_pause_ice', '././assets/menu/ScreenPauseEis.jpg');
-     this.load.image('button_menu_ice', '././assets/menu/ButtonMenuEis.jpg');
-     this.load.image('button_continue_ice', '././assets/menu/ButtonWeiterEis.jpg');
+    //Eis
+     this.load.image('menu_won_ice', '././assets/menu/Eis/ScreenGewonnenEis.jpg');
+     this.load.image('menu_gameover_ice', '././assets/menu/Eis/ScreenVerlorenEis.jpg');
+     this.load.image('menu_pause_ice', '././assets/menu/Eis/ScreenPauseEis.jpg');
+     this.load.image('button_menu_ice', '././assets/menu/Eis/ButtonMenuEis.jpg');
+     this.load.image('button_continue_ice', '././assets/menu/Eis/ButtonWeiterEis.jpg');
+     this.load.image('button_again_ice', '././assets/menu/Eis/ButtonNochmalEis.jpg');
 
+     //Tech
+     this.load.image('menu_won_tech', '././assets/menu/Tech/ScreenGewonnenTech.jpg');
+     this.load.image('menu_gameover_tech', '././assets/menu/Tech/ScreenVerlorenTech.jpg');
+     this.load.image('menu_pause_tech', '././assets/menu/Tech/ScreenPauseTech.jpg');
+     this.load.image('button_menu_tech', '././assets/menu/Tech/ButtonMenuTech.jpg');
+     this.load.image('button_continue_tech', '././assets/menu/Tech/ButtonWeiterTech.jpg');
+     this.load.image('button_again_tech', '././assets/menu/Tech/ButtonNochmalTech.jpg');
+
+     //Abstrakt
+     this.load.image('menu_won_abstrakt', '././assets/menu/Abstrakt/ScreenGewonnenAbstrakt.jpg');
+     this.load.image('menu_gameover_abstrakt', '././assets/menu/Abstrakt/ScreenVerlorenAbstrakt.jpg');
+     this.load.image('menu_pause_abstrakt', '././assets/menu/Abstrakt/ScreenPauseAbstrakt.jpg');
+     this.load.image('button_menu_abstrakt', '././assets/menu/Abstrakt/ButtonMenuAbstrakt.jpg');
+     this.load.image('button_continue_abstrakt', '././assets/menu/Abstrakt/ButtonWeiterAbstrakt.jpg');
+     this.load.image('button_again_abstrakt', '././assets/menu/Abstrakt/ButtonNochmalAbstrakt.jpg');
 
 
 
 	  //this.load.image('heart','././assets/heart.png');
-	  this.load.image('heart_grau','././assets/heart_grau.png');
+	  //this.load.image('heart_grau','././assets/heart_grau.png');
 	  //this.load.image('blitz','././assets/blitz.png');
 	  this.load.spritesheet('blitz_icon','././assets/status/speedDisplay.png',64,64,2);
 	  //this.load.image('superpower','././assets/box.png');
@@ -88,9 +106,22 @@
     this.load.image('vordergrund3', '././assets/backgrounds/vordergrund_3.png');
 
     //spritesheets für Planeten
-    this.load.spritesheet('sprite_ice','././assets/planets/ice_planet.png',248,248,16);
-    this.load.spritesheet('sprite_tech','././assets/planets/tech_planet.png',248,248,16);
-    this.load.spritesheet('sprite_abstract','././assets/planets/abstract_planet.png',248,248,16);
+    // this.load.spritesheet('sprite_ice','././assets/planets/ice_planet.png',248,248,16);
+    // this.load.spritesheet('sprite_tech','././assets/planets/tech_planet.png',248,248,16);
+    // this.load.spritesheet('sprite_abstract','././assets/planets/abstract_planet.png',248,248,16);
+
+    this.load.image('sprite_ice','././assets/planets/planet_hover.png');
+    this.load.image('sprite_abstract','././assets/planets/planet_hover.png');
+    this.load.image('sprite_tech','././assets/planets/planet_hover.png');
+
+
+    // this.load.atlasXML('sprite_ice', '././assets/planets/ice_planet.png', '././assets/planets/ice_planet.xml');
+    // this.load.atlasXML('sprite_abstract', '././assets/planets/abstract_planet.png', '././assets/planets/abstract_planet.xml');
+    // this.load.atlasXML('sprite_tech', '././assets/planets/tech_planet.png', '././assets/planets/tech_planet.xml');
+
+    // this.load.spritesheet('sprite_ice','././assets/planets/ice_hiFps.png',248,248,28);
+    // this.load.spritesheet('sprite_tech','././assets/planets/tech_hiFps.png',248,248,28);
+    // this.load.spritesheet('sprite_abstract','././assets/planets/abstrakt_hiFps.png',248,248,28);
 
 
 	  

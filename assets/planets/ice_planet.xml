@@ -1,0 +1,23 @@
+<TextureAtlas imagePath="ice_planet.png">
+	<SubTexture name="1.png" x="188" y="623" width="186" height="205"/>
+	<SubTexture name="2.png" x="189" y="207" width="186" height="207"/>
+	<SubTexture name="3.png" x="377" y="0" width="185" height="208"/>
+	<SubTexture name="4.png" x="564" y="209" width="183" height="209"/>
+	<SubTexture name="5.png" x="376" y="624" width="185" height="208"/>
+	<SubTexture name="6.png" x="0" y="0" width="187" height="206"/>
+	<SubTexture name="7.png" x="189" y="0" width="186" height="205"/>
+	<SubTexture name="8.png" x="189" y="416" width="184" height="203"/>
+	<SubTexture name="9.png" x="750" y="0" width="180" height="203"/>
+	<SubTexture name="10.png" x="749" y="623" width="180" height="203"/>
+	<SubTexture name="11.png" x="0" y="623" width="186" height="205"/>
+	<SubTexture name="12.png" x="376" y="416" width="186" height="206"/>
+	<SubTexture name="13.png" x="563" y="624" width="184" height="207"/>
+	<SubTexture name="14.png" x="749" y="209" width="183" height="207"/>
+	<SubTexture name="15.png" x="564" y="0" width="184" height="207"/>
+	<SubTexture name="16.png" x="0" y="208" width="187" height="206"/>
+	<SubTexture name="17.png" x="0" y="416" width="187" height="205"/>
+	<SubTexture name="18.png" x="377" y="210" width="182" height="203"/>
+	<SubTexture name="19.png" x="564" y="420" width="180" height="201"/>
+	<SubTexture name="20.png" x="749" y="418" width="181" height="203"/>
+
+</TextureAtlas>

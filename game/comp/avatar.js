@@ -27,7 +27,7 @@ function Avatar(game, x, y,img) {
   this.animations.add('walk_right', [10, 13, 14, 15, 16, 17, 18, 20, 21, 0, 1],10,true);
   this.animations.add('walk_left', [10, 14, 15, 16, 17, 18, 19, 21, 22, 0, 1], 10, true);
   // this.animations.add('walk_left', [8,9,10,11,12,13,14,15],10,true);
-  this.animations.add('jump', [2,3,4,5,6,7,8,9],10,false);
+  this.animations.add('jump', [5,6,7,8,9],10,false);
   this.animations.add('punch', [0],5,true);
   this.punching = false;
 
