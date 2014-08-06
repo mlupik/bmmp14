@@ -35,6 +35,10 @@ game.state.add('play3', Play3);
 
 game.state.add('endScreen', EndScreen);
 
+game.state.add('storyLevel1', StoryLevel1);
+game.state.add('storyLevel2', StoryLevel2);
+game.state.add('storyLevel3', StoryLevel3);
+
 
 
 

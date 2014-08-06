@@ -167,7 +167,10 @@
       if(!!this.ready && this.loading_timer < this.game.time.now) {
         this.asset.animations.stop();
         // this.game.state.start('chooseAvatar');
-		this.game.state.start('chooseStar');
+
+		//this.game.state.start('chooseStar');
+
+    this.game.state.start('storyLevel1');
       }
     },
     onLoadComplete: function() {

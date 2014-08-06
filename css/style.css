@@ -40,12 +40,10 @@
 	#impressum:hover {
 	opacity:1.0;}
 	
-	#logo{
-	width: 1377px;
-    height:100px;
-    background-image: url(../logo.jpg);
-    position:absolute;
-    top:0px;
-    left:0px;
-	}
+	#IMG.logo{
+	 
+    display: block;
+    margin-left: auto;
+    margin-right: auto 
+	 }
 	
