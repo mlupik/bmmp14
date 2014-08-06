@@ -198,7 +198,7 @@
 		// }
 
 
-			var coin = new Collectable(this.game,this.getX(10),this.getY(15),'coin','coin');
+			var coin = new Collectable(this.game,this.getX(10),this.getY(18),'coin','coin');
 			this.game.add.existing(coin);
 			this.collGroup.add(coin);
 			coin.body.setCollisionGroup(this.collectableCollisionGroup);
@@ -283,7 +283,7 @@
 	},
 
 	setupGoal1_1: function(){
-			this.goal = this.game.add.sprite(this.getX(130),0,'superpower');
+			this.goal = this.game.add.sprite(this.getX(130),this.getY(15),'superpower');
 			this.game.physics.p2.enable(this.goal);
   			this.goal.body.collideWorldBounds = true;
   			this.goal.body.fixedRotation = true;
@@ -570,6 +570,8 @@
     	return y*36 + 18;
 
     }
+	
+	
 
 	
 	

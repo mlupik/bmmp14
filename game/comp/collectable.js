@@ -14,11 +14,12 @@ function Collectable(game,x,y,img,type) {
 
   this.game.physics.p2.enable(this);
   this.body.collideWorldBounds = true;
- // this.body.allowRotation = true;
+
   this.body.fixedRotation = true;
    this.body.x = x;
   this.body.y=y;
-  //this.body.allowGravity = false;
+  this.body.kinematic = true;
+ 
 
   this.animations.add('animate', [0,1,4,5,2,6,3,7,8,12], 10, true );
   this.animations.play('animate');
@@ -31,7 +32,7 @@ Collectable.prototype.constructor = Collectable;
 
 
 Collectable.prototype.update = function() {
-	//this.body.y = this.yFix;
+	this.body.y = this.yFix;
 }
 //Collectable.prototype.animations.add('walk',[1,2,3,4,5]);
 
