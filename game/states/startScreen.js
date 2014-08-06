@@ -11,7 +11,8 @@
       this.load.bitmapFont('font_black','././assets/font3.png', 'assets/font.xml');
 
       //load animation of progressbar for the loadingScreen
-      this.load.image('progress','././assets/progressbar.gif');
+      this.load.spritesheet('progress','././assets/status/loading.png', 264,264,21);
+
     },
 
     create: function() {

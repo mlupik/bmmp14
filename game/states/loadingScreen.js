@@ -9,10 +9,18 @@
 
   LoadingScreen.prototype = {
     preload: function() {
+
+
+    this.loading_timer = this.game.time.now + 5000;
+      
     this.load.onLoadComplete.addOnce(this.onLoadComplete, this);
-    this.asset = this.add.sprite(this.width/2,this.height/2, 'progress');
-    this.asset.anchor.setTo(0.5, 0.5);      
-    this.load.setPreloadSprite(this.asset);
+    this.asset = this.add.sprite(this.game.width/2,this.game.height/2, 'progress');
+    this.asset.anchor.setTo(0.5, 0.5); 
+    this.asset.animations.add('loading', [0,1,2,7,8,14,15,9,16,3,10,4,17,11,5,6,12,18,19,13],10, true);
+    this.asset.animations.play('loading');
+
+    //this.load.setPreloadSprite(this.asset);
+
     //load everything
     //this.load.image('avatar1', '././assets/car.png');
     //this.load.image('avatar2', '././assets/car3.png');
@@ -179,12 +187,14 @@
       this.asset.cropEnabled = false;
     },
     update: function() {
-      if(!!this.ready) {
+      if(!!this.ready && this.loading_timer < this.game.time.now) {
+        this.asset.animations.stop();
         // this.game.state.start('chooseAvatar');
 		this.game.state.start('chooseStar');
       }
     },
     onLoadComplete: function() {
       this.ready = true;
+      
     }
   };
