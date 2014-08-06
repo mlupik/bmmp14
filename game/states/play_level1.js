@@ -401,12 +401,19 @@
 			this.statusBar.add(this.name_text);
 			this.statusBar.add(this.parts_text);
 			this.statusBar.add(this.hearts_img);
-			this.statusBar.add(this.pauseButton);
+			//this.statusBar.add(this.pauseButton);
 			this.statusBar.add(this.lightning_img);
 			this.statusBar.add(this.superpower_img);
 			this.statusBar.x = 20;
 			this.statusBar.y = 10;
 			this.statusBar.fixedToCamera = true;
+
+
+			this.pauseBar = this.game.add.group();
+			this.pauseBar.x = 20;
+			this.pauseBar.y = 520;
+			this.pauseBar.fixedToCamera = true;
+			this.pauseBar.add(this.pauseButton);
 		
 		}
 		

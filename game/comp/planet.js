@@ -30,7 +30,7 @@ function Planet(game, id, x, y,p_img,frame) {
 	//0,1,4,5,2,6,3,7,8,12
 
 
-	//this.animations.add('rotate',[0,1,8,9,2,10,3,11,16,24,17,18,25,26,19,27,4,5,12,6],10, true);
+	this.animations.add('rotate',[0,1,7,8,2,9,3,10,14,21,15,16,22,23,17,24,4,5,11,6],10, true);
 	if (this.status == 'unlocked') {
 		this.animations.play('rotate');
 	}

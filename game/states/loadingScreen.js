@@ -106,13 +106,13 @@
     this.load.image('vordergrund3', '././assets/backgrounds/vordergrund_3.png');
 
     //spritesheets für Planeten
-    // this.load.spritesheet('sprite_ice','././assets/planets/ice_planet.png',248,248,16);
-    // this.load.spritesheet('sprite_tech','././assets/planets/tech_planet.png',248,248,16);
-    // this.load.spritesheet('sprite_abstract','././assets/planets/abstract_planet.png',248,248,16);
+    // this.load.spritesheet('sprite_ice','././assets/planets/ice_planet.png',248,248,28);
+    this.load.spritesheet('sprite_tech','././assets/planets/tech_planet.png',248,248,28);
+    // this.load.spritesheet('sprite_abstract','././assets/planets/abstract_planet.png',248,248,28);
 
     this.load.image('sprite_ice','././assets/planets/planet_hover.png');
     this.load.image('sprite_abstract','././assets/planets/planet_hover.png');
-    this.load.image('sprite_tech','././assets/planets/planet_hover.png');
+    //this.load.image('sprite_tech','././assets/planets/planet_hover.png');
 
 
     // this.load.atlasXML('sprite_ice', '././assets/planets/ice_planet.png', '././assets/planets/ice_planet.xml');
