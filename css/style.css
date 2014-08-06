@@ -43,6 +43,7 @@
 	#logo{
 	width: 1377px;
     height:100px;
+    background-image: url(../logo.jpg);
     position:absolute;
     top:0px;
     left:0px;
