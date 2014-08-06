@@ -136,7 +136,7 @@ Avatar.prototype.stopPunch = function(){
 
 Avatar.prototype.hurt = function(){
 			if(this.game.time.now>this.hurtTimer){
-				this.hurtTimer = this.game.time.now + 3000;
+				this.hurtTimer = this.game.time.now + 2000;
 				this.hit();
 				var data = JSON.parse(localStorage.getItem('avatarData'));
 				//avatar looses one heart

@@ -79,7 +79,7 @@ Enemy.prototype.hurt = function(){
 	//enemy looses one heart
 	
 	if(this.game.time.now>this.hurtTimer){
-		this.hurtTimer = this.game.time.now + 3000;
+		this.hurtTimer = this.game.time.now + 2000;
 		this.hit();
 		this.lifes = this.lifes -1;
 		if(this.lifes<=0){
@@ -132,7 +132,7 @@ Enemy.prototype.hit = function(){
 
 Enemy.prototype.die = function(){
 	if(this.game.time.now>this.hurtTimer){
-		this.hurtTimer = this.game.time.now + 3000;
+		this.hurtTimer = this.game.time.now + 2000;
 		var data = JSON.parse(localStorage.getItem('avatarData'));
 			var points = data.points + this.power;
 			data.points = points;
