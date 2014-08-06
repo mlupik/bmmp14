@@ -121,45 +121,20 @@
     this.load.spritesheet('sprite_tech','././assets/planets/tech_planet.png',248,248,28);
     this.load.spritesheet('sprite_abstract','././assets/planets/abstract_planet.png',248,248,28);
 
-    //this.load.image('sprite_ice','././assets/planets/planet_hover.png');
-    //this.load.image('sprite_abstract','././assets/planets/planet_hover.png');
-    //this.load.image('sprite_tech','././assets/planets/planet_hover.png');
 
-
-    // this.load.atlasXML('sprite_ice', '././assets/planets/ice_planet.png', '././assets/planets/ice_planet.xml');
-    // this.load.atlasXML('sprite_abstract', '././assets/planets/abstract_planet.png', '././assets/planets/abstract_planet.xml');
-    // this.load.atlasXML('sprite_tech', '././assets/planets/tech_planet.png', '././assets/planets/tech_planet.xml');
-
-    // this.load.spritesheet('sprite_ice','././assets/planets/ice_hiFps.png',248,248,28);
-    // this.load.spritesheet('sprite_tech','././assets/planets/tech_hiFps.png',248,248,28);
-    // this.load.spritesheet('sprite_abstract','././assets/planets/abstrakt_hiFps.png',248,248,28);
-
-
-	  
-	  // this.load.tilemap('map_dummy','././assets/tiling/dummy.json',null, Phaser.Tilemap.TILED_JSON);
-	  // this.load.image('tileSet', '././assets/tileSet.png',128,128);
-	  
-	  // this.load.tilemap('map_dummy','././assets/tilemaps/tileMap_ice.json',null, Phaser.Tilemap.TILED_JSON);
-	  // this.load.image('tileSet', '././assets/tilemaps/tileSet.png',36,36);
-	  //this.load.image('bg_ice', '././assets/tilemaps/hintergrund.png');
-	  
-	  // this.load.tilemap('tech_map','././assets/tilemaps/tech/techplanetTilemap.json',null, Phaser.Tilemap.TILED_JSON);
-	  // this.load.image('tileeinss', '././assets/tilemaps/tech/tileeinss.png',36,36);
-	  // this.load.image('tilezwei', '././assets/tilemaps/tech/tilezwei.png',36,36);
-	  
-    // this.load.tilemap('map_dummy1','././assets/tilemaps/tests/test_map_1layer.json',null, Phaser.Tilemap.TILED_JSON);
-     // this.load.tilemap('map_dummy2','././assets/tilemaps/tests/test_map_2layer.json',null, Phaser.Tilemap.TILED_JSON);
-    // this.load.image('TileSetIce', '././assets/tilemaps/ice/TileSetIce.png',36,36);
 
 		//tilemap tech 
 	  this.load.tilemap('tech_map','././assets/tilemaps/tech/tech_map1.json',null, Phaser.Tilemap.TILED_JSON);
 	  this.load.image('tileeinss', '././assets/tilemaps/tech/tileeinss.png',36,36);
 	  this.load.image('tilezwei', '././assets/tilemaps/tech/tilezwei.png',36,36);
-
+	//tilemap abstract
 	 this.load.tilemap('abstract_map','././assets/tilemaps/abstract/abstract_map1.json',null, Phaser.Tilemap.TILED_JSON);
 	  this.load.image('kugel', '././assets/tilemaps/abstract/kugel.png',36,36);
 	  this.load.image('kugelklein', '././assets/tilemaps/abstract/kugelklein.png',36,36);
 	  this.load.image('ununtergrund', '././assets/tilemaps/abstract/ununtergrund.png',36,36);
+	  
+	  this.load.tilemap('ice_map','././assets/tilemaps/ice/ice_map1.json',null, Phaser.Tilemap.TILED_JSON);
+	  this.load.image('tielSetIce1Layer', '././assets/tilemaps/ice/tielSetIce1Layer.png',36,36);
 
 
     //load enemies

@@ -107,10 +107,8 @@
 		
 		//Tilemap
 
-		this.map = this.game.add.tilemap('abstract_map');
-		this.map.addTilesetImage('ununtergrund');
-		this.map.addTilesetImage('kugel');
-		this.map.addTilesetImage('kugelklein');
+		this.map = this.game.add.tilemap('ice_map');
+		this.map.addTilesetImage('tielSetIce1Layer');
 		
 		//this.map = this.game.add.tilemap('ice_map');
 
@@ -533,6 +531,7 @@
 	gameOverMenu: function(){
 		if(!this.won){
 			this.gameOver = true;
+			this.game.camera.unfollow();
 			this.window = this.game.add.group();
 			//this.window.fixedToCamera=true;
 			var menu_bg = this.game.add.sprite(0,0,'menu_gameover_ice');
