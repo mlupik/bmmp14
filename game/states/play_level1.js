@@ -107,8 +107,11 @@
 		
 		//Tilemap
 
-		this.map = this.game.add.tilemap('map_dummy1');
-		this.map.addTilesetImage('TileSetIce');
+		this.map = this.game.add.tilemap('abstract_map');
+		this.map.addTilesetImage('ununtergrund');
+		this.map.addTilesetImage('kugel');
+		this.map.addTilesetImage('kugelklein');
+		
 		//this.map = this.game.add.tilemap('ice_map');
 
 		// this.map.addTilesetImage('untergrund');

@@ -137,21 +137,19 @@
 	  // this.load.image('tileeinss', '././assets/tilemaps/tech/tileeinss.png',36,36);
 	  // this.load.image('tilezwei', '././assets/tilemaps/tech/tilezwei.png',36,36);
 	  
-    this.load.tilemap('map_dummy1','././assets/tilemaps/tests/test_map_1layer.json',null, Phaser.Tilemap.TILED_JSON);
-     this.load.tilemap('map_dummy2','././assets/tilemaps/tests/test_map_2layer.json',null, Phaser.Tilemap.TILED_JSON);
-    this.load.image('TileSetIce', '././assets/tilemaps/ice/TileSetIce.png',36,36);
+    // this.load.tilemap('map_dummy1','././assets/tilemaps/tests/test_map_1layer.json',null, Phaser.Tilemap.TILED_JSON);
+     // this.load.tilemap('map_dummy2','././assets/tilemaps/tests/test_map_2layer.json',null, Phaser.Tilemap.TILED_JSON);
+    // this.load.image('TileSetIce', '././assets/tilemaps/ice/TileSetIce.png',36,36);
 
-	  
-	  this.load.tilemap('ice_map','././assets/tilemaps/ice/icePlanetTilemap.json',null, Phaser.Tilemap.TILED_JSON);
-	  this.load.image('zapfen1', '././assets/tilemaps/ice/zapfen1.png',36,36);
-	  this.load.image('zapfen2', '././assets/tilemaps/ice/zapfen2.png',36,36);
-	  this.load.image('zapfen3', '././assets/tilemaps/ice/zapfen3.png',36,36);
-	  this.load.image('zapfen4', '././assets/tilemaps/ice/zapfen4.png',36,36);
-	  this.load.image('zapfen5', '././assets/tilemaps/ice/zapfen5.png',36,36);
-	  this.load.image('zapfen6', '././assets/tilemaps/ice/zapfen6.png',36,36);
-	  this.load.image('zapfen7', '././assets/tilemaps/ice/zapfen7.png',36,36);
-	  this.load.image('untergrund', '././assets/tilemaps/ice/untergrund.png',36,36);
-	
+		//tilemap tech 
+	  this.load.tilemap('tech_map','././assets/tilemaps/tech/tech_map1.json',null, Phaser.Tilemap.TILED_JSON);
+	  this.load.image('tileeinss', '././assets/tilemaps/tech/tileeinss.png',36,36);
+	  this.load.image('tilezwei', '././assets/tilemaps/tech/tilezwei.png',36,36);
+
+	 this.load.tilemap('abstract_map','././assets/tilemaps/abstract/abstract_map1.json',null, Phaser.Tilemap.TILED_JSON);
+	  this.load.image('kugel', '././assets/tilemaps/abstract/kugel.png',36,36);
+	  this.load.image('kugelklein', '././assets/tilemaps/abstract/kugelklein.png',36,36);
+	  this.load.image('ununtergrund', '././assets/tilemaps/abstract/ununtergrund.png',36,36);
 
 
     //load enemies
