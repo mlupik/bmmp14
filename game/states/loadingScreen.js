@@ -135,6 +135,8 @@
 	  this.load.image('tileeinss', '././assets/tilemaps/tech/tileeinss.png',36,36);
 	  this.load.image('tilezwei', '././assets/tilemaps/tech/tilezwei.png',36,36);
 	  
+
+	  
 	  this.load.tilemap('ice_map','././assets/tilemaps/ice/icePlanetTilemap.json',null, Phaser.Tilemap.TILED_JSON);
 	  this.load.image('zapfen1', '././assets/tilemaps/ice/zapfen1.png',36,36);
 	  this.load.image('zapfen2', '././assets/tilemaps/ice/zapfen2.png',36,36);
