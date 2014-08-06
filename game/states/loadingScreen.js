@@ -18,8 +18,7 @@
     //this.load.image('avatar2', '././assets/car3.png');
     //this.load.image('arrow_r', '././assets/pfeil_rechts.png');
     //this.load.image('arrow_l', '././assets/pfeil_links.png');
-	  //this.load.image('weltall', '././assets/backgrounds/hintergrundPlanetenAuswahl.jpg');
-    this.load.image('weltall', '././assets/nicht mehr verwendet/weltall.jpg');
+    this.load.image('weltall', '././assets/backgrounds/hintergrundPlanetenAuswahl.jpg');
 	  this.load.image('sternbild', '././assets/sb1_ohne.png');
 	  //this.load.image('coin', '././assets/Star_Coin_small.png');
 
@@ -106,12 +105,12 @@
     this.load.image('vordergrund3', '././assets/backgrounds/vordergrund_3.png');
 
     //spritesheets für Planeten
-    // this.load.spritesheet('sprite_ice','././assets/planets/ice_planet.png',248,248,28);
+    this.load.spritesheet('sprite_ice','././assets/planets/ice_planet.png',248,248,28);
     this.load.spritesheet('sprite_tech','././assets/planets/tech_planet.png',248,248,28);
-    // this.load.spritesheet('sprite_abstract','././assets/planets/abstract_planet.png',248,248,28);
+    this.load.spritesheet('sprite_abstract','././assets/planets/abstract_planet.png',248,248,28);
 
-    this.load.image('sprite_ice','././assets/planets/planet_hover.png');
-    this.load.image('sprite_abstract','././assets/planets/planet_hover.png');
+    //this.load.image('sprite_ice','././assets/planets/planet_hover.png');
+    //this.load.image('sprite_abstract','././assets/planets/planet_hover.png');
     //this.load.image('sprite_tech','././assets/planets/planet_hover.png');
 
 
