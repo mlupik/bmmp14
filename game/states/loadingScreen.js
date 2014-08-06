@@ -59,6 +59,8 @@
 
     this.load.spritesheet('blitz', '././assets/collectables/speed.png', 64,64,16);
 
+    this.load.spritesheet('raketeStatus', '././assets/status/statusShuttle.png',64 , 64, 5)
+
     this.load.image('pause_button', '././assets/status/pauseButton.png');
 
     this.load.image('rakete', '././assets/collectables/shipUpgrade.png');

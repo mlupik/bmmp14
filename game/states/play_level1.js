@@ -419,10 +419,14 @@
 			this.hearts = data.hearts;
 			this.hearts_img = this.game.add.sprite(550,0,'hearts');
 			this.hearts_img.frame = 3;
-			this.lightning_img = this.game.add.sprite(180,0,'blitz_icon');
+			this.lightning_img = this.game.add.sprite(200,0,'blitz_icon');
 			this.lightning_img.frame = 0;
 			this.superpower_img = this.game.add.sprite(280,0,'superpower_icon');
 			this.superpower_img.frame = 0;
+
+			this.parts_img = this.game.add.sprite(100,0,'raketeStatus');
+			this.parts_img.frame = 0;
+
 			this.points = data.points;
 			// console.log("points:",this.points);
 			// console.log("hearts:",this.hearts);
@@ -430,14 +434,15 @@
 			this.point_text = this.game.add.bitmapText(400,0, 'font_black',this.points.toString(), 30);
 			this.name_text = this.game.add.bitmapText(0,0, 'font_black',data.name, 30);
 
-			this.parts_text = this.game.add.bitmapText(100,0, 'font_black', this.partsCount+'/'+this.partsMax, 30);
+			//this.parts_text = this.game.add.bitmapText(100,0, 'font_black', this.partsCount+'/'+this.partsMax, 30);
 
 			this.pauseButton = this.game.add.button(700,0, 'pause_button',this.pauseMenu,this);
 				
 			this.statusBar.add(this.point_text);
 			this.statusBar.add(this.name_text);
-			this.statusBar.add(this.parts_text);
+			//this.statusBar.add(this.parts_text);
 			this.statusBar.add(this.hearts_img);
+			this.statusBar.add(this.parts_img);
 			//this.statusBar.add(this.pauseButton);
 			this.statusBar.add(this.lightning_img);
 			this.statusBar.add(this.superpower_img);
@@ -472,6 +477,19 @@
 				case 3: this.hearts_img.frame = 3;
 				break;					
 			}
+			switch(this.partsCount){
+				case 0: this.parts_img.frame = 0;
+				break;
+				case 1: this.parts_img.frame = 1;
+				break;
+				case 2: this.parts_img.frame = 2;
+				break;
+				case 3: this.parts_img.frame = 3;
+				break;
+				case 4: this.parts_img.frame = 4;
+				break;
+			}
+
 			if(this.avatar.fast){
 				this.lightning_img.frame = 0;
 			}else{
@@ -486,7 +504,7 @@
 			this.points = data.points;
 			this.point_text.text = this.points.toString();
 			this.name_text.text = data.name;
-			this.parts_text.text = this.partsCount+'/'+this.partsMax;
+			//this.parts_text.text = this.partsCount+'/'+this.partsMax;
 		}
 	},
 	
