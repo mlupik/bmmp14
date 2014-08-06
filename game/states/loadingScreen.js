@@ -138,8 +138,8 @@
 
 
     //load enemies
-    this.load.spritesheet('enemy1_walk','././assets/enemys/enemy1_walk.png',64,64,16);
-    this.load.spritesheet('enemy1_die','././assets/enemys/enemy1_die.png',64,64,16);
+    this.load.spritesheet('enemy1_walk','././assets/enemys/enemy1_walk_left.png',64,64,16);
+    this.load.spritesheet('enemy1_die','././assets/enemys/enemy1_die_left.png',64,64,16);
 
     this.load.spritesheet('enemy2_walk_right','././assets/enemys/enemy2_walk_right.png',64,64,16);
     this.load.spritesheet('enemy2_walk_left','././assets/enemys/enemy2_walk_left.png',64,64,16);
