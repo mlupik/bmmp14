@@ -308,7 +308,7 @@
 	setupParts1_1: function(){
 		for(var i=0; i<this.partsMax; i++){
 			var pos = this.getCoinPos();
-			var part = new Collectable(this.game,pos,0,'reward','part');
+			var part = new Collectable(this.game,pos,this.getY(15),'rakete','part');
 			this.game.add.existing(part);
 			this.collGroup.add(part);	
 			part.body.setCollisionGroup(this.collectableCollisionGroup);

@@ -53,6 +53,8 @@
 
     this.load.image('pause_button', '././assets/status/pauseButton.png');
 
+    this.load.image('rakete', '././assets/collectables/shipUpgrade.png');
+
 
     //images menus
     //Eis
