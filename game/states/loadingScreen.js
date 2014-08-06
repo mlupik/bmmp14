@@ -150,6 +150,12 @@
     this.load.spritesheet('enemy3_die','././assets/enemys/enemy3_die.png',64,64,16);
 
 
+    //storyBilder
+    this.load.image('absturzAbstrakt', '././assets/storyBilder/absturzAbstrakt.png');
+    this.load.image('absturzEis', '././assets/storyBilder/absturzEis.png');
+    this.load.image('absturzTech', '././assets/storyBilder/absturzTech.png');
+    this.load.image('flug', '././assets/storyBilder/flug.png');
+
 	  
 	  
 	  
