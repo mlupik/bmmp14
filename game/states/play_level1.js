@@ -106,27 +106,33 @@
 		//this.background.fixedToCamera = true;
 		this.setupStatusBar();
 		//Tilemap
-		this.map = this.game.add.tilemap('ice_map');
-		this.map.addTilesetImage('untergrund');
-		this.map.addTilesetImage('zapfen1');
-		this.map.addTilesetImage('zapfen2');
-		this.map.addTilesetImage('zapfen3');
-		this.map.addTilesetImage('zapfen4');
-		this.map.addTilesetImage('zapfen5');
-		this.map.addTilesetImage('zapfen6');
-		this.map.addTilesetImage('zapfen7');
+
+		this.map = this.game.add.tilemap('map_dummy');
+		this.map.addTilesetImage('tileSet');
+		//this.map = this.game.add.tilemap('ice_map');
+
+		// this.map.addTilesetImage('untergrund');
+		// this.map.addTilesetImage('zapfen1');
+		// this.map.addTilesetImage('zapfen2');
+		// this.map.addTilesetImage('zapfen3');
+		// this.map.addTilesetImage('zapfen4');
+		// this.map.addTilesetImage('zapfen5');
+		// this.map.addTilesetImage('zapfen6');
+		// this.map.addTilesetImage('zapfen7');
 		//if you use 'collide' function with the layer, then the tiles from the list will
 		//collide with the given sprite
-		this.layer = this.map.createLayer("Kachelebene 1");
-		this.layer2 = this.map.createLayer("Kachelebene 2");
-		this.layer3 = this.map.createLayer("Kachelebene 3");
 
-		this.layer.debug = true;
+		this.layer = this.map.createLayer("layer1");
+		// this.layer = this.map.createLayer("Kachelebene 1");
+		// this.layer2 = this.map.createLayer("Kachelebene 2");
+		// this.layer3 = this.map.createLayer("Kachelebene 3");
+
+		//this.layer.debug = true;
 		//this.layer2.debug = true;
 		//this.bg_layer = this.map.createLayer("Bildebene 1");
 		this.layer.resizeWorld();
-		this.layer2.resizeWorld();
-		this.layer3.resizeWorld();
+		//this.layer2.resizeWorld();
+		//this.layer3.resizeWorld();
 		//this.bg_layer.resizeWorld();
 		
 		this.map.setCollisionBetween(0,100);

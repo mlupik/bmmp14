@@ -32,7 +32,7 @@ Collectable.prototype.constructor = Collectable;
 
 
 Collectable.prototype.update = function() {
-	this.body.y = this.yFix;
+	//this.body.y = this.yFix;
 }
 //Collectable.prototype.animations.add('walk',[1,2,3,4,5]);
 
