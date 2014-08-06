@@ -108,7 +108,7 @@
 		//Tilemap
 
 		this.map = this.game.add.tilemap('map_dummy');
-		this.map.addTilesetImage('tileSet');
+		this.map.addTilesetImage('untergrund');
 		//this.map = this.game.add.tilemap('ice_map');
 
 		// this.map.addTilesetImage('untergrund');
@@ -122,7 +122,7 @@
 		//if you use 'collide' function with the layer, then the tiles from the list will
 		//collide with the given sprite
 
-		this.layer = this.map.createLayer("layer1");
+		this.layer = this.map.createLayer("Kachelebene 1");
 		// this.layer = this.map.createLayer("Kachelebene 1");
 		// this.layer2 = this.map.createLayer("Kachelebene 2");
 		// this.layer3 = this.map.createLayer("Kachelebene 3");
