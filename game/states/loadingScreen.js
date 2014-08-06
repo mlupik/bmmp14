@@ -127,9 +127,24 @@
 	  // this.load.tilemap('map_dummy','././assets/tiling/dummy.json',null, Phaser.Tilemap.TILED_JSON);
 	  // this.load.image('tileSet', '././assets/tileSet.png',128,128);
 	  
-	  this.load.tilemap('map_dummy','././assets/tilemaps/tileMap_ice.json',null, Phaser.Tilemap.TILED_JSON);
-	  this.load.image('tileSet', '././assets/tilemaps/tileSet.png',36,36);
-	  this.load.image('bg_ice', '././assets/tilemaps/hintergrund.png');
+	  // this.load.tilemap('map_dummy','././assets/tilemaps/tileMap_ice.json',null, Phaser.Tilemap.TILED_JSON);
+	  // this.load.image('tileSet', '././assets/tilemaps/tileSet.png',36,36);
+	  // this.load.image('bg_ice', '././assets/tilemaps/hintergrund.png');
+	  
+	  this.load.tilemap('tech_map','././assets/tilemaps/tech/techplanetTilemap.json',null, Phaser.Tilemap.TILED_JSON);
+	  this.load.image('tileeinss', '././assets/tilemaps/tech/tileeinss.png',36,36);
+	  this.load.image('tilezwei', '././assets/tilemaps/tech/tilezwei.png',36,36);
+	  
+	  this.load.tilemap('ice_map','././assets/tilemaps/ice/icePlanetTilemap.json',null, Phaser.Tilemap.TILED_JSON);
+	  this.load.image('zapfen1', '././assets/tilemaps/ice/zapfen1.png',36,36);
+	  this.load.image('zapfen2', '././assets/tilemaps/ice/zapfen2.png',36,36);
+	  this.load.image('zapfen3', '././assets/tilemaps/ice/zapfen3.png',36,36);
+	  this.load.image('zapfen4', '././assets/tilemaps/ice/zapfen4.png',36,36);
+	  this.load.image('zapfen5', '././assets/tilemaps/ice/zapfen5.png',36,36);
+	  this.load.image('zapfen6', '././assets/tilemaps/ice/zapfen6.png',36,36);
+	  this.load.image('zapfen7', '././assets/tilemaps/ice/zapfen7.png',36,36);
+	  this.load.image('untergrund', '././assets/tilemaps/ice/untergrund.png',36,36);
+	
 
 
     //load enemies

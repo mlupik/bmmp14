@@ -106,21 +106,36 @@
 		//this.background.fixedToCamera = true;
 		this.setupStatusBar();
 		//Tilemap
-		this.map = this.game.add.tilemap('map_dummy');
-		this.map.addTilesetImage('tileSet');
+		this.map = this.game.add.tilemap('ice_map');
+		this.map.addTilesetImage('untergrund');
+		this.map.addTilesetImage('zapfen1');
+		this.map.addTilesetImage('zapfen2');
+		this.map.addTilesetImage('zapfen3');
+		this.map.addTilesetImage('zapfen4');
+		this.map.addTilesetImage('zapfen5');
+		this.map.addTilesetImage('zapfen6');
+		this.map.addTilesetImage('zapfen7');
 		//if you use 'collide' function with the layer, then the tiles from the list will
 		//collide with the given sprite
-		this.layer = this.map.createLayer("ground");
+		this.layer = this.map.createLayer("Kachelebene 1");
+		this.layer2 = this.map.createLayer("Kachelebene 2");
+		this.layer3 = this.map.createLayer("Kachelebene 3");
+
+		this.layer.debug = true;
+		//this.layer2.debug = true;
 		//this.bg_layer = this.map.createLayer("Bildebene 1");
 		this.layer.resizeWorld();
+		this.layer2.resizeWorld();
+		this.layer3.resizeWorld();
 		//this.bg_layer.resizeWorld();
 		
-		this.map.setCollisionBetween(1,2);
+		this.map.setCollisionBetween(0,100);
 		//Define CollisionGroups
 		this.avatarCollisionGroup = this.game.physics.p2.createCollisionGroup();
 		this.enemyCollisionGroup = this.game.physics.p2.createCollisionGroup();
 		this.collectableCollisionGroup = this.game.physics.p2.createCollisionGroup();
 		this.tilemapCollisionGroup = this.game.physics.p2.createCollisionGroup();
+		this.tilemapCollisionGroup2 = this.game.physics.p2.createCollisionGroup();
 		this.rewardCollisionGroup = this.game.physics.p2.createCollisionGroup();
 		this.goalCollisionGroup = this.game.physics.p2.createCollisionGroup();
 		// this.worldCollisionGroup = this.game.physics.p2.boundsCollisionGroup
@@ -131,6 +146,13 @@
 			tiles[tile].setCollisionGroup(this.tilemapCollisionGroup);
 			tiles[tile].collides([this.goalCollisionGroup,this.avatarCollisionGroup,this.enemyCollisionGroup,this.rewardCollisionGroup,this.collectableCollisionGroup]);
 		 }
+		 
+		 // var tiles2 = this.game.physics.p2.convertTilemap(this.map, this.layer2,true);
+		 // for(var tile2 in tiles2)
+		  // {
+			// tiles2[tile2].setCollisionGroup(this.tilemapCollisionGroup2);
+			// tiles2[tile2].collides([this.goalCollisionGroup,this.avatarCollisionGroup,this.enemyCollisionGroup,this.rewardCollisionGroup,this.collectableCollisionGroup]);
+		 // }
 		
 		// console.log("map:",tiles);		
 		this.game.physics.p2.restitution = 0.1;
@@ -173,7 +195,7 @@
 		this.avatar.body.setCollisionGroup(this.avatarCollisionGroup);
 		this.avatar.body.collides(this.enemyCollisionGroup,this.meetEnemy,this);
 		this.avatar.body.collides(this.collectableCollisionGroup,this.collect,this);
-		this.avatar.body.collides(this.tilemapCollisionGroup, this.touchedFloor,this);
+		this.avatar.body.collides([this.tilemapCollisionGroup,this.tilemapCollisionGroup], this.touchedFloor,this);
 		this.avatar.body.collides(this.rewardCollisionGroup, this.wonMenu,this);
 		this.avatar.body.collides(this.goalCollisionGroup, this.touchedGoal,this);
 		
