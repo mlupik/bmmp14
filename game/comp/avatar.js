@@ -29,7 +29,7 @@ function Avatar(game, x, y,img) {
   this.animations.add('walk_right', [10, 13, 14, 15, 16, 17, 18, 20, 21, 0, 1],10,true);
   this.animations.add('walk_left', [10, 14, 15, 16, 17, 18, 19, 21, 22, 0, 1], 10, true);
   // this.animations.add('walk_left', [8,9,10,11,12,13,14,15],10,true);
-  this.die_anim = this.animations.add('die',[0,1,2,3,4,5,6,7,8,9,10,11,12,13],7,false);
+  this.die_anim = this.animations.add('die',[5,6,7,8,9,10,11,12,13,0,1,2,3,4],10,false);
   this.die_anim.onComplete.add(this.isDying,this);
   this.animations.add('jump', [5,6,7,8,9],10,false);
   this.animations.add('punch', [0],5,true);
@@ -56,6 +56,7 @@ Avatar.prototype.constructor = Avatar;
 //Avatar.prototype.animations.add('walk',[1,2,3,4,5]);
 
 Avatar.prototype.stopMove = function() {
+	if(!this.dying) {
 	if(this.facing != 'idle'){
 		this.animations.stop();
 		if(this.facing == 'left'){
@@ -66,7 +67,7 @@ Avatar.prototype.stopMove = function() {
 		//console.log("stop avatar");
 		this.facing = 'idle';
 		this.body.velocity.x = 0;
-	}		
+	}}		
 }  
 
 
