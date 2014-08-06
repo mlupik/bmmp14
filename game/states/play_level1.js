@@ -104,11 +104,11 @@
 
 
 		//this.background.fixedToCamera = true;
-		this.setupStatusBar();
+		
 		//Tilemap
 
-		this.map = this.game.add.tilemap('map_dummy');
-		this.map.addTilesetImage('untergrund');
+		this.map = this.game.add.tilemap('map_dummy1');
+		this.map.addTilesetImage('TileSetIce');
 		//this.map = this.game.add.tilemap('ice_map');
 
 		// this.map.addTilesetImage('untergrund');
@@ -124,7 +124,7 @@
 
 		this.layer = this.map.createLayer("Kachelebene 1");
 		// this.layer = this.map.createLayer("Kachelebene 1");
-		// this.layer2 = this.map.createLayer("Kachelebene 2");
+		//this.layer2 = this.map.createLayer("Kachelebene 2");
 		// this.layer3 = this.map.createLayer("Kachelebene 3");
 
 		//this.layer.debug = true;
@@ -153,12 +153,18 @@
 			tiles[tile].collides([this.goalCollisionGroup,this.avatarCollisionGroup,this.enemyCollisionGroup,this.rewardCollisionGroup,this.collectableCollisionGroup]);
 		 }
 		 
+
+
 		 // var tiles2 = this.game.physics.p2.convertTilemap(this.map, this.layer2,true);
 		 // for(var tile2 in tiles2)
 		  // {
 			// tiles2[tile2].setCollisionGroup(this.tilemapCollisionGroup2);
 			// tiles2[tile2].collides([this.goalCollisionGroup,this.avatarCollisionGroup,this.enemyCollisionGroup,this.rewardCollisionGroup,this.collectableCollisionGroup]);
 		 // }
+
+
+
+		 this.setupStatusBar();
 		
 		// console.log("map:",tiles);		
 		this.game.physics.p2.restitution = 0.1;

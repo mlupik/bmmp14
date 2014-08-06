@@ -135,8 +135,9 @@
 	  // this.load.image('tileeinss', '././assets/tilemaps/tech/tileeinss.png',36,36);
 	  // this.load.image('tilezwei', '././assets/tilemaps/tech/tilezwei.png',36,36);
 	  
-    this.load.tilemap('map_dummy','././assets/tilemaps/ice/ice_test_map2.json',null, Phaser.Tilemap.TILED_JSON);
-    this.load.image('untergrund', '././assets/tilemaps/ice/untergrund.png',36,36);
+    this.load.tilemap('map_dummy1','././assets/tilemaps/tests/test_map_1layer.json',null, Phaser.Tilemap.TILED_JSON);
+     this.load.tilemap('map_dummy2','././assets/tilemaps/tests/test_map_2layer.json',null, Phaser.Tilemap.TILED_JSON);
+    this.load.image('TileSetIce', '././assets/tilemaps/ice/TileSetIce.png',36,36);
 
 	  
 	  this.load.tilemap('ice_map','././assets/tilemaps/ice/icePlanetTilemap.json',null, Phaser.Tilemap.TILED_JSON);
