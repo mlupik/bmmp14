@@ -1,5 +1,5 @@
-function Enemy(game, x,range,speed,lifes, color, frame) {  
-  Phaser.Sprite.call(this, game, x, 0, color, frame);
+function Enemy(game, x,y,range,speed,lifes, color, type,frame) {  
+  Phaser.Sprite.call(this, game, x, y, color, frame);
 
   /// set the sprite's anchor to the center
   this.anchor.setTo(0.5, 0.5);
@@ -10,6 +10,7 @@ function Enemy(game, x,range,speed,lifes, color, frame) {
   this.hurtTimer = 0;
   this.lifes = lifes;
   this.facing = 'right';
+  this.type = type;
   
  
   this.game.physics.p2.enable(this);
@@ -19,12 +20,38 @@ function Enemy(game, x,range,speed,lifes, color, frame) {
 	this.body.fixedRotation = true;
  
   this.body.height = this.body.width = 40;
-  
-  this.animations.add('walk_left',[12,8,7,3,6,2,5,4,1,0],10,true);
-  this.animations.add('walk_right',[0,1,4,5,2,6,3,7,8,12],10,true);
-  this.anim = this.animations.add('die',[0,1,4,5,2,6,3,7,8,12],10);
-  this.anim.loop = false;
-  this.anim.onComplete.add(this.killEnemy,this);
+
+  if(this.type == 'bird'){
+  	this.animations.add('walk_left',[0,1,4,5,2,6,3,7,8,12],10,true);
+  	this.animations.add('walk_right',[0,1,4,5,2,6,3,7,8,12],10,true);
+  	this.die_left = this.animations.add('die_left',[0,1,4,5,2,6,3,7,8,12],10,true);
+  	this.die_right = this.animations.add('die_right',[0,1,4,5,2,6,3,7,8,12],10,true);
+  	this.die_right.loop = false;
+  	this.die_left.loop = false;
+  	this.die_right.onComplete.add(this.killEnemy,this);
+  	this.die_left.onComplete.add(this.killEnemy,this);
+  }else if(this.type == 'eye'){
+  	this.animations.add('walk_left',[12,8,7,3,6,2,5,4,1,0],10,true);
+  	this.animations.add('walk_right',[0,1,4,5,2,6,3,7,8,12],10,true);
+  	this.die_left = this.animations.add('die_left',[0,1,4,5,2,6,3,7,8,12],10,true);
+  	this.die_right = this.animations.add('die_right',[0,1,4,5,2,6,3,7,8,12],10,true);
+  	this.die_right.loop = false;
+  	this.die_left.loop = false;
+  	this.die_right.onComplete.add(this.killEnemy,this);
+  	this.die_left.onComplete.add(this.killEnemy,this);
+
+  }else if(this.type == 'abstract'){
+  	this.animations.add('walk_left',[12,8,7,3,6,2,5,4,1,0],10,true);
+  	this.animations.add('walk_right',[0,1,4,5,2,6,3,7,8,12],10,true);
+  	this.die_left = this.animations.add('die_left',[0,1,4,5,2,6,3,7,8,12],10,true);
+  	this.die_right = this.animations.add('die_right',[0,1,4,5,2,6,3,7,8,12],10,true);
+  	this.die_right.loop = false;
+  	this.die_left.loop = false;
+  	this.die_right.onComplete.add(this.killEnemy,this);
+  	this.die_left.onComplete.add(this.killEnemy,this);
+
+  }
+
   this.setPath();
   
 }
@@ -37,12 +64,14 @@ Enemy.prototype.update = function() {
 };  
 
 Enemy.prototype.setPath = function() {
-  var delta = this.range/2;
+  var delta = (this.range* 36) /2;
   this.start = this.x- delta;
+  console.log("middle:",this.x);
   this.x=this.start;
-  this.end = this.x + delta;
-  // console.log("start:",this.start);
-  // console.log("end:",this.end);
+  this.end = this.x + (2 * delta);
+
+  console.log("start:",this.start);
+  console.log("end:",this.end);
 }
 
   
@@ -53,7 +82,7 @@ Enemy.prototype.jump = function(){
 Enemy.prototype.moveLeft = function(){
 	if(this.game.time.now>this.hurtTimer){
  		this.body.moveLeft(this.speed);
-		this.animations.play('walk_left');
+		 this.animations.play('walk_left');
 	}
 }
 
@@ -89,8 +118,13 @@ Enemy.prototype.hurt = function(){
 			data.points = points;
 			localStorage.setItem('avatarData',JSON.stringify(data));
 			//load dying animation
-			this.loadTexture('enemy1_die');
-			this.animations.play('die',true,false);
+			// this.loadTexture('enemy1_die');
+			// this.animations.play('die',true,false);
+			if(this.facing == 'left'){
+				this.getAnimationDieLeft();
+			}else{
+				this.getAnimationDieRight();
+			}
 			//this.die();
 		}
 	}
@@ -101,11 +135,13 @@ Enemy.prototype.randomMove = function(){
 		this.moveLeft();
 		if(this.body.x < this.start){
 		this.facing = 'right';
+		this.getAnimationWalkRight();
 		}
 	}else{
 		this.moveRight();
 		if(this.body.x > this.end){
 			this.facing = 'left';
+			this.getAnimationWalkLeft();
 		}
 	}
 	
@@ -138,8 +174,13 @@ Enemy.prototype.die = function(){
 			data.points = points;
 			localStorage.setItem('avatarData',JSON.stringify(data));
 			//load dying animation
-			this.loadTexture('enemy1_die');
-			this.animations.play('die',true,false);
+			// this.loadTexture('enemy1_die');
+			// this.animations.play('die',true,false);
+			if(this.facing == 'left'){
+				this.getAnimationDieLeft();
+			}else{
+				this.getAnimationDieRight();
+			}
 		}
 
 }
@@ -154,3 +195,57 @@ Enemy.prototype.killEnemy = function(){
 	this.kill();
 
 }
+
+
+Enemy.prototype.getAnimationWalkLeft = function(){
+		if(this.type == 'bird'){
+			this.loadTexture('enemy1_walk_left');
+		}else if(this.type == 'eye'){
+			this.loadTexture('enemy3_walk');
+		}else if(this.type == 'abstract'){
+			this.loadTexture('enemy2_walk_left');
+		}
+
+	}
+
+Enemy.prototype.getAnimationWalkRight = function(){
+		if(this.type == 'bird'){
+			this.loadTexture('enemy1_walk_right');
+		}else if(this.type == 'eye'){
+			this.loadTexture('enemy3_walk');
+		}else if(this.type == 'abstract'){
+			this.loadTexture('enemy2_walk_right');
+		}
+
+	}
+
+Enemy.prototype.getAnimationDieRight = function(){
+		if(this.type == 'bird'){
+			this.loadTexture('enemy1_die_right');
+			this.animations.play('die_right');
+
+		}else if(this.type == 'eye'){
+			this.loadTexture('enemy3_die');
+			this.animations.play('die_right');
+		}else if(this.type == 'abstract'){
+			this.loadTexture('enemy2_die_right');
+			this.animations.play('die_right');
+		}
+
+	}
+Enemy.prototype.getAnimationDieLeft = function(){
+		if(this.type == 'bird'){
+			this.loadTexture('enemy1_die_left');
+			this.animations.play('die_left');
+
+		}else if(this.type == 'eye'){
+			this.loadTexture('enemy3_die');
+			this.animations.play('die_left');
+
+		}else if(this.type == 'abstract'){
+			this.loadTexture('enemy2_die_left');
+			this.animations.play('die_left');
+			
+		}
+
+	}

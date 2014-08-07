@@ -5,21 +5,8 @@ function Planet(game, id, x, y,p_img,frame) {
 	//this.game.physics.arcade.enable(this);
 	this.id = id;
 	this.game = game;
-	this.text_timer = 0;
-
-	this.text = 'Planet noch nicht \nfreigeschaltet';
 
 
-
-	if (localStorage.getItem('planet'+id) === null) {
-		localStorage.setItem('planet'+id, 'locked');
-	}
-
-
-	if (id == 1) {
-		this.status = 'unlocked';}
-	else {
-	this.status = localStorage.getItem('planet'+id);}
 
 
 	//this.anchor.setTo(0.5, 0.5);
@@ -31,9 +18,8 @@ function Planet(game, id, x, y,p_img,frame) {
 
 
 	this.animations.add('rotate',[0,1,7,8,2,9,3,10,14,21,15,16,22,23,17,24,4,5,11,6],10, true);
-	if (this.status == 'unlocked') {
-		this.animations.play('rotate');
-	}
+	this.animations.play('rotate');
+
 	
  };
  
@@ -41,15 +27,12 @@ Planet.prototype = Object.create(Phaser.Sprite.prototype);
 Planet.prototype.constructor = Planet;
 
 Planet.prototype.update = function() {
-	if(this.game.time.now > this.text_timer && this.text_image) {
-		this.text_image.destroy();
-	}
+
 };  
 
 
 Planet.prototype.onClick = function() {
 	
-	if (this.status == 'unlocked') {
 	switch (this.id) {
 		case 1:
 			game.state.start('play1');
@@ -62,10 +45,6 @@ Planet.prototype.onClick = function() {
 		case 3:
 			game.state.start('play3');
 		break; 
-	}}
-	else {
-		this.text_image = this.game.add.text(this.x, this.y, this.text, {font: '30px Arial', fill: '#fff'});
-		this.text_timer = this.game.time.now+5000;
 	}
 };
 

@@ -49,7 +49,7 @@
 	  
 	  //images collectables, status
 
-    this.load.spritesheet('coin', '././assets/collectables/drop1.png',64,64,16);
+    this.load.spritesheet('drop_braun', '././assets/collectables/drop1.png',64,64,16);
     this.load.spritesheet('drop_lila', '././assets/collectables/drop2.png',64,64,16);
     this.load.spritesheet('drop_blau', '././assets/collectables/drop3.png',64,64,16);
 
@@ -138,14 +138,17 @@
 
 
     //load enemies
-    this.load.spritesheet('enemy1_walk','././assets/enemys/enemy1_walk_left.png',64,64,16);
-    this.load.spritesheet('enemy1_die','././assets/enemys/enemy1_die_left.png',64,64,16);
-
+    //bird
+    this.load.spritesheet('enemy1_walk_left','././assets/enemys/enemy1_walk_left.png',64,64,16);
+    this.load.spritesheet('enemy1_die_left','././assets/enemys/enemy1_die_left.png',64,64,16);
+     this.load.spritesheet('enemy1_walk_right','././assets/enemys/enemy1_walk_right.png',64,64,16);
+    this.load.spritesheet('enemy1_die_right','././assets/enemys/enemy1_die_right.png',64,64,16);
+    //abstract
     this.load.spritesheet('enemy2_walk_right','././assets/enemys/enemy2_walk_right.png',64,64,16);
     this.load.spritesheet('enemy2_walk_left','././assets/enemys/enemy2_walk_left.png',64,64,16);
     this.load.spritesheet('enemy2_die_right','././assets/enemys/enemy2_die_right.png',64,64,16);
     this.load.spritesheet('enemy2_die_left','././assets/enemys/enemy2_die_left.png',64,64,16);
-
+    //eye
     this.load.spritesheet('enemy3_walk','././assets/enemys/enemy3_walk.png',64,64,16);
     this.load.spritesheet('enemy3_die','././assets/enemys/enemy3_die.png',64,64,16);
 
@@ -174,9 +177,9 @@
         this.asset.animations.stop();
         // this.game.state.start('chooseAvatar');
 
-		//this.game.state.start('chooseStar');
+		this.game.state.start('chooseStar');
 
-    this.game.state.start('storyLevel1');
+    //this.game.state.start('storyLevel1');
       }
     },
     onLoadComplete: function() {

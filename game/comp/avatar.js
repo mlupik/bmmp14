@@ -138,7 +138,7 @@ Avatar.prototype.speedUp = function(){
 	if(this.speed==this.minSpeed){
 		this.speed = this.speed*2;
 	}
-	this.powerUpTimer = game.time.now+ 5000;
+	this.powerUpTimer = game.time.now+ 7000;
 }
 
 Avatar.prototype.punch = function(){
@@ -221,5 +221,5 @@ Avatar.prototype.gameOver= function(){
 
 Avatar.prototype.superPower= function(){
 	this.immortal = true;
-	this.powerUpTimer = game.time.now+ 5000;
+	this.powerUpTimer = game.time.now+ 7000;
 } 
