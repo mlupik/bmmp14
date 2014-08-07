@@ -1,4 +1,4 @@
-function StarSystem(game, frame) {  
+function StarSystem(game,sound,frame) {  
 	//number of the world
 		this.id = localStorage.getItem('world');
 
@@ -7,9 +7,9 @@ function StarSystem(game, frame) {
 		switch(this.id){
 		
 		 case '1':
-					this.planets.push(new Planet(game,1, 100,50,'sprite_ice'));
-					this.planets.push(new Planet(game,2, 500,150,'sprite_tech'));
-					this.planets.push(new Planet(game,3, 200,350,'sprite_abstract'));
+					this.planets.push(new Planet(game,1, 100,50,'sprite_ice',sound));
+					this.planets.push(new Planet(game,2, 500,150,'sprite_tech',sound));
+					this.planets.push(new Planet(game,3, 200,350,'sprite_abstract',sound));
 			break;
 		case '2':		this.planets.push(new Planet(game,400,100,planetSystem1Images[0]));
 					this.planets.push(new Planet(game,300,200,planetSystem1Images[1]));

@@ -16,6 +16,9 @@
     },
 
     create: function() {
+
+    	this.bg_sound = this.game.add.audio('iceAtmo', 0.2, true).play();  
+
 		var avdat = JSON.parse(localStorage.getItem("avatarData"));
 		avdat.hearts = 3;
 		avdat.points = 0;
@@ -71,8 +74,8 @@
 			this.avatar.jump();
 	} 
 		if(this.escapeKey.isDown){
-			this.game.state.start('chooseStar');
-		} 
+			this.bg_sound.stop();
+			this.game.state.start('chooseStar');	} 
 	
   },
 	
@@ -252,10 +255,13 @@
 	},
 
 	setupGoal1_1: function(){
-			this.goal = this.game.add.sprite(this.getX(130),this.getY(15),'superpower');
+			this.goal = this.game.add.sprite(this.getX(129),this.getY(11),'shuttle');
+			this.goal.frame = 0;
 			this.game.physics.p2.enable(this.goal);
   			this.goal.body.collideWorldBounds = true;
   			this.goal.body.fixedRotation = true;
+  			this.goal.static = true;
+  			this.goal.body.static = true;
 			this.goal.body.setCollisionGroup(this.goalCollisionGroup);
 			this.goal.body.collides([this.avatarCollisionGroup,this.tilemapCollisionGroup]);	
 	},
@@ -270,14 +276,18 @@
 			this.coinCount +=1;
 		}else if(coin.sprite.type == 'part'){
 			this.partsCount += 1;
+			var frameNum = this.goal.frame;
+			this.goal.frame = frameNum +1;
 		}
 		coin.sprite.collect();
 	},
 
 	touchedGoal: function(){
 		if(this.partsCount<this.partsMax){
+			this.game.add.audio('error', 1, false).play();  
 		//nothing happens until all space shuttle parts are collected
 		}else{
+			this.game.add.audio('win',1,false).play();
 			this.wonMenu();
 		}
 
@@ -288,6 +298,7 @@
 		// console.log("onTop",onTop);	
 		if(onTop){
 			if(avatar.sprite.immortal){
+				this.game.add.audio('iceEnemyDie',1,false).play();
 				enemy.sprite.die();
 			}else{
 				enemy.sprite.hurt();
@@ -295,6 +306,7 @@
 			avatar.sprite.hitEnemy();
 		}else{
 			if(avatar.sprite.immortal){
+				this.game.add.audio('iceEnemyDie',1,false).play();
 				enemy.sprite.die();
 				avatar.sprite.hitEnemy();
 			}else{
@@ -427,6 +439,8 @@
 	
 	gameOverMenu: function(){
 		if(!this.won){
+
+			this.bg_sound.stop();
 			this.gameOver = true;
 			this.game.camera.unfollow();
 			this.window = this.game.add.group();
@@ -445,12 +459,12 @@
 	
 		wonMenu: function(){
 			if(!this.gameOver){
+				this.bg_sound.stop();
 				this.won = true;
 				this.window = this.game.add.group();
 				var menu_bg = this.game.add.sprite(0,0,'menu_won_ice');
 				var again_button = this.game.add.button(100,330, 'button_again_ice', function (){this.game.state.start('play1'); }, this);
 				var menu_button = this.game.add.button(240, 330, 'button_menu_ice', function() {this.game.state.start('chooseStar');}, this);
-				var continue_button = this.game.add.button(380,330, 'button_continue_ice', function (){this.game.state.start('play2'); }, this);
 
 				var enemyCount = JSON.parse(localStorage.getItem('enemyCount')).enemyCount;
 				var teile_text = this.game.add.text(200, 330, 'Raketenteile:'+this.partsCount+'/'+this.partsMax, {font: '30px Arial', fill: '#0000'});
@@ -460,7 +474,6 @@
 				this.window.add(menu_bg);
 				this.window.add(again_button);
 				this.window.add(menu_button);
-				this.window.add(continue_button);
 				
 				this.window.add(teile_text);
 				this.window.add(gegner_text);

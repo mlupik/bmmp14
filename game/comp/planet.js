@@ -1,10 +1,11 @@
-function Planet(game, id, x, y,p_img,frame) {  
+function Planet(game, id, x, y,p_img,sound,frame) {  
 	Phaser.Sprite.call(this,game, x, y, p_img, frame);
 	//setup
 	// this.anchor.setTo(0.5, 0.5);
 	//this.game.physics.arcade.enable(this);
 	this.id = id;
 	this.game = game;
+	this.sound = sound;
 
 
 
@@ -35,14 +36,18 @@ Planet.prototype.onClick = function() {
 	
 	switch (this.id) {
 		case 1:
+			this.sound.stop();
 			game.state.start('storyLevel1');
+			
 		break;
 
 		case 2:
+			this.sound.stop();
 			game.state.start('storyLevel2');
 		break;
 
 		case 3:
+			this.sound.stop();
 			game.state.start('storyLevel3');
 		break; 
 	}

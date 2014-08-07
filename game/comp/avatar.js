@@ -29,7 +29,7 @@ function Avatar(game, x, y,img) {
   this.animations.add('walk_right', [10, 13, 14, 15, 16, 17, 18, 20, 21, 0, 1],10,true);
   this.animations.add('walk_left', [10, 14, 15, 16, 17, 18, 19, 21, 22, 0, 1], 10, true);
   // this.animations.add('walk_left', [8,9,10,11,12,13,14,15],10,true);
-  this.die_anim = this.animations.add('die',[5,6,7,8,9,10,11,12,13,0,1,2,3,4],10,false);
+  this.die_anim = this.animations.add('die',[0,1,2,3,4,5,6,7,8,9,10,11,12,13],8,false);
   this.die_anim.onComplete.add(this.isDying,this);
   this.animations.add('jump', [5,6,7,8,9],10,false);
   this.animations.add('punch', [0],5,true);
@@ -161,8 +161,11 @@ Avatar.prototype.hurt = function(){
 				localStorage.setItem('avatarData',JSON.stringify(data));
 				if(hearts<=0){
 					this.dying = true;
+					this.game.add.audio('playerDies',1,false).play();
 					this.loadTexture('avatar_die');
 					this.animations.play('die');
+				}else{
+					this.game.add.audio('playerHurt',1,false).play();
 				}
 			
 			}

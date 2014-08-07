@@ -51,9 +51,6 @@ Collectable.prototype.collect = function() {
 		else if(this.type == 'superpower'){
 			this.collectSuperPower();
 		}
-		else if(this.type == 'reward'){
-			this.collectReward();
-		}
 		else if(this.type == 'part'){
 			this.collectPart();
 		}
@@ -64,6 +61,7 @@ Collectable.prototype.collect = function() {
 } 
 
 Collectable.prototype.collectHeart = function() {
+	this.game.add.audio('collectPowerUp',1,false).play();
 	var data = JSON.parse(localStorage.getItem('avatarData'));
 	var hearts = data.hearts;
 	if(hearts < max_hearts){
@@ -75,42 +73,25 @@ Collectable.prototype.collectHeart = function() {
 } 
 Collectable.prototype.collectLightning = function() {
 	console.log("lightning collected!");
-	// var data = JSON.parse(localStorage.getItem('avatarData'));
-	// var hearts = data.hearts;
-	// if(hearts < max_hearts){
-		// hearts = hearts +1;
-		// data.hearts = hearts;
-		// localStorage.setItem('avatarData',JSON.stringify(data));
-		// //console.log(JSON.parse(localStorage.getItem('avatarData')));
-	// }
+	this.game.add.audio('collectPowerUp',1,false).play();
 } 
 
 Collectable.prototype.collectSuperPower = function() {
-	console.log("lightning collected!");
-	// var data = JSON.parse(localStorage.getItem('avatarData'));
-	// var hearts = data.hearts;
-	// if(hearts < max_hearts){
-		// hearts = hearts +1;
-		// data.hearts = hearts;
-		// localStorage.setItem('avatarData',JSON.stringify(data));
-		// //console.log(JSON.parse(localStorage.getItem('avatarData')));
-	// }
+	console.log("superpower collected!");
+	this.game.add.audio('collectPowerUp',1,false).play();
 } 
 
 Collectable.prototype.collectCoin = function() {
+	this.game.add.audio('collectOil',1,false).play();
 	var data = JSON.parse(localStorage.getItem('avatarData'));
 	var coins = data.points +1;
-	// console.log(data.points);
-	// console.log(coins);
 	data.points = coins;
 	localStorage.setItem('avatarData',JSON.stringify(data));
 	console.log(JSON.parse(localStorage.getItem('avatarData')));
 } 
-Collectable.prototype.collectReward = function() {
-	console.log("reward collected!");
-} 
 
 Collectable.prototype.collectPart = function() {
+	this.game.add.audio('collectPowerUp',1,false).play();
 	console.log("part collected!");
 } 
 

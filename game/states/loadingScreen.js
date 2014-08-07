@@ -86,6 +86,8 @@
 	  this.load.image('reward','././assets/pokal.png');
 	  this.load.spritesheet('hearts','././assets/status/statusHerzen.png',192,64,4);
 
+    this.load.spritesheet('shuttle','././assets/collectables/fullLifeReady.png',144,144,5);
+
 
     //backgrounds für level
     this.load.image('hintergrund1', '././assets/backgrounds/hintergrund_1.jpg');
@@ -142,6 +144,24 @@
     this.load.image('absturzEis', '././assets/storyBilder/absturzEis.png');
     this.load.image('absturzTech', '././assets/storyBilder/absturzTech.png');
     this.load.image('flug', '././assets/storyBilder/flug.png');
+
+
+    //sounds
+    this.load.audio('abstractEnemyDie', "././assets/sounds/abstractEnemyDie.mp3");
+    this.load.audio('iceEnemyDie', "././assets/sounds/iceEnemyDie.mp3");
+    this.load.audio('techEnemyDie', "././assets/sounds/techEnemyDie.wav");
+    this.load.audio('collectOil', "././assets/sounds/collectOil.wav");
+    this.load.audio('collectPowerUp', "././assets/sounds/collectPowerUp.mp3");
+    this.load.audio('iceAtmo', "././assets/sounds/iceAtmo.mp3");
+    this.load.audio('techAtmo', "././assets/sounds/techAtmo.mp3");
+    this.load.audio('abstractAtmo', "././assets/sounds/abstractAtmo.mp3");
+    this.load.audio('jumpOnEnemy', "././assets/sounds/jumpOnEnemy.mp3");
+    this.load.audio('menuAtmo', "././assets/sounds/menuAtmo.mp3");
+    this.load.audio('playerDies', "././assets/sounds/playerDies.mp3");
+    this.load.audio('playerHurt', "././assets/sounds/playerHurt.mp3");
+    this.load.audio('storyFlugUndCrash', "././assets/sounds/storyFlugUndCrash.mp3");
+    this.load.audio('error', "././assets/sounds/error.mp3");
+    this.load.audio('win', "././assets/sounds/win.mp3");
 
     },
     create: function() {

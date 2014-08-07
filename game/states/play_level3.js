@@ -16,6 +16,8 @@
     },
 
     create: function() {
+
+    	this.bg_sound = this.game.add.audio('abstractAtmo', 0.2, true).play(); 
 		var avdat = JSON.parse(localStorage.getItem("avatarData"));
 		avdat.hearts = 3;
 		avdat.points = 0;
@@ -71,6 +73,7 @@
 			this.avatar.jump();
 		} 
 		if(this.escapeKey.isDown){
+			this.bg_sound.stop();
 			this.game.state.start('chooseStar');
 		} 
 	
@@ -107,7 +110,7 @@
 		this.game.physics.p2.gravity.y = 400;
 		this.game.physics.p2.setImpactEvents(true);
 		//Einfügen des Avatars		
-		this.avatar = new Avatar(this.game,this.getX(3),this.getY(23),'avatar_walk_right');
+		this.avatar = new Avatar(this.game,this.getX(3),this.getY(3),'avatar_walk_right');
 		this.game.add.existing(this.avatar);
 		this.game.camera.follow(this.avatar);
 		this.collGroup = this.game.add.group();
@@ -134,24 +137,24 @@
 	
 
 			this.coinArray = new Array();
-			var coin1 = new Collectable(this.game,this.getX(72),this.getY(7),'drop_lila', 'coin');
-			var coin2 = new Collectable(this.game,this.getX(77),this.getY(4),'drop_lila', 'coin');
-			var coin3 = new Collectable(this.game,this.getX(82),this.getY(2),'drop_lila', 'coin');
-			var coin4 = new Collectable(this.game,this.getX(55),this.getY(13),'drop_lila', 'coin');
-			var coin5 = new Collectable(this.game,this.getX(99),this.getY(4),'drop_lila', 'coin');
-			var coin6 = new Collectable(this.game,this.getX(100),this.getY(7),'drop_lila', 'coin');
-			var coin7 = new Collectable(this.game,this.getX(99),this.getY(10), 'drop_lila', 'coin');
-			var coin8 = new Collectable(this.game,this.getX(125),this.getY(18), 'drop_lila', 'coin');
-			var coin9 = new Collectable(this.game,this.getX(129),this.getY(18),'drop_lila','coin');
-			var coin10 = new Collectable(this.game,this.getX(18),this.getY(5), 'drop_lila', 'coin');
-			var coin11 = new Collectable(this.game,this.getX(22),this.getY(3), 'drop_lila', 'coin');
-			var coin12 = new Collectable(this.game,this.getX(27),this.getY(4),'drop_lila','coin');
-			var coin13 = new Collectable(this.game,this.getX(31),this.getY(18),'drop_lila','coin');
-			var coin14 = new Collectable(this.game,this.getX(113),this.getY(18), 'drop_lila', 'coin');
-			var coin15 = new Collectable(this.game,this.getX(113),this.getY(14), 'drop_lila', 'coin');
-			var coin16 = new Collectable(this.game,this.getX(113),this.getY(10),'drop_lila','coin');
-			var coin17 = new Collectable(this.game,this.getX(83),this.getY(12),'drop_lila','coin');
-			var coin18 = new Collectable(this.game,this.getX(86),this.getY(12),'drop_lila','coin');
+			var coin1 = new Collectable(this.game,this.getX(9),this.getY(15),'drop_lila', 'coin');
+			var coin2 = new Collectable(this.game,this.getX(15),this.getY(12),'drop_lila', 'coin');
+			var coin3 = new Collectable(this.game,this.getX(23),this.getY(17),'drop_lila', 'coin');
+			var coin4 = new Collectable(this.game,this.getX(32),this.getY(9),'drop_lila', 'coin');
+			var coin5 = new Collectable(this.game,this.getX(38),this.getY(7),'drop_lila', 'coin');
+			var coin6 = new Collectable(this.game,this.getX(59),this.getY(14),'drop_lila', 'coin');
+			var coin7 = new Collectable(this.game,this.getX(61),this.getY(16), 'drop_lila', 'coin');
+			var coin8 = new Collectable(this.game,this.getX(56),this.getY(21), 'drop_lila', 'coin');
+			var coin9 = new Collectable(this.game,this.getX(69),this.getY(21),'drop_lila','coin');
+			var coin10 = new Collectable(this.game,this.getX(67),this.getY(17), 'drop_lila', 'coin');
+			var coin11 = new Collectable(this.game,this.getX(69),this.getY(12), 'drop_lila', 'coin');
+			var coin12 = new Collectable(this.game,this.getX(79),this.getY(9),'drop_lila','coin');
+			var coin13 = new Collectable(this.game,this.getX(82),this.getY(9),'drop_lila','coin');
+			var coin14 = new Collectable(this.game,this.getX(85),this.getY(9), 'drop_lila', 'coin');
+			var coin15 = new Collectable(this.game,this.getX(92),this.getY(16), 'drop_lila', 'coin');
+			var coin16 = new Collectable(this.game,this.getX(94),this.getY(16),'drop_lila','coin');
+			var coin17 = new Collectable(this.game,this.getX(98),this.getY(16),'drop_lila','coin');
+			var coin18 = new Collectable(this.game,this.getX(129),this.getY(17),'drop_lila','coin');
 
 
 			this.coinArray.push(coin1);
@@ -183,7 +186,7 @@
 	
 	setupHearts1_1: function(){
 
-		var heart = new Collectable(this.game,this.getX(1),this.getY(2),'heart','heart');
+		var heart = new Collectable(this.game,this.getX(34),this.getY(21),'heart','heart');
 		this.game.add.existing(heart);
 		this.collGroup.add(heart);
 		heart.body.setCollisionGroup(this.collectableCollisionGroup);
@@ -192,7 +195,7 @@
 	
 		setupLightning1_1: function(){
 
-			var lightning = new Collectable(this.game, this.getX(40), this.getY(2), 'blitz', 'lightning');
+			var lightning = new Collectable(this.game, this.getX(2), this.getY(21), 'blitz', 'lightning');
 			this.game.add.existing(lightning);
 			this.collGroup.add(lightning);
 			lightning.body.setCollisionGroup(this.collectableCollisionGroup);
@@ -202,7 +205,7 @@
 	
 		setupSuperPower1_1: function(){
 
-			var superPower = new Collectable(this.game,this.getX(79),this.getY(19),'superpower','superpower');
+			var superPower = new Collectable(this.game,this.getX(32),this.getY(4),'superpower','superpower');
 			this.game.add.existing(superPower);
 			this.collGroup.add(superPower);
 			superPower.body.setCollisionGroup(this.collectableCollisionGroup);
@@ -213,12 +216,12 @@
 	
 	setupEnemies1_1: function(){
 			this.enemyArray = new Array();
-			var enemy1 = new Enemy(this.game,this.getX(128),this.getY(3),3,100,3,'enemy3_walk','eye');
-			var enemy2 = new Enemy(this.game,this.getX(48),this.getY(23),8,100,3,'enemy3_walk','eye');
-			var enemy3 = new Enemy(this.game,this.getX(4),this.getY(17),5,100,3,'enemy3_walk','eye');
-			var enemy4 = new Enemy(this.game,this.getX(33),this.getY(10),3,100,3,'enemy3_walk','eye');
-			var enemy5 = new Enemy(this.game,this.getX(68),this.getY(14),4,100,3,'enemy3_walk','eye');
-			var enemy6 = new Enemy(this.game,this.getX(100),this.getY(23),10,100,3,'enemy3_walk','eye');
+			var enemy1 = new Enemy(this.game,this.getX(12),this.getY(7),5,100,3,'enemy3_walk','eye');
+			var enemy2 = new Enemy(this.game,this.getX(26),this.getY(17),3,100,3,'enemy3_walk','eye');
+			var enemy3 = new Enemy(this.game,this.getX(43),this.getY(12),2,100,3,'enemy3_walk','eye');
+			var enemy4 = new Enemy(this.game,this.getX(63),this.getY(10),7,100,3,'enemy3_walk','eye');
+			var enemy5 = new Enemy(this.game,this.getX(81),this.getY(4),9,100,3,'enemy3_walk','eye');
+			var enemy6 = new Enemy(this.game,this.getX(40),this.getY(23),7,100,3,'enemy3_walk','eye');
 			this.enemyArray.push(enemy1);
 			this.enemyArray.push(enemy2);
 			this.enemyArray.push(enemy3);
@@ -237,10 +240,10 @@
 
 	setupParts1_1: function(){
 			this.partsArray = new Array();
-			var part1 = new Collectable(this.game,this.getX(86),this.getY(2),'rakete','part');
-			var part2 = new Collectable(this.game,this.getX(41),this.getY(22),'rakete','part');
-			var part3 = new Collectable(this.game,this.getX(100),this.getY(14),'rakete','part');
-			var part4 = new Collectable(this.game,this.getX(131),this.getY(3),'rakete','part');
+			var part1 = new Collectable(this.game,this.getX(27),this.getY(22),'rakete','part');
+			var part2 = new Collectable(this.game,this.getX(85),this.getY(21),'rakete','part');
+			var part3 = new Collectable(this.game,this.getX(112),this.getY(20),'rakete','part');
+			var part4 = new Collectable(this.game,this.getX(56),this.getY(2),'rakete','part');
 			this.partsArray.push(part1);
 			this.partsArray.push(part2);
 			this.partsArray.push(part3);
@@ -254,10 +257,13 @@
 	},
 
 	setupGoal1_1: function(){
-			this.goal = this.game.add.sprite(this.getX(130),this.getY(15),'superpower');
+			this.goal = this.game.add.sprite(this.getX(129),this.getY(3),'shuttle');
+			this.goal.frame = 0;
 			this.game.physics.p2.enable(this.goal);
   			this.goal.body.collideWorldBounds = true;
   			this.goal.body.fixedRotation = true;
+  			this.goal.static = true;
+  			this.goal.body.static = true;
 			this.goal.body.setCollisionGroup(this.goalCollisionGroup);
 			this.goal.body.collides([this.avatarCollisionGroup,this.tilemapCollisionGroup]);	
 	},
@@ -272,14 +278,18 @@
 			this.coinCount +=1;
 		}else if(coin.sprite.type == 'part'){
 			this.partsCount += 1;
+			var frameNum = this.goal.frame;
+			this.goal.frame = frameNum +1;
 		}
 		coin.sprite.collect();
 	},
 
 	touchedGoal: function(){
 		if(this.partsCount<this.partsMax){
+			this.game.add.audio('error', 1, false).play();  
 		//nothing happens until all space shuttle parts are collected
 		}else{
+			this.game.add.audio('win',1,false).play();
 			this.wonMenu();
 		}
 
@@ -290,6 +300,7 @@
 		// console.log("onTop",onTop);	
 		if(onTop){
 			if(avatar.sprite.immortal){
+				this.game.add.audio('abstractEnemyDie',1,false).play();
 				enemy.sprite.die();
 			}else{
 				enemy.sprite.hurt();
@@ -297,6 +308,7 @@
 			avatar.sprite.hitEnemy();
 		}else{
 			if(avatar.sprite.immortal){
+				this.game.add.audio('abstractEnemyDie',1,false).play();
 				enemy.sprite.die();
 				avatar.sprite.hitEnemy();
 			}else{
@@ -429,6 +441,7 @@
 	
 	gameOverMenu: function(){
 		if(!this.won){
+			this.bg_sound.stop();
 			this.gameOver = true;
 			this.game.camera.unfollow();
 			this.window = this.game.add.group();
@@ -447,6 +460,7 @@
 	
 		wonMenu: function(){
 			if(!this.gameOver){
+				this.bg_sound.stop();
 				this.won = true;
 				this.window = this.game.add.group();
 				var menu_bg = this.game.add.sprite(0,0,'menu_won_abstrakt');

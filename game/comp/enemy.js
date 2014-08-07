@@ -111,6 +111,8 @@ Enemy.prototype.hurt = function(){
 		this.hurtTimer = this.game.time.now + 2000;
 		this.hit();
 		this.lifes = this.lifes -1;
+		this.game.add.audio('jumpOnEnemy',1,false).play();
+
 		if(this.lifes<=0){
 			//dying animation or tween
 			var data = JSON.parse(localStorage.getItem('avatarData'));
@@ -221,13 +223,16 @@ Enemy.prototype.getAnimationWalkRight = function(){
 
 Enemy.prototype.getAnimationDieRight = function(){
 		if(this.type == 'bird'){
+			this.game.add.audio('iceEnemyDie',1,false).play();
 			this.loadTexture('enemy1_die_right');
 			this.animations.play('die_right');
 
 		}else if(this.type == 'eye'){
+			this.game.add.audio('abstractEnemyDie',1,false).play();
 			this.loadTexture('enemy3_die');
 			this.animations.play('die_right');
 		}else if(this.type == 'tech'){
+			this.game.add.audio('techEnemyDie',1,false).play();
 			this.loadTexture('enemy2_die_right');
 			this.animations.play('die_right');
 		}
@@ -235,14 +240,17 @@ Enemy.prototype.getAnimationDieRight = function(){
 	}
 Enemy.prototype.getAnimationDieLeft = function(){
 		if(this.type == 'bird'){
+			this.game.add.audio('iceEnemyDie',1,false).play();
 			this.loadTexture('enemy1_die_left');
 			this.animations.play('die_left');
 
 		}else if(this.type == 'eye'){
+			this.game.add.audio('abstractEnemyDie',1,false).play();
 			this.loadTexture('enemy3_die');
 			this.animations.play('die_left');
 
 		}else if(this.type == 'tech'){
+			this.game.add.audio('techEnemyDie',1,false).play();
 			this.loadTexture('enemy2_die_left');
 			this.animations.play('die_left');
 			
