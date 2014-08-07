@@ -10,6 +10,8 @@ function Planet(game, id, x, y,p_img,sound,frame) {
 
 
 
+
+
 	//this.anchor.setTo(0.5, 0.5);
 	this.inputEnabled = true;
 	this.input.useHandCursor = true;
@@ -33,23 +35,27 @@ Planet.prototype.update = function() {
 
 
 Planet.prototype.onClick = function() {
+
+	localStorage.setItem('level', this.id);
+	this.sound.stop();
+	game.state.start('instructionScreen');
 	
-	switch (this.id) {
-		case 1:
-			this.sound.stop();
-			game.state.start('storyLevel1');
+	// switch (this.id) {
+	// 	case 1:
+	// 		this.sound.stop();
+	// 		game.state.start('storyLevel1');
 			
-		break;
+	// 	break;
 
-		case 2:
-			this.sound.stop();
-			game.state.start('storyLevel2');
-		break;
+	// 	case 2:
+	// 		this.sound.stop();
+	// 		game.state.start('storyLevel2');
+	// 	break;
 
-		case 3:
-			this.sound.stop();
-			game.state.start('storyLevel3');
-		break; 
-	}
+	// 	case 3:
+	// 		this.sound.stop();
+	// 		game.state.start('storyLevel3');
+	// 	break; 
+	// }
 };
 

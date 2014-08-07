@@ -107,7 +107,16 @@
     this.load.spritesheet('sprite_tech','././assets/planets/tech_planet.png',248,248,28);
     this.load.spritesheet('sprite_abstract','././assets/planets/abstract_planet.png',248,248,28);
 
-
+    //text
+    this.load.image('arktronis', '././assets/texte/arktronis.png');
+    this.load.image('calypso', '././assets/texte/calypso.png');
+    this.load.image('techton', '././assets/texte/techton.png');
+    this.load.image('aufwelchenPlanet', '././assets/texte/aufwelchenPlanet.png');
+    this.load.image('raumschiffteileHalbTrans', '././assets/texte/raumschiffteileHalbTrans.png');
+    this.load.image('raumschiffteileSchwarz', '././assets/texte/raumschiffteileSchwarz.png');
+    this.load.image('RaumschiffteileTrans', '././assets/texte/RaumschiffteileTrans.png');
+    this.load.image('raumschiffteileUnterlegt', '././assets/texte/raumschiffteileUnterlegt.jpg');
+    
 
 		//tilemap tech 
 	  this.load.tilemap('tech_map','././assets/tilemaps/tech/tech_map1.json',null, Phaser.Tilemap.TILED_JSON);
