@@ -45,7 +45,7 @@
     },
 
     startLevel: function(){
-      this.game.state.start('storyLevel3');
+      this.game.state.start('play2');
       console.log('story3');
 
     }

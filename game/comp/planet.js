@@ -35,15 +35,15 @@ Planet.prototype.onClick = function() {
 	
 	switch (this.id) {
 		case 1:
-			game.state.start('play1');
+			game.state.start('storyLevel1');
 		break;
 
 		case 2:
-			game.state.start('play2');
+			game.state.start('storyLevel2');
 		break;
 
 		case 3:
-			game.state.start('play3');
+			game.state.start('storyLevel3');
 		break; 
 	}
 };
