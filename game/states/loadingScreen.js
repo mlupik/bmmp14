@@ -19,26 +19,14 @@
     this.asset.animations.add('loading', [0,1,2,7,8,14,15,9,16,3,10,4,17,11,5,6,12,18,19,13],10, true);
     this.asset.animations.play('loading');
 
-    //this.load.setPreloadSprite(this.asset);
-
-    //load everything
-    //this.load.image('avatar1', '././assets/car.png');
-    //this.load.image('avatar2', '././assets/car3.png');
-    //this.load.image('arrow_r', '././assets/pfeil_rechts.png');
-    //this.load.image('arrow_l', '././assets/pfeil_links.png');
     this.load.image('weltall', '././assets/backgrounds/hintergrundPlanetenAuswahl.jpg');
-	  this.load.image('sternbild', '././assets/sb1_ohne.png');
-	  //this.load.image('coin', '././assets/Star_Coin_small.png');
+	this.load.image('sternbild', '././assets/sb1_ohne.png');
+
 
 
 
 	  this.load.image('sternbild_hover', '././assets/sb1.png');
 	  this.load.bitmapFont('font_white','././assets/font4.png', 'assets/font.xml');
-	  //this.load.image('planet','././assets/planet.png');
-	  //this.load.image('planet_hover','././assets/planet_hover.png');
-	  //this.load.spritesheet('man','././assets/sprite3.png',59,100,16);
-	  //this.load.spritesheet('enemy1_walk','././assets/enemys/enemy1_walk.png',64,64,16);
-	  //this.load.spritesheet('enemy1_die','././assets/enemys/enemy1_die.png',64,64,16);
 	  
 	  //load avatar images
 	   this.load.atlasXML('avatar_walk_left', 'assets/avatar/avatar_walk_left.png', 'assets/avatar/avatar_walk_left.xml');
@@ -92,12 +80,8 @@
      this.load.image('button_again_abstrakt', '././assets/menu/Abstrakt/ButtonNochmalAbstrakt.jpg');
 
 
-
-	  //this.load.image('heart','././assets/heart.png');
-	  //this.load.image('heart_grau','././assets/heart_grau.png');
-	  //this.load.image('blitz','././assets/blitz.png');
+	//Powerup collectables
 	  this.load.spritesheet('blitz_icon','././assets/status/speedDisplay.png',64,64,2);
-	  //this.load.image('superpower','././assets/box.png');
 	  this.load.spritesheet('superpower_icon','././assets/status/handschuhDisplay.png',64,64,2);
 	  this.load.image('reward','././assets/pokal.png');
 	  this.load.spritesheet('hearts','././assets/status/statusHerzen.png',192,64,4);
@@ -143,7 +127,7 @@
     this.load.spritesheet('enemy1_die_left','././assets/enemys/enemy1_die_left.png',64,64,16);
      this.load.spritesheet('enemy1_walk_right','././assets/enemys/enemy1_walk_right.png',64,64,16);
     this.load.spritesheet('enemy1_die_right','././assets/enemys/enemy1_die_right.png',64,64,16);
-    //abstract
+    //tech
     this.load.spritesheet('enemy2_walk_right','././assets/enemys/enemy2_walk_right.png',64,64,16);
     this.load.spritesheet('enemy2_walk_left','././assets/enemys/enemy2_walk_left.png',64,64,16);
     this.load.spritesheet('enemy2_die_right','././assets/enemys/enemy2_die_right.png',64,64,16);
@@ -158,15 +142,6 @@
     this.load.image('absturzEis', '././assets/storyBilder/absturzEis.png');
     this.load.image('absturzTech', '././assets/storyBilder/absturzTech.png');
     this.load.image('flug', '././assets/storyBilder/flug.png');
-
-	  
-	  
-	  
-      
-      
-
-
-    
 
     },
     create: function() {

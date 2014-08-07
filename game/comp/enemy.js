@@ -40,7 +40,7 @@ function Enemy(game, x,y,range,speed,lifes, color, type,frame) {
   	this.die_right.onComplete.add(this.killEnemy,this);
   	this.die_left.onComplete.add(this.killEnemy,this);
 
-  }else if(this.type == 'abstract'){
+  }else if(this.type == 'tech'){
   	this.animations.add('walk_left',[12,8,7,3,6,2,5,4,1,0],10,true);
   	this.animations.add('walk_right',[0,1,4,5,2,6,3,7,8,12],10,true);
   	this.die_left = this.animations.add('die_left',[0,1,4,5,2,6,3,7,8,12],10,true);
@@ -202,7 +202,7 @@ Enemy.prototype.getAnimationWalkLeft = function(){
 			this.loadTexture('enemy1_walk_left');
 		}else if(this.type == 'eye'){
 			this.loadTexture('enemy3_walk');
-		}else if(this.type == 'abstract'){
+		}else if(this.type == 'tech'){
 			this.loadTexture('enemy2_walk_left');
 		}
 
@@ -213,7 +213,7 @@ Enemy.prototype.getAnimationWalkRight = function(){
 			this.loadTexture('enemy1_walk_right');
 		}else if(this.type == 'eye'){
 			this.loadTexture('enemy3_walk');
-		}else if(this.type == 'abstract'){
+		}else if(this.type == 'tech'){
 			this.loadTexture('enemy2_walk_right');
 		}
 
@@ -227,7 +227,7 @@ Enemy.prototype.getAnimationDieRight = function(){
 		}else if(this.type == 'eye'){
 			this.loadTexture('enemy3_die');
 			this.animations.play('die_right');
-		}else if(this.type == 'abstract'){
+		}else if(this.type == 'tech'){
 			this.loadTexture('enemy2_die_right');
 			this.animations.play('die_right');
 		}
@@ -242,7 +242,7 @@ Enemy.prototype.getAnimationDieLeft = function(){
 			this.loadTexture('enemy3_die');
 			this.animations.play('die_left');
 
-		}else if(this.type == 'abstract'){
+		}else if(this.type == 'tech'){
 			this.loadTexture('enemy2_die_left');
 			this.animations.play('die_left');
 			
