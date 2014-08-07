@@ -370,7 +370,7 @@
 
 	touchedGoal: function(){
 		if(this.partsCount<this.partsMax){
-			this.gameOverMenu();
+			//nothing happens until all space shuttle parts are collected
 		}else{
 			this.wonMenu();
 		}
