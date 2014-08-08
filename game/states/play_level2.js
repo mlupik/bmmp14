@@ -470,6 +470,7 @@
 			if(!this.gameOver){
 				this.bg_sound.stop();
 				this.won = true;
+				this.game.camera.unfollow();
 				this.window = this.game.add.group();
 				var menu_bg = this.game.add.sprite(0,0,'menu_won_tech');
 				var again_button = this.game.add.button(180,330, 'button_again_tech', function (){this.game.state.start('play2'); }, this);

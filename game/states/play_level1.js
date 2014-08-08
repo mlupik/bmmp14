@@ -468,6 +468,7 @@
 			if(!this.gameOver){
 				this.bg_sound.stop();
 				this.won = true;
+				this.game.camera.unfollow();
 				this.window = this.game.add.group();
 				var menu_bg = this.game.add.sprite(0,0,'menu_won_ice');
 				var again_button = this.game.add.button(180,330, 'button_again_ice', function (){this.game.state.start('play1'); }, this);
