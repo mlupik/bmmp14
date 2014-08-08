@@ -352,8 +352,8 @@
 			this.parts_img.frame = 0;
 			this.points = data.points;
 			this.statusBar = this.game.add.group();
-			this.point_text = this.game.add.bitmapText(400,0, 'font_black',this.points.toString(), 30);
-			this.name_text = this.game.add.bitmapText(0,0, 'font_black',data.name, 30);
+			this.point_text = this.game.add.bitmapText(400,10, 'font_black',this.points.toString(), 30);
+			this.name_text = this.game.add.bitmapText(0,10, 'font_black',data.name, 30);
 
 			this.pauseButton = this.game.add.button(700,0, 'pause_button',this.pauseMenu,this);
 				

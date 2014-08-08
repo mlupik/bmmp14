@@ -16,6 +16,8 @@ function Planet(game, id, x, y,p_img,sound,frame) {
 	this.inputEnabled = true;
 	this.input.useHandCursor = true;
 	this.events.onInputDown.add(this.onClick,this);
+	this.events.onInputOver.add(this.onHover,this);
+	this.events.onInputOut.add(this.outHover,this);
 
 	//0,1,4,5,2,6,3,7,8,12
 
@@ -37,25 +39,47 @@ Planet.prototype.update = function() {
 Planet.prototype.onClick = function() {
 
 	localStorage.setItem('level', this.id);
-	this.sound.stop();
-	game.state.start('instructionScreen');
 	
-	// switch (this.id) {
-	// 	case 1:
-	// 		this.sound.stop();
-	// 		game.state.start('storyLevel1');
+	
+	switch (this.id) {
+		case 1:
+			this.sound.stop();
+			game.state.start('storyLevel1');
 			
-	// 	break;
+		break;
 
-	// 	case 2:
-	// 		this.sound.stop();
-	// 		game.state.start('storyLevel2');
-	// 	break;
+		case 2:
+			this.sound.stop();
+			game.state.start('storyLevel2');
+		break;
 
-	// 	case 3:
-	// 		this.sound.stop();
-	// 		game.state.start('storyLevel3');
-	// 	break; 
-	// }
+		case 3:
+			this.sound.stop();
+			game.state.start('storyLevel3');
+		break; 
+	}
+};
+
+Planet.prototype.onHover = function() {
+
+	switch (this.id) {
+		case 1:
+		this.img = game.add.sprite(80,310,'arktronis');
+		break;
+
+		case 2:
+		this.img = game.add.sprite(450,190,'techton');
+
+		break;
+
+		case 3:
+		this.img = game.add.sprite(390,410,'calypso');
+
+		break; 
+	}
+};
+
+Planet.prototype.outHover = function() {
+	this.img.destroy();
 };
 

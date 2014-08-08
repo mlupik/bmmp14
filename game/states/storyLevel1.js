@@ -53,7 +53,7 @@
     },
 
     startLevel: function(){
-      this.game.state.start('play1');
+      this.game.state.start('instructionScreen');
       console.log('story2');
 
     }

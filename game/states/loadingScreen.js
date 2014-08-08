@@ -114,7 +114,7 @@
     this.load.image('aufwelchenPlanet', '././assets/texte/aufwelchenPlanet.png');
     this.load.image('raumschiffteileHalbTrans', '././assets/texte/raumschiffteileHalbTrans.png');
     this.load.image('raumschiffteileSchwarz', '././assets/texte/raumschiffteileSchwarz.png');
-    this.load.image('RaumschiffteileTrans', '././assets/texte/RaumschiffteileTrans.png');
+    this.load.image('raumschiffteileTrans', '././assets/texte/RaumschiffteileTrans.png');
     this.load.image('raumschiffteileUnterlegt', '././assets/texte/raumschiffteileUnterlegt.jpg');
     
 
