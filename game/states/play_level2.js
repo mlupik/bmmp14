@@ -47,7 +47,9 @@
     },
     
     update: function() {
+		// if(!(this.gameOver && this.won)){
 		this.checkKeys();
+		// }
 		//this.controllScrolling();
 		this.enemGroup.forEach(this.moveEnemies,this);
 		if(!(this.game.pause || this.gameOver || this.won) && this.window){
@@ -331,7 +333,11 @@
 		// console.log("play:avatar on Floor:", avatar.sprite.onFloor);
 		if(!avatar.sprite.onFloor){
 			avatar.sprite.onFloor = true;
-			avatar.sprite.frame = 2;
+			if(avatar.sprite.facing == 'left'){
+			avatar.sprite.animations.play('walk_left');
+			}else{
+			avatar.sprite.animations.play('walk_right');
+			}
 			avatar.sprite.body.velocity.x = 0;
 		}
 	},
@@ -455,6 +461,7 @@
 
 			this.window.x = this.game.camera.x+400-this.window.width/2;
 			this.window.y = this.game.camera.y+300-this.window.height/2;
+			//this.window.fixedToCamera = true;
 		}
 		
 	},
@@ -469,9 +476,9 @@
 				var menu_button = this.game.add.button(310, 330, 'button_menu_tech', function() {this.game.state.start('chooseStar');}, this);
 
 				var enemyCount = JSON.parse(localStorage.getItem('enemyCount')).enemyCount;
-				var teile_text = this.game.add.text(200, 180, 'Raketenteile:'+this.partsCount+'/'+this.partsMax, {font: '30px Arial', fill: '#0000'});
-				var gegner_text = this.game.add.text(200,230, 'Gegner:'+enemyCount+'/'+this.enemyNum, {font: '30px Arial', fill: '#0000'});
-				var coin_text = this.game.add.text(200,280, 'Coin:'+this.coinCount+'/'+this.coinNum, {font: '30px Arial', fill: '#0000'});
+				var teile_text = this.game.add.text(200, 180, 'Raketenteile: '+this.partsCount+'/'+this.partsMax, {font: '30px Arial', fill: '#0000'});
+				var gegner_text = this.game.add.text(200,230, 'Gegner: '+enemyCount+'/'+this.enemyNum, {font: '30px Arial', fill: '#0000'});
+				var coin_text = this.game.add.text(200,280, 'Treibstoff: '+this.coinCount+'/'+this.coinNum, {font: '30px Arial', fill: '#0000'});
 				
 				this.window.add(menu_bg);
 				this.window.add(again_button);
@@ -480,8 +487,9 @@
 				this.window.add(teile_text);
 				this.window.add(gegner_text);
 				this.window.add(coin_text);
-				this.window.x = this.game.camera.x+300-this.window.height/2;
+				this.window.x = this.game.camera.x+400-this.window.height/2;
 				this.window.y = this.game.camera.y+300-this.window.height/2;
+				// this.window.fixedToCamera = true;
 			}
 
 

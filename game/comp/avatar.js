@@ -91,7 +91,6 @@ Avatar.prototype.jump = function(){
 
 			this.animations.play('jump');
 			//this.animations.stop();
-			//this.facing = 'idle';
 			this.body.velocity.y = -300;
 			this.jumpTimer = game.time.now + 350;
 			this.onFloor=false;

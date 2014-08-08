@@ -14,7 +14,7 @@
       this.escapeKey = game.input.keyboard.addKey(Phaser.Keyboard.ESC);
       this.tween0 = this.game.add.tween(this.background).to({ alpha:1},2000, Phaser.Easing.Linear.None, true).to({alpha:1},1000, Phaser.Easing.Linear.None, true).to({alpha:0},3000, Phaser.Easing.Linear.None, true).start();
 
-      this.flug = this.game.add.sprite(400,200, 'raumschiffteileTrans');
+      this.flug = this.game.add.sprite(400,200, 'sammleText');
       this.flug.anchor.setTo(0.5,0.5);
       this.flug.alpha = 0;
 
