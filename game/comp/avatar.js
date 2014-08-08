@@ -224,5 +224,5 @@ Avatar.prototype.gameOver= function(){
 
 Avatar.prototype.superPower= function(){
 	this.immortal = true;
-	this.powerUpTimer = game.time.now+ 7000;
+	this.powerUpTimer = game.time.now+ 21000;
 } 
