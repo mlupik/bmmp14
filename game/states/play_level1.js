@@ -485,7 +485,7 @@
 				this.window.add(teile_text);
 				this.window.add(gegner_text);
 				this.window.add(coin_text);
-				this.window.x = this.game.camera.x+400-this.window.height/2;
+				this.window.x = this.game.camera.x+400-this.window.width/2;
 				this.window.y = this.game.camera.y+300-this.window.height/2;
 				// this.window.fixedToCamera = true;
 			}
