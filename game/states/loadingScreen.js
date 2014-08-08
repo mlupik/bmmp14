@@ -20,13 +20,6 @@
     this.asset.animations.play('loading');
 
     this.load.image('weltall', '././assets/backgrounds/hintergrundPlanetenAuswahl.jpg');
-	this.load.image('sternbild', '././assets/sb1_ohne.png');
-
-
-
-
-	  this.load.image('sternbild_hover', '././assets/sb1.png');
-	  this.load.bitmapFont('font_white','././assets/font4.png', 'assets/font.xml');
 	  
 	  //load avatar images
 	   this.load.atlasXML('avatar_walk_left', 'assets/avatar/avatar_walk_left.png', 'assets/avatar/avatar_walk_left.xml');
