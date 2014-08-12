@@ -126,7 +126,7 @@
 		this.avatar.body.setCollisionGroup(this.avatarCollisionGroup);
 		this.avatar.body.collides(this.enemyCollisionGroup,this.meetEnemy,this);
 		this.avatar.body.collides(this.collectableCollisionGroup,this.collect,this);
-		this.avatar.body.collides([this.tilemapCollisionGroup,this.tilemapCollisionGroup], this.touchedFloor,this);
+		this.avatar.body.collides(this.tilemapCollisionGroup, this.touchedFloor,this);
 		this.avatar.body.collides(this.goalCollisionGroup, this.touchedGoal,this);
 		//set up Statusbar
 		this.setupStatusBar();	
@@ -329,13 +329,16 @@
 	
 	touchedFloor: function(avatar,floor){
 		// console.log("play:avatar on Floor:", avatar.sprite.onFloor);
-		if(!avatar.sprite.onFloor){
+		var bodyY = avatar.y;
+		var floorY = floor.y;
+		//console.log("Body/Floor",floorY-bodyY);
+		if(!avatar.sprite.onFloor && (floorY>bodyY)){
 			avatar.sprite.onFloor = true;
-			if(avatar.sprite.facing == 'left'){
-			avatar.sprite.animations.play('walk_left');
-			}else{
-			avatar.sprite.animations.play('walk_right');
-			}
+			// if(avatar.sprite.facing == 'left'){
+			// avatar.sprite.animations.play('walk_left');
+			// }else{
+			// avatar.sprite.animations.play('walk_right');
+			// }
 			avatar.sprite.body.velocity.x = 0;
 		}
 	},
