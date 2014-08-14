@@ -328,19 +328,38 @@
 		return pos;
 	},
 
-	
 	touchedFloor: function(avatar,floor){
 		// console.log("play:avatar on Floor:", avatar.sprite.onFloor);
-		if(!avatar.sprite.onFloor){
+		var bodyY = avatar.y;
+		var floorY = floor.y;
+		//console.log("Body/Floor",floorY-bodyY);
+		if(!avatar.sprite.onWall){
+			avatar.sprite.onWall = true;
+		}
+		if(!avatar.sprite.onFloor && (floorY>bodyY)){
 			avatar.sprite.onFloor = true;
-			if(avatar.sprite.facing == 'left'){
-			avatar.sprite.animations.play('walk_left');
-			}else{
-			avatar.sprite.animations.play('walk_right');
-			}
+			// if(avatar.sprite.facing == 'left'){
+			// avatar.sprite.animations.play('walk_left');
+			// }else{
+			// avatar.sprite.animations.play('walk_right');
+			// }
+			avatar.sprite.standing();
 			avatar.sprite.body.velocity.x = 0;
 		}
 	},
+	
+	// touchedFloor: function(avatar,floor){
+		// // console.log("play:avatar on Floor:", avatar.sprite.onFloor);
+		// if(!avatar.sprite.onFloor){
+			// avatar.sprite.onFloor = true;
+			// if(avatar.sprite.facing == 'left'){
+			// avatar.sprite.animations.play('walk_left');
+			// }else{
+			// avatar.sprite.animations.play('walk_right');
+			// }
+			// avatar.sprite.body.velocity.x = 0;
+		// }
+	// },
 	
 	moveEnemies: function(enemy){
 		enemy.randomMove();
